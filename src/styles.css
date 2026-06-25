@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--ch-palette-background-default);
+  color: var(--ch-palette-text-primary);
+}
+
+.budgy-centered {
+  max-width: 30rem;
+  margin: 15vh auto 0;
+  padding: 1.5rem;
+}
