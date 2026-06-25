@@ -27,6 +27,35 @@ export const messages: ChLocaleMessages = {
     "budgy.home.notifications.description":
       "Recevez des alertes sur votre activité bancaire et vos seuils de budget.",
     "budgy.home.comingSoon": "Bientôt disponible",
+    "budgy.home.open": "Ouvrir",
+    "budgy.bank.title": "Rattacher ma banque",
+    "budgy.bank.intro":
+      "Sélectionnez votre banque puis autorisez l'accès à vos comptes pour suivre vos dépenses.",
+    "budgy.bank.selectLabel": "Votre banque",
+    "budgy.bank.selectPlaceholder": "Choisissez une banque",
+    "budgy.bank.connect": "Connecter ma banque",
+    "budgy.bank.loadingBanks": "Chargement des banques",
+    "budgy.bank.banksError":
+      "Impossible de récupérer la liste des banques. Réessayez.",
+    "budgy.bank.connectError":
+      "Impossible de lancer le rattachement. Réessayez.",
+    "budgy.bank.retry": "Réessayer",
+    "budgy.callback.title": "Rattachement de votre banque",
+    "budgy.callback.pending": "Finalisation du rattachement",
+    "budgy.callback.success": "Votre banque a bien été rattachée.",
+    "budgy.callback.accountsTitle": "Comptes rattachés",
+    "budgy.callback.ibanLabel": "IBAN",
+    "budgy.callback.accountIdLabel": "Identifiant du compte",
+    "budgy.callback.backHome": "Retour à l'accueil",
+    "budgy.callback.error":
+      "Le rattachement n'a pas abouti. Vous pouvez recommencer.",
+    "budgy.callback.missingParams":
+      "Les informations de retour de la banque sont manquantes.",
+    "budgy.callback.retry": "Recommencer",
+    "ch.error.consentement_refuse":
+      "Vous avez refusé le partage de vos données bancaires. Vous pouvez recommencer.",
+    "ch.error.banque_indisponible":
+      "Banque momentanément indisponible, réessayez plus tard.",
   },
   en: {
     "budgy.brand": "BUdgy",
@@ -52,5 +81,30 @@ export const messages: ChLocaleMessages = {
     "budgy.home.notifications.description":
       "Get alerts about your banking activity and budget thresholds.",
     "budgy.home.comingSoon": "Coming soon",
+    "budgy.home.open": "Open",
+    "budgy.bank.title": "Link my bank",
+    "budgy.bank.intro":
+      "Select your bank then authorise access to your accounts to track your spending.",
+    "budgy.bank.selectLabel": "Your bank",
+    "budgy.bank.selectPlaceholder": "Choose a bank",
+    "budgy.bank.connect": "Connect my bank",
+    "budgy.bank.loadingBanks": "Loading banks",
+    "budgy.bank.banksError": "Unable to load the list of banks. Please try again.",
+    "budgy.bank.connectError": "Unable to start the linking process. Please try again.",
+    "budgy.bank.retry": "Try again",
+    "budgy.callback.title": "Linking your bank",
+    "budgy.callback.pending": "Finalising the link",
+    "budgy.callback.success": "Your bank has been linked successfully.",
+    "budgy.callback.accountsTitle": "Linked accounts",
+    "budgy.callback.ibanLabel": "IBAN",
+    "budgy.callback.accountIdLabel": "Account id",
+    "budgy.callback.backHome": "Back to home",
+    "budgy.callback.error": "The link did not complete. You can start over.",
+    "budgy.callback.missingParams": "The return information from the bank is missing.",
+    "budgy.callback.retry": "Start over",
+    "ch.error.consentement_refuse":
+      "You declined sharing your banking data. You can start over.",
+    "ch.error.banque_indisponible":
+      "Bank temporarily unavailable, please try again later.",
   },
 };
