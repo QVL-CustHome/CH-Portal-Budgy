@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import RequireBudgy from "./components/RequireBudgy";
 import BudgyLayout from "./components/BudgyLayout";
 import Home from "./pages/Home";
+import RattacherBanque from "./pages/RattacherBanque";
+import RattacherBanqueCallback from "./pages/RattacherBanqueCallback";
 import Forbidden from "./pages/Forbidden";
 
 export default function App() {
@@ -12,6 +14,8 @@ export default function App() {
         <Route element={<BudgyLayout />}>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/banque" element={<RattacherBanque />} />
+          <Route path="/banque/callback" element={<RattacherBanqueCallback />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Route>
       </Route>
