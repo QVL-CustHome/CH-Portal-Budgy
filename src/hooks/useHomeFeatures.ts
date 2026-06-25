@@ -10,7 +10,7 @@ export function useHomeFeatures(): FeatureCardProps[] {
       icon: "plus",
       title: t("budgy.home.bank.title"),
       description: t("budgy.home.bank.description"),
-      badge,
+      to: "/banque",
     },
     {
       icon: "apps",

@@ -5,6 +5,51 @@ export interface BudgyHealth {
   service: string;
 }
 
+export interface Bank {
+  id: string;
+  nom: string;
+  pays: string;
+}
+
+export interface BanksResponse {
+  data: Bank[];
+  total: number;
+}
+
+export interface ConsentInitiation {
+  consent_id: string;
+  authorization_url: string;
+}
+
+export interface LinkedAccount {
+  id: string;
+  iban_masked: string;
+}
+
+export interface ConsentCompletion {
+  consent_id: string;
+  status: string;
+  comptes: LinkedAccount[];
+}
+
 export function getHealth() {
   return request<BudgyHealth>("/budgy/health");
+}
+
+export function listBanks() {
+  return request<BanksResponse>("/budgy/v1/banks");
+}
+
+export function initierConsentement(bankId: string) {
+  return request<ConsentInitiation>("/budgy/v1/consents", {
+    method: "POST",
+    body: JSON.stringify({ bank_id: bankId }),
+  });
+}
+
+export function completerConsentement(code: string, state: string) {
+  return request<ConsentCompletion>("/budgy/v1/consents/callback", {
+    method: "POST",
+    body: JSON.stringify({ code, state }),
+  });
 }
