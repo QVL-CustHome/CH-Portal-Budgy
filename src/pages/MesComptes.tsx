@@ -8,8 +8,10 @@ import {
 } from "@custhome/ui";
 import ComptesList from "../components/ComptesList";
 import ReconsentementAlerte from "../components/ReconsentementAlerte";
+import ConsentRenewalBanner from "../components/ConsentRenewalBanner";
 import { useComptes } from "../hooks/useComptes";
 import { useReconsentement } from "../hooks/useReconsentement";
+import { useReloadComptesOnRelay } from "../hooks/useReloadOnRelay";
 
 export default function MesComptes() {
   const { t } = useTranslation();
@@ -20,6 +22,7 @@ export default function MesComptes() {
     renewError,
     renew,
   } = useReconsentement();
+  useReloadComptesOnRelay(reload);
 
   return (
     <PageContent title={t("budgy.accounts.title")}>
@@ -30,6 +33,7 @@ export default function MesComptes() {
           renewError={renewError}
           onRenew={renew}
         />
+        <ConsentRenewalBanner />
         {loading ? (
           <Stack alignItems="center" padding="lg">
             <Spinner label={t("budgy.accounts.loading")} />

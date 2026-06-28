@@ -32,28 +32,6 @@ export interface ConsentCompletion {
   comptes: LinkedAccount[];
 }
 
-export function getHealth() {
-  return request<BudgyHealth>("/budgy/health");
-}
-
-export function listBanks() {
-  return request<BanksResponse>("/budgy/v1/banks");
-}
-
-export function initierConsentement(bankId: string) {
-  return request<ConsentInitiation>("/budgy/v1/consents", {
-    method: "POST",
-    body: JSON.stringify({ bank_id: bankId }),
-  });
-}
-
-export function completerConsentement(code: string, state: string) {
-  return request<ConsentCompletion>("/budgy/v1/consents/callback", {
-    method: "POST",
-    body: JSON.stringify({ code, state }),
-  });
-}
-
 export type ConsentStatus =
   | "pending"
   | "active"
@@ -78,8 +56,30 @@ export interface ConsentsResponse {
   total: number;
 }
 
+export function getHealth() {
+  return request<BudgyHealth>("/budgy/health");
+}
+
+export function listBanks() {
+  return request<BanksResponse>("/budgy/v1/banks");
+}
+
+export function initierConsentement(bankId: string) {
+  return request<ConsentInitiation>("/budgy/v1/consents", {
+    method: "POST",
+    body: JSON.stringify({ bank_id: bankId }),
+  });
+}
+
 export function listConsents() {
   return request<ConsentsResponse>("/budgy/v1/consents");
+}
+
+export function completerConsentement(code: string, state: string) {
+  return request<ConsentCompletion>("/budgy/v1/consents/callback", {
+    method: "POST",
+    body: JSON.stringify({ code, state }),
+  });
 }
 
 export function renouvelerConsentement(consentId: string) {
