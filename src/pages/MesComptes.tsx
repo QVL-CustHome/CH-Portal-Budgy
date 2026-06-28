@@ -7,15 +7,29 @@ import {
   useTranslation,
 } from "@custhome/ui";
 import ComptesList from "../components/ComptesList";
+import ReconsentementAlerte from "../components/ReconsentementAlerte";
 import { useComptes } from "../hooks/useComptes";
+import { useReconsentement } from "../hooks/useReconsentement";
 
 export default function MesComptes() {
   const { t } = useTranslation();
   const { comptes, loading, error, reload } = useComptes();
+  const {
+    renewableConsents,
+    renewingConsentId,
+    renewError,
+    renew,
+  } = useReconsentement();
 
   return (
     <PageContent title={t("budgy.accounts.title")}>
       <Stack gap="lg">
+        <ReconsentementAlerte
+          consents={renewableConsents}
+          renewingConsentId={renewingConsentId}
+          renewError={renewError}
+          onRenew={renew}
+        />
         {loading ? (
           <Stack alignItems="center" padding="lg">
             <Spinner label={t("budgy.accounts.loading")} />
