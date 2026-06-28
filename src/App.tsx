@@ -6,6 +6,7 @@ import RattacherBanque from "./pages/RattacherBanque";
 import RattacherBanqueCallback from "./pages/RattacherBanqueCallback";
 import MesComptes from "./pages/MesComptes";
 import TransactionsCompte from "./pages/TransactionsCompte";
+import Consentements from "./pages/Consentements";
 import Forbidden from "./pages/Forbidden";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/banque/callback" element={<RattacherBanqueCallback />} />
           <Route path="/comptes" element={<MesComptes />} />
           <Route path="/comptes/:accountId" element={<TransactionsCompte />} />
+          <Route path="/consentements" element={<Consentements />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Route>
       </Route>
