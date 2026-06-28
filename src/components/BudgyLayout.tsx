@@ -4,6 +4,8 @@ import { useCurrentUser } from "../context/current-user";
 import { logout } from "../api/auth";
 import { navigateTo } from "../lib/navigation";
 import { loginUrl } from "../lib/auth-redirect";
+import BudgyNotificationsProvider from "./BudgyNotificationsProvider";
+import SyncErrorToast from "./SyncErrorToast";
 
 export default function BudgyLayout() {
   const { t } = useTranslation();
@@ -26,16 +28,19 @@ export default function BudgyLayout() {
   }
 
   return (
-    <PageScaffold
-      navbarTitle="CustHome"
-      title={t("budgy.brand")}
-      items={items}
-      activeHref={location.pathname}
-      onNavigate={(href) => navigate(href)}
-      userName={me.name}
-      onLogout={handleLogout}
-    >
-      <Outlet />
-    </PageScaffold>
+    <BudgyNotificationsProvider>
+      <PageScaffold
+        navbarTitle="CustHome"
+        title={t("budgy.brand")}
+        items={items}
+        activeHref={location.pathname}
+        onNavigate={(href) => navigate(href)}
+        userName={me.name}
+        onLogout={handleLogout}
+      >
+        <Outlet />
+        <SyncErrorToast />
+      </PageScaffold>
+    </BudgyNotificationsProvider>
   );
 }
