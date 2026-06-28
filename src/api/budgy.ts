@@ -32,6 +32,30 @@ export interface ConsentCompletion {
   comptes: LinkedAccount[];
 }
 
+export type ConsentStatus =
+  | "pending"
+  | "active"
+  | "expired"
+  | "revoked"
+  | "failed";
+
+export type ConsentRenewal = "up-to-date" | "renewal-required" | "expired";
+
+export interface Consent {
+  consent_id: string;
+  status: ConsentStatus;
+  renewal: ConsentRenewal;
+  renewable: boolean;
+  expires_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ConsentsResponse {
+  data: Consent[];
+  total: number;
+}
+
 export function getHealth() {
   return request<BudgyHealth>("/budgy/health");
 }
@@ -45,6 +69,10 @@ export function initierConsentement(bankId: string) {
     method: "POST",
     body: JSON.stringify({ bank_id: bankId }),
   });
+}
+
+export function listConsents() {
+  return request<ConsentsResponse>("/budgy/v1/consents");
 }
 
 export function completerConsentement(code: string, state: string) {

@@ -78,6 +78,14 @@ export const messages: ChLocaleMessages = {
     "budgy.pagination.previous": "Précédent",
     "budgy.pagination.next": "Suivant",
     "budgy.pagination.status": "Page {page} sur {pageCount}",
+    "budgy.consent.error":
+      "Impossible de récupérer l'état de vos consentements. Réessayez.",
+    "budgy.notifications.syncFailed":
+      "La synchronisation de vos données bancaires a échoué. Réessayez plus tard.",
+    "budgy.notifications.consentRenewalRequired":
+      "Votre consentement bancaire doit être renouvelé pour continuer à synchroniser vos comptes.",
+    "budgy.notifications.consentExpired":
+      "Votre consentement bancaire a expiré. Rattachez votre banque pour reprendre le suivi.",
     "ch.error.consentement_refuse":
       "Vous avez refusé le partage de vos données bancaires. Vous pouvez recommencer.",
     "ch.error.banque_indisponible":
@@ -153,6 +161,14 @@ export const messages: ChLocaleMessages = {
     "budgy.pagination.previous": "Previous",
     "budgy.pagination.next": "Next",
     "budgy.pagination.status": "Page {page} of {pageCount}",
+    "budgy.consent.error":
+      "Unable to load your consent status. Please try again.",
+    "budgy.notifications.syncFailed":
+      "Syncing your banking data failed. Please try again later.",
+    "budgy.notifications.consentRenewalRequired":
+      "Your bank consent needs to be renewed to keep syncing your accounts.",
+    "budgy.notifications.consentExpired":
+      "Your bank consent has expired. Link your bank again to resume tracking.",
     "ch.error.consentement_refuse":
       "You declined sharing your banking data. You can start over.",
     "ch.error.banque_indisponible":

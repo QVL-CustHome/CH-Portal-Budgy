@@ -7,15 +7,19 @@ import {
   useTranslation,
 } from "@custhome/ui";
 import ComptesList from "../components/ComptesList";
+import ConsentRenewalBanner from "../components/ConsentRenewalBanner";
 import { useComptes } from "../hooks/useComptes";
+import { useReloadComptesOnRelay } from "../hooks/useReloadOnRelay";
 
 export default function MesComptes() {
   const { t } = useTranslation();
   const { comptes, loading, error, reload } = useComptes();
+  useReloadComptesOnRelay(reload);
 
   return (
     <PageContent title={t("budgy.accounts.title")}>
       <Stack gap="lg">
+        <ConsentRenewalBanner />
         {loading ? (
           <Stack alignItems="center" padding="lg">
             <Spinner label={t("budgy.accounts.loading")} />
