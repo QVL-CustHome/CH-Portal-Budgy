@@ -13,7 +13,7 @@ export default function BudgyLayout() {
 
   const items: ChNavbarItem[] = [
     { label: t("budgy.nav.home"), href: "/home", icon: "home" },
-    { label: t("budgy.nav.accounts"), href: "/accounts", icon: "apps" },
+    { label: t("budgy.nav.accounts"), href: "/comptes", icon: "apps" },
     { label: t("budgy.nav.notifications"), href: "/notifications", icon: "mail" },
   ];
 

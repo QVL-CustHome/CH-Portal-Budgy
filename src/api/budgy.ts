@@ -53,3 +53,62 @@ export function completerConsentement(code: string, state: string) {
     body: JSON.stringify({ code, state }),
   });
 }
+
+export type BalanceType = string;
+
+export interface AccountBalance {
+  amount_cents: number;
+  type: BalanceType;
+  at: string;
+}
+
+export interface Account {
+  id: string;
+  iban_masked: string;
+  currency: string;
+  balance: AccountBalance | null;
+}
+
+export interface AccountsResponse {
+  data: Account[];
+  total: number;
+}
+
+export type TransactionStatus = "booked" | "pending";
+
+export interface Transaction {
+  id: string;
+  label: string;
+  amount_cents: number;
+  currency: string;
+  status: TransactionStatus;
+  booking_date: string | null;
+  value_date: string | null;
+}
+
+export interface TransactionsResponse {
+  data: Transaction[];
+  total: number;
+}
+
+export interface TransactionsQuery {
+  limit: number;
+  offset: number;
+}
+
+export function listAccounts() {
+  return request<AccountsResponse>("/budgy/v1/accounts");
+}
+
+export function listTransactions(
+  accountId: string,
+  { limit, offset }: TransactionsQuery
+) {
+  const params = new URLSearchParams({
+    limit: String(limit),
+    offset: String(offset),
+  });
+  return request<TransactionsResponse>(
+    `/budgy/v1/accounts/${encodeURIComponent(accountId)}/transactions?${params.toString()}`
+  );
+}
