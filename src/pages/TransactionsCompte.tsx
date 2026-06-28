@@ -10,6 +10,7 @@ import {
 import TransactionsTable from "../components/TransactionsTable";
 import Pagination from "../components/Pagination";
 import { useTransactionsCompte } from "../hooks/useTransactionsCompte";
+import { useReloadTransactionsOnRelay } from "../hooks/useReloadOnRelay";
 
 export default function TransactionsCompte() {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ export default function TransactionsCompte() {
     goToPage,
     reload,
   } = useTransactionsCompte(accountId);
+  useReloadTransactionsOnRelay(accountId, reload);
 
   return (
     <PageContent title={t("budgy.transactions.title")}>
