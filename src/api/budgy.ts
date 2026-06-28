@@ -54,6 +54,41 @@ export function completerConsentement(code: string, state: string) {
   });
 }
 
+export type ConsentStatus =
+  | "pending"
+  | "active"
+  | "expired"
+  | "revoked"
+  | "failed";
+
+export type ConsentRenewal = "up-to-date" | "renewal-required" | "expired";
+
+export interface Consent {
+  consent_id: string;
+  status: ConsentStatus;
+  renewal: ConsentRenewal;
+  renewable: boolean;
+  expires_at: string | null;
+  created_at: string | null;
+  updated_at: string | null;
+}
+
+export interface ConsentsResponse {
+  data: Consent[];
+  total: number;
+}
+
+export function listConsents() {
+  return request<ConsentsResponse>("/budgy/v1/consents");
+}
+
+export function renouvelerConsentement(consentId: string) {
+  return request<ConsentInitiation>(
+    `/budgy/v1/consents/${encodeURIComponent(consentId)}/renew`,
+    { method: "POST" }
+  );
+}
+
 export type BalanceType = string;
 
 export interface AccountBalance {
