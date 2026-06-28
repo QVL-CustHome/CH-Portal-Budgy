@@ -4,6 +4,8 @@ import BudgyLayout from "./components/BudgyLayout";
 import Home from "./pages/Home";
 import RattacherBanque from "./pages/RattacherBanque";
 import RattacherBanqueCallback from "./pages/RattacherBanqueCallback";
+import MesComptes from "./pages/MesComptes";
+import TransactionsCompte from "./pages/TransactionsCompte";
 import Forbidden from "./pages/Forbidden";
 
 export default function App() {
@@ -16,6 +18,8 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/banque" element={<RattacherBanque />} />
           <Route path="/banque/callback" element={<RattacherBanqueCallback />} />
+          <Route path="/comptes" element={<MesComptes />} />
+          <Route path="/comptes/:accountId" element={<TransactionsCompte />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Route>
       </Route>
