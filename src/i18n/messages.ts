@@ -4,7 +4,7 @@ export const defaultLocale: ChLocale = "fr";
 
 export const messages: ChLocaleMessages = {
   fr: {
-    "budgy.brand": "BUdgy",
+    "budgy.brand": "Budgy",
     "budgy.loading": "Chargement",
     "budgy.logout": "Se déconnecter",
     "budgy.nav.home": "Accueil",
@@ -14,10 +14,10 @@ export const messages: ChLocaleMessages = {
     "budgy.guard.loadError": "Impossible de vérifier votre session. Réessayez.",
     "budgy.forbidden.title": "Accès refusé",
     "budgy.forbidden.message":
-      "Votre compte n'a pas le rôle requis pour accéder au portail BUdgy.",
+      "Votre compte n'a pas le rôle requis pour accéder au portail Budgy.",
     "budgy.forbidden.switch": "Se connecter avec un autre compte",
     "budgy.home.title": "Mon budget",
-    "budgy.home.welcome": "Bienvenue sur BUdgy, votre espace de gestion de budget personnel.",
+    "budgy.home.welcome": "Bienvenue sur Budgy, votre espace de gestion de budget personnel.",
     "budgy.home.bank.title": "Rattacher une banque",
     "budgy.home.bank.description":
       "Connectez vos comptes bancaires en toute sécurité pour suivre vos dépenses.",
@@ -122,7 +122,7 @@ export const messages: ChLocaleMessages = {
       "Banque momentanément indisponible, réessayez plus tard.",
   },
   en: {
-    "budgy.brand": "BUdgy",
+    "budgy.brand": "Budgy",
     "budgy.loading": "Loading",
     "budgy.logout": "Log out",
     "budgy.nav.home": "Home",
@@ -132,10 +132,10 @@ export const messages: ChLocaleMessages = {
     "budgy.guard.loadError": "Unable to verify your session. Please try again.",
     "budgy.forbidden.title": "Access denied",
     "budgy.forbidden.message":
-      "Your account does not have the role required to access the BUdgy portal.",
+      "Your account does not have the role required to access the Budgy portal.",
     "budgy.forbidden.switch": "Sign in with another account",
     "budgy.home.title": "My budget",
-    "budgy.home.welcome": "Welcome to BUdgy, your personal budget management space.",
+    "budgy.home.welcome": "Welcome to Budgy, your personal budget management space.",
     "budgy.home.bank.title": "Link a bank",
     "budgy.home.bank.description":
       "Securely connect your bank accounts to track your spending.",
