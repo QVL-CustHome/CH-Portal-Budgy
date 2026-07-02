@@ -10,7 +10,6 @@ export const messages: ChLocaleMessages = {
     "budgy.nav.home": "Accueil",
     "budgy.nav.accounts": "Comptes",
     "budgy.nav.consents": "Consentements",
-    "budgy.nav.notifications": "Notifications",
     "budgy.guard.loadError": "Impossible de vérifier votre session. Réessayez.",
     "budgy.forbidden.title": "Accès refusé",
     "budgy.forbidden.message":
@@ -128,7 +127,6 @@ export const messages: ChLocaleMessages = {
     "budgy.nav.home": "Home",
     "budgy.nav.accounts": "Accounts",
     "budgy.nav.consents": "Consents",
-    "budgy.nav.notifications": "Notifications",
     "budgy.guard.loadError": "Unable to verify your session. Please try again.",
     "budgy.forbidden.title": "Access denied",
     "budgy.forbidden.message":
