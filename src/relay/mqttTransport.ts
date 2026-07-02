@@ -39,6 +39,24 @@ function decodePayload(payload: Uint8Array): string {
   return new TextDecoder().decode(payload);
 }
 
+function topicMatchesFilter(filter: string, topic: string): boolean {
+  const filterSegments = filter.split("/");
+  const topicSegments = topic.split("/");
+  for (let index = 0; index < filterSegments.length; index += 1) {
+    const filterSegment = filterSegments[index];
+    if (filterSegment === "#") {
+      return true;
+    }
+    if (index >= topicSegments.length) {
+      return false;
+    }
+    if (filterSegment !== "+" && filterSegment !== topicSegments[index]) {
+      return false;
+    }
+  }
+  return filterSegments.length === topicSegments.length;
+}
+
 const MQTT_MODULE_SPECIFIER = "mqtt";
 
 async function loadMqttModule(): Promise<MqttModule> {
@@ -72,15 +90,15 @@ export function createMqttTransport(
           reconnectPeriod: 5000,
         });
         client.on("message", (topic, payload) => {
-          const handlers = handlersByTopic.get(topic);
-          if (!handlers) {
-            return;
-          }
           const message: RelayMessage = {
             topic,
             payload: decodePayload(payload),
           };
-          handlers.forEach((handler) => handler(message));
+          handlersByTopic.forEach((handlers, filter) => {
+            if (topicMatchesFilter(filter, topic)) {
+              handlers.forEach((handler) => handler(message));
+            }
+          });
         });
         return client;
       });

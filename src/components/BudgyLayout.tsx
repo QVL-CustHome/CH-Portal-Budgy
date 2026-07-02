@@ -17,7 +17,6 @@ export default function BudgyLayout() {
     { label: t("budgy.nav.home"), href: "/home", icon: "home" },
     { label: t("budgy.nav.accounts"), href: "/comptes", icon: "apps" },
     { label: t("budgy.nav.consents"), href: "/consentements", icon: "shield" },
-    { label: t("budgy.nav.notifications"), href: "/notifications", icon: "mail" },
   ];
 
   async function handleLogout() {
