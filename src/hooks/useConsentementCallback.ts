@@ -43,9 +43,15 @@ export function useConsentementCallback(): UseConsentementCallbackResult {
   );
 
   useEffect(() => {
+    const oauthError = searchParams.get("error");
     const code = searchParams.get("code");
     const state = searchParams.get("state");
     isRenewalRef.current = consumeRenewFlow();
+    if (oauthError) {
+      setErrorMessage(t("budgy.callback.refused"));
+      setStatus("error");
+      return;
+    }
     if (!code || !state) {
       setErrorMessage(t("budgy.callback.missingParams"));
       setStatus("error");

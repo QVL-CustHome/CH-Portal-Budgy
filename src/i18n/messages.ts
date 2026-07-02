@@ -55,6 +55,8 @@ export const messages: ChLocaleMessages = {
     "budgy.callback.backAccounts": "Voir mes comptes",
     "budgy.callback.error":
       "Le rattachement n'a pas abouti. Vous pouvez recommencer.",
+    "budgy.callback.refused":
+      "Vous avez refusé ou interrompu l'autorisation auprès de votre banque. Vous pouvez recommencer.",
     "budgy.callback.missingParams":
       "Les informations de retour de la banque sont manquantes.",
     "budgy.callback.retry": "Recommencer",
@@ -170,6 +172,8 @@ export const messages: ChLocaleMessages = {
     "budgy.callback.backHome": "Back to home",
     "budgy.callback.backAccounts": "View my accounts",
     "budgy.callback.error": "The link did not complete. You can start over.",
+    "budgy.callback.refused":
+      "You declined or interrupted the authorisation at your bank. You can start over.",
     "budgy.callback.missingParams": "The return information from the bank is missing.",
     "budgy.callback.retry": "Start over",
     "budgy.consents.title": "My consents",
