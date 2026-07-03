@@ -121,6 +121,9 @@ export const messages: ChLocaleMessages = {
       "Vous avez refusé le partage de vos données bancaires. Vous pouvez recommencer.",
     "ch.error.banque_indisponible":
       "Banque momentanément indisponible, réessayez plus tard.",
+    "budgy.legal.footerLabel": "Liens légaux",
+    "budgy.legal.cgu": "Conditions générales d'utilisation",
+    "budgy.legal.notice": "Mentions légales",
   },
   en: {
     "budgy.brand": "Budgy",
@@ -234,5 +237,8 @@ export const messages: ChLocaleMessages = {
       "You declined sharing your banking data. You can start over.",
     "ch.error.banque_indisponible":
       "Bank temporarily unavailable, please try again later.",
+    "budgy.legal.footerLabel": "Legal links",
+    "budgy.legal.cgu": "Terms of use",
+    "budgy.legal.notice": "Legal notice",
   },
 };

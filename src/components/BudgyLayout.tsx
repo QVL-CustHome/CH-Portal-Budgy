@@ -5,6 +5,7 @@ import { logout } from "../api/auth";
 import { navigateTo } from "../lib/navigation";
 import { loginUrl } from "../lib/auth-redirect";
 import BudgyNotificationsProvider from "./BudgyNotificationsProvider";
+import LegalLinks from "./LegalLinks";
 import SyncErrorToast from "./SyncErrorToast";
 
 export default function BudgyLayout() {
@@ -37,6 +38,8 @@ export default function BudgyLayout() {
         onNavigate={(href) => navigate(href)}
         userName={me.name}
         onLogout={handleLogout}
+        footer={<LegalLinks />}
+        mobileFooterPlacement="settings"
       >
         <Outlet />
         <SyncErrorToast />
