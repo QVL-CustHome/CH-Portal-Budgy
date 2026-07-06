@@ -17,6 +17,14 @@ vi.mock("@custhome/ui", () => ({
   useTranslation: () => ({ t: (key: string) => key }),
   useCurrentUser: () => budgyUser,
   navigateTo: () => {},
+  buildCguUrl: ({
+    authPortalUrl,
+    legalNoticeAnchor,
+  }: {
+    authPortalUrl: string;
+    legalNoticeAnchor?: string;
+  }) => `${authPortalUrl}/cgu${legalNoticeAnchor ? `#${legalNoticeAnchor}` : ""}`,
+  buildLoginUrl: ({ authPortalUrl }: { authPortalUrl: string }) => `${authPortalUrl}/login`,
   createApiClient: () => ({ request: async () => ({}) }),
   ApiError: class ApiError extends Error {
     status = 0;
