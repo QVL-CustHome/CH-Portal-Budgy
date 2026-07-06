@@ -3,7 +3,7 @@ import { PageScaffold, useTranslation, type ChNavbarItem } from "@custhome/ui";
 import { useCurrentUser } from "../context/current-user";
 import { logout } from "../api/auth";
 import { navigateTo } from "../lib/navigation";
-import { loginUrl } from "../lib/auth-redirect";
+import { cguUrl, loginUrl } from "../lib/auth-redirect";
 import BudgyNotificationsProvider from "./BudgyNotificationsProvider";
 import LegalLinks from "./LegalLinks";
 import SyncErrorToast from "./SyncErrorToast";
@@ -39,6 +39,7 @@ export default function BudgyLayout() {
         userName={me.name}
         onLogout={handleLogout}
         footer={<LegalLinks />}
+        infoHref={cguUrl()}
         mobileFooterPlacement="settings"
       >
         <Outlet />
