@@ -27,10 +27,11 @@ const renderCallback = (search: string) =>
     </ChI18nProvider>
   );
 
-const REFUSED_MESSAGE = messages.fr["budgy.callback.refused"];
-const MISSING_PARAMS_MESSAGE = messages.fr["budgy.callback.missingParams"];
-const SUCCESS_MESSAGE = messages.fr["budgy.callback.success"];
-const RETRY_LABEL = messages.fr["budgy.callback.retry"];
+const fr = messages[defaultLocale]!;
+const REFUSED_MESSAGE = fr["budgy.callback.refused"];
+const MISSING_PARAMS_MESSAGE = fr["budgy.callback.missingParams"];
+const SUCCESS_MESSAGE = fr["budgy.callback.success"];
+const RETRY_LABEL = fr["budgy.callback.retry"];
 
 beforeEach(() => {
   sessionStorage.clear();
