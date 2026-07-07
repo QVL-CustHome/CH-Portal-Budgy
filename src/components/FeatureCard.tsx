@@ -7,7 +7,7 @@ import {
   StatusChip,
   useTranslation,
   type ChIconName,
-} from "@custhome/ui";
+} from "canopui";
 
 export interface FeatureCardProps {
   icon: ChIconName;

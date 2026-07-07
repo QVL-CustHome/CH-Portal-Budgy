@@ -13,7 +13,7 @@ const budgyUser = {
   created_at: "2026-01-01T00:00:00Z",
 };
 
-vi.mock("@custhome/ui", () => ({
+vi.mock("canopui", () => ({
   useTranslation: () => ({ t: (key: string) => key }),
   useCurrentUser: () => budgyUser,
   navigateTo: () => {},

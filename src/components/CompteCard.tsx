@@ -7,7 +7,7 @@ import {
   Stack,
   StatusChip,
   useTranslation,
-} from "@custhome/ui";
+} from "canopui";
 import type { Account } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 import { formatDate } from "../lib/date";

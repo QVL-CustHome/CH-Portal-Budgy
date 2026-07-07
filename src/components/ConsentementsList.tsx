@@ -1,4 +1,4 @@
-import { CardGrid } from "@custhome/ui";
+import { CardGrid } from "canopui";
 import type { Consent } from "../api/budgy";
 import ConsentementCard from "./ConsentementCard";
 

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { MultiSelect, useTranslation, type ChMultiSelectOption } from "@custhome/ui";
+import { MultiSelect, useTranslation, type ChMultiSelectOption } from "canopui";
 import type { Bank } from "../api/budgy";
 
 export interface BankSelectorProps {

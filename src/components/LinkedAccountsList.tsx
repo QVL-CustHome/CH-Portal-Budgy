@@ -1,4 +1,4 @@
-import { Card, DescriptionList, Stack, useTranslation } from "@custhome/ui";
+import { Card, DescriptionList, Stack, useTranslation } from "canopui";
 import type { LinkedAccount } from "../api/budgy";
 
 export interface LinkedAccountsListProps {

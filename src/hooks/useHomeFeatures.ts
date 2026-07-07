@@ -1,4 +1,4 @@
-import { useTranslation } from "@custhome/ui";
+import { useTranslation } from "canopui";
 import type { FeatureCardProps } from "../components/FeatureCard";
 
 export function useHomeFeatures(): FeatureCardProps[] {
