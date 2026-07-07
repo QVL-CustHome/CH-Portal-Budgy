@@ -1,4 +1,4 @@
-import { Button, Feedback, Stack, useTranslation } from "@custhome/ui";
+import { Button, Feedback, Stack, useTranslation } from "canopui";
 import type { Consent } from "../api/budgy";
 
 export interface ReconsentementAlerteProps {

@@ -1,4 +1,4 @@
-import type { ChLocale } from "@custhome/ui";
+import type { ChLocale } from "canopui";
 
 export function formatDate(
   value: string | null | undefined,

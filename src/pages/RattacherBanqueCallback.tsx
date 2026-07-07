@@ -7,7 +7,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-} from "@custhome/ui";
+} from "canopui";
 import LinkedAccountsList from "../components/LinkedAccountsList";
 import { useConsentementCallback } from "../hooks/useConsentementCallback";
 

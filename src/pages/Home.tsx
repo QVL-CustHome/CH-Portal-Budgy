@@ -1,4 +1,4 @@
-import { CardGrid, Feedback, PageContent, Stack, useTranslation } from "@custhome/ui";
+import { CardGrid, Feedback, PageContent, Stack, useTranslation } from "canopui";
 import FeatureCard from "../components/FeatureCard";
 import { useHomeFeatures } from "../hooks/useHomeFeatures";
 

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { apiErrorMessage, useTranslation } from "@custhome/ui";
+import { apiErrorMessage, useTranslation } from "canopui";
 import { ApiError } from "../api/client";
 import {
   initierConsentement,

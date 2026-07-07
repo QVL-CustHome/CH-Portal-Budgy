@@ -6,7 +6,7 @@ import {
   PageContent,
   Stack,
   useTranslation,
-} from "@custhome/ui";
+} from "canopui";
 import TransactionsTable from "../components/TransactionsTable";
 import Pagination from "../components/Pagination";
 import { useTransactionsCompte } from "../hooks/useTransactionsCompte";

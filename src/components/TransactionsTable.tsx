@@ -4,7 +4,7 @@ import {
   useTranslation,
   type ChColumn,
   type ChStatusTone,
-} from "@custhome/ui";
+} from "canopui";
 import type { Transaction, TransactionStatus } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 import { formatDate } from "../lib/date";

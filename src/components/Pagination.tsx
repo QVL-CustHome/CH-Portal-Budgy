@@ -1,4 +1,4 @@
-import { Button, Heading, Stack, useTranslation } from "@custhome/ui";
+import { Button, Heading, Stack, useTranslation } from "canopui";
 
 export interface PaginationProps {
   page: number;

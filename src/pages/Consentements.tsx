@@ -5,7 +5,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-} from "@custhome/ui";
+} from "canopui";
 import ConsentementsList from "../components/ConsentementsList";
 import ReconsentementAlerte from "../components/ReconsentementAlerte";
 import { useReconsentement } from "../hooks/useReconsentement";

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { apiErrorMessage, useTranslation } from "@custhome/ui";
+import { apiErrorMessage, useTranslation } from "canopui";
 import { ApiError } from "../api/client";
 import { listConsents, type Consent } from "../api/budgy";
 import type { BudgyEvent } from "../relay/events";

@@ -1,4 +1,4 @@
-import { CardGrid } from "@custhome/ui";
+import { CardGrid } from "canopui";
 import type { Account } from "../api/budgy";
 import CompteCard from "./CompteCard";
 

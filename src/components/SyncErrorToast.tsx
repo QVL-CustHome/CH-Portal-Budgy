@@ -1,4 +1,4 @@
-import { Toast, useTranslation } from "@custhome/ui";
+import { Toast, useTranslation } from "canopui";
 import { useBudgyNotifications } from "../context/budgy-notifications";
 
 export default function SyncErrorToast() {
