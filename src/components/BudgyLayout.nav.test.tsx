@@ -13,8 +13,11 @@ const budgyUser = {
   created_at: "2026-01-01T00:00:00Z",
 };
 
-vi.mock("canopui", () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
+vi.mock("canopui", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("canopui")>();
+  return {
+    palette: actual.palette,
+    useTranslation: () => ({ t: (key: string) => key }),
   useCurrentUser: () => budgyUser,
   navigateTo: () => {},
   buildCguUrl: ({
@@ -52,7 +55,8 @@ vi.mock("canopui", () => ({
       {children}
     </div>
   ),
-}));
+  };
+});
 
 vi.mock("./BudgyNotificationsProvider", () => ({
   default: ({ children }: { children: ReactNode }) => <>{children}</>,
@@ -71,6 +75,9 @@ vi.mock("../pages/TransactionsCompte", () => ({
 }));
 vi.mock("../pages/Consentements", () => ({
   default: () => <div>page-consentements</div>,
+}));
+vi.mock("../pages/Categories", () => ({
+  default: () => <div>page-categories</div>,
 }));
 vi.mock("../pages/Forbidden", () => ({ default: () => <div>page-forbidden</div> }));
 
