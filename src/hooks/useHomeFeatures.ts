@@ -19,6 +19,12 @@ export function useHomeFeatures(): FeatureCardProps[] {
       to: "/comptes",
     },
     {
+      icon: "folder",
+      title: t("budgy.home.categories.title"),
+      description: t("budgy.home.categories.description"),
+      to: "/categories",
+    },
+    {
       icon: "mail",
       title: t("budgy.home.notifications.title"),
       description: t("budgy.home.notifications.description"),
