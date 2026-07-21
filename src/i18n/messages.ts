@@ -119,6 +119,23 @@ export const messages: ChLocaleMessages = {
     "budgy.transactions.filter.uncategorized": "Non catégorisées",
     "budgy.transactions.status.booked": "Comptabilisée",
     "budgy.transactions.status.pending": "En attente",
+    "budgy.rules.proposal.title": "Créer une règle de classement ?",
+    "budgy.rules.proposal.description":
+      "Toujours classer les transactions dont le libellé contient ce texte en « {category} » ?",
+    "budgy.rules.proposal.patternLabel": "Texte à reconnaître dans le libellé",
+    "budgy.rules.proposal.patternHelper":
+      "La règle s'applique dès que le libellé contient ce texte. {max} caractères maximum.",
+    "budgy.rules.proposal.patternRequired": "Le texte est obligatoire.",
+    "budgy.rules.proposal.patternTooLong": "140 caractères maximum.",
+    "budgy.rules.proposal.targetLabel": "Toujours classer en",
+    "budgy.rules.proposal.accept": "Créer la règle",
+    "budgy.rules.proposal.refuse": "Non merci",
+    "budgy.rules.proposal.success":
+      "Règle créée : les transactions contenant « {pattern} » seront classées en {category}.",
+    "budgy.rules.proposal.error":
+      "Impossible de créer la règle. Réessayez.",
+    "budgy.rules.proposal.notFound":
+      "Cette catégorie n'existe plus. Actualisez la page.",
     "budgy.categories.title": "Mes catégories",
     "budgy.categories.loading": "Chargement des catégories",
     "budgy.categories.error":
@@ -287,6 +304,22 @@ export const messages: ChLocaleMessages = {
     "budgy.transactions.filter.uncategorized": "Uncategorised",
     "budgy.transactions.status.booked": "Booked",
     "budgy.transactions.status.pending": "Pending",
+    "budgy.rules.proposal.title": "Create a classification rule?",
+    "budgy.rules.proposal.description":
+      "Always classify transactions whose label contains this text as “{category}”?",
+    "budgy.rules.proposal.patternLabel": "Text to match in the label",
+    "budgy.rules.proposal.patternHelper":
+      "The rule applies as soon as the label contains this text. {max} characters maximum.",
+    "budgy.rules.proposal.patternRequired": "The text is required.",
+    "budgy.rules.proposal.patternTooLong": "140 characters maximum.",
+    "budgy.rules.proposal.targetLabel": "Always classify as",
+    "budgy.rules.proposal.accept": "Create the rule",
+    "budgy.rules.proposal.refuse": "No thanks",
+    "budgy.rules.proposal.success":
+      "Rule created: transactions containing “{pattern}” will be classified as {category}.",
+    "budgy.rules.proposal.error": "Unable to create the rule. Please try again.",
+    "budgy.rules.proposal.notFound":
+      "This category no longer exists. Refresh the page.",
     "budgy.categories.title": "My categories",
     "budgy.categories.loading": "Loading categories",
     "budgy.categories.error": "Unable to load your categories. Please try again.",
