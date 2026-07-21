@@ -1,5 +1,5 @@
 import { palette, type ChIconName } from "canopui";
-import type { CategoryKind } from "../api/budgy";
+import type { Category, CategoryKind } from "../api/budgy";
 
 export const CATEGORY_NAME_MIN = 1;
 export const CATEGORY_NAME_MAX = 30;
@@ -61,6 +61,19 @@ export function validateCategoryName(name: string): CategoryNameError | null {
     return "too-long";
   }
   return null;
+}
+
+export function indexCategoriesById(
+  categories: readonly Category[]
+): Map<string, Category> {
+  return new Map(categories.map((category) => [category.id, category]));
+}
+
+export function resolveCategory(
+  categoriesById: Map<string, Category>,
+  categoryId: string | null
+): Category | null {
+  return categoryId ? (categoriesById.get(categoryId) ?? null) : null;
 }
 
 export function isLightCategoryColor(hex: string): boolean {

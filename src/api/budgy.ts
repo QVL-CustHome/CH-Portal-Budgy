@@ -119,6 +119,7 @@ export interface Transaction {
   status: TransactionStatus;
   booking_date: string | null;
   value_date: string | null;
+  category_id: string | null;
 }
 
 export interface TransactionsResponse {
@@ -126,9 +127,12 @@ export interface TransactionsResponse {
   total: number;
 }
 
+export type TransactionCategoryFilter = "all" | "uncategorized";
+
 export interface TransactionsQuery {
   limit: number;
   offset: number;
+  filter?: TransactionCategoryFilter;
 }
 
 export type CategoryKind = "revenu" | "depense";
@@ -189,13 +193,30 @@ export function listAccounts() {
 
 export function listTransactions(
   accountId: string,
-  { limit, offset }: TransactionsQuery
+  { limit, offset, filter }: TransactionsQuery
 ) {
   const params = new URLSearchParams({
     limit: String(limit),
     offset: String(offset),
   });
+  if (filter === "uncategorized") {
+    params.set("uncategorized", "true");
+  }
   return request<TransactionsResponse>(
     `/budgy/v1/accounts/${encodeURIComponent(accountId)}/transactions?${params.toString()}`
+  );
+}
+
+export function categoriserTransaction(
+  accountId: string,
+  transactionId: string,
+  categoryId: string
+) {
+  return request<Transaction>(
+    `/budgy/v1/accounts/${encodeURIComponent(accountId)}/transactions/${encodeURIComponent(transactionId)}/category`,
+    {
+      method: "PUT",
+      body: JSON.stringify({ category_id: categoryId }),
+    }
   );
 }
