@@ -131,6 +131,58 @@ export interface TransactionsQuery {
   offset: number;
 }
 
+export type CategoryKind = "revenu" | "depense";
+
+export interface Category {
+  id: string;
+  name: string;
+  kind: CategoryKind;
+  color: string;
+  icon: string;
+  is_default?: boolean;
+  transaction_count?: number;
+}
+
+export interface CategoriesResponse {
+  data: Category[];
+  total: number;
+}
+
+export interface CategoryInput {
+  name: string;
+  kind: CategoryKind;
+  color: string;
+  icon: string;
+}
+
+export function listCategories() {
+  return request<CategoriesResponse>("/budgy/v1/categories");
+}
+
+export function creerCategorie(input: CategoryInput) {
+  return request<Category>("/budgy/v1/categories", {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+}
+
+export function modifierCategorie(categoryId: string, input: CategoryInput) {
+  return request<Category>(
+    `/budgy/v1/categories/${encodeURIComponent(categoryId)}`,
+    {
+      method: "PUT",
+      body: JSON.stringify(input),
+    }
+  );
+}
+
+export function supprimerCategorie(categoryId: string) {
+  return request<void>(
+    `/budgy/v1/categories/${encodeURIComponent(categoryId)}`,
+    { method: "DELETE" }
+  );
+}
+
 export function listAccounts() {
   return request<AccountsResponse>("/budgy/v1/accounts");
 }
