@@ -4,11 +4,12 @@ import { isLightCategoryColor } from "../lib/categories";
 export interface CategoryBadgeProps {
   color: string;
   icon: ChIconName;
-  size?: "md" | "lg";
+  size?: "sm" | "md" | "lg";
   title?: string;
 }
 
 const ICON_SIZE: Record<NonNullable<CategoryBadgeProps["size"]>, ChIconSize> = {
+  sm: "sm",
   md: "md",
   lg: "lg",
 };
