@@ -10,6 +10,16 @@ import {
 
 const PAGE_SIZE = 20;
 
+interface CategoryAssignedEvent {
+  transactionId: string;
+  categoryId: string;
+  label: string;
+}
+
+interface UseTransactionsCompteOptions {
+  onCategoryAssigned?: (event: CategoryAssignedEvent) => void;
+}
+
 interface UseTransactionsCompteResult {
   transactions: Transaction[];
   total: number;
@@ -29,7 +39,8 @@ interface UseTransactionsCompteResult {
 }
 
 export function useTransactionsCompte(
-  accountId: string
+  accountId: string,
+  { onCategoryAssigned }: UseTransactionsCompteOptions = {}
 ): UseTransactionsCompteResult {
   const { t } = useTranslation();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -77,6 +88,9 @@ export function useTransactionsCompte(
       const removeFromList = filter === "uncategorized";
       const previousTransactions = transactions;
       const previousTotal = total;
+      const assignedLabel = previousTransactions.find(
+        (transaction) => transaction.id === transactionId
+      )?.label;
 
       setAssigningId(transactionId);
       setAssignError(null);
@@ -95,6 +109,13 @@ export function useTransactionsCompte(
 
       try {
         await categoriserTransaction(accountId, transactionId, categoryId);
+        if (assignedLabel !== undefined) {
+          onCategoryAssigned?.({
+            transactionId,
+            categoryId,
+            label: assignedLabel,
+          });
+        }
       } catch (caught) {
         setTransactions(previousTransactions);
         setTotal(previousTotal);
@@ -106,7 +127,7 @@ export function useTransactionsCompte(
         setAssigningId(null);
       }
     },
-    [accountId, filter, transactions, total, t]
+    [accountId, filter, transactions, total, t, onCategoryAssigned]
   );
 
   const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));

@@ -220,3 +220,32 @@ export function categoriserTransaction(
     }
   );
 }
+
+export interface CategorizationRule {
+  id: string;
+  label_pattern: string;
+  category_id: string;
+  priority: number;
+  created_at: string;
+}
+
+export interface CategorizationRuleInput {
+  labelPattern: string;
+  categoryId: string;
+  priority?: number;
+}
+
+export function creerRegleCategorisation({
+  labelPattern,
+  categoryId,
+  priority,
+}: CategorizationRuleInput) {
+  return request<CategorizationRule>("/budgy/v1/categorization-rules", {
+    method: "POST",
+    body: JSON.stringify({
+      label_pattern: labelPattern,
+      category_id: categoryId,
+      ...(priority === undefined ? {} : { priority }),
+    }),
+  });
+}

@@ -12,14 +12,22 @@ import {
 import TransactionsTable from "../components/TransactionsTable";
 import TransactionCategoryFilter from "../components/TransactionCategoryFilter";
 import Pagination from "../components/Pagination";
+import RegleProposalPanel from "../components/RegleProposalPanel";
 import { useTransactionsCompte } from "../hooks/useTransactionsCompte";
 import { useCategories } from "../hooks/useCategories";
+import { useRegleProposal } from "../hooks/useRegleProposal";
 import { useReloadTransactionsOnRelay } from "../hooks/useReloadOnRelay";
 import { indexCategoriesById } from "../lib/categories";
 
 export default function TransactionsCompte() {
   const { t } = useTranslation();
   const { accountId = "" } = useParams<{ accountId: string }>();
+  const { categories } = useCategories();
+  const categoriesById = useMemo(
+    () => indexCategoriesById(categories),
+    [categories]
+  );
+  const proposal = useRegleProposal(categoriesById);
   const {
     transactions,
     pageCount,
@@ -34,12 +42,9 @@ export default function TransactionsCompte() {
     dismissAssignError,
     goToPage,
     reload,
-  } = useTransactionsCompte(accountId);
-  const { categories } = useCategories();
-  const categoriesById = useMemo(
-    () => indexCategoriesById(categories),
-    [categories]
-  );
+  } = useTransactionsCompte(accountId, {
+    onCategoryAssigned: proposal.propose,
+  });
   useReloadTransactionsOnRelay(accountId, reload);
 
   return (
@@ -81,11 +86,30 @@ export default function TransactionsCompte() {
           </Stack>
         )}
       </Stack>
+      <RegleProposalPanel
+        open={proposal.isOpen}
+        category={proposal.category}
+        labelPattern={proposal.labelPattern}
+        patternMax={proposal.patternMax}
+        patternError={proposal.patternError}
+        canSubmit={proposal.canSubmit}
+        submitting={proposal.submitting}
+        submitError={proposal.submitError}
+        onLabelPatternChange={proposal.setLabelPattern}
+        onAccept={proposal.accept}
+        onRefuse={proposal.refuse}
+      />
       <Toast
         open={assignError !== null}
         message={assignError ?? ""}
         severity="error"
         onClose={dismissAssignError}
+      />
+      <Toast
+        open={proposal.successOpen}
+        message={proposal.successMessage}
+        severity="success"
+        onClose={proposal.dismissSuccess}
       />
     </PageContent>
   );
