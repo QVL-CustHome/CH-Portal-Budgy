@@ -5,13 +5,19 @@ import {
   type ChColumn,
   type ChStatusTone,
 } from "canopui";
-import type { Transaction, TransactionStatus } from "../api/budgy";
+import type { Category, Transaction, TransactionStatus } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 import { formatDate } from "../lib/date";
+import { resolveCategory } from "../lib/categories";
+import TransactionCategoryPicker from "./TransactionCategoryPicker";
 
 export interface TransactionsTableProps {
   transactions: Transaction[];
+  categories: Category[];
+  categoriesById: Map<string, Category>;
   loading: boolean;
+  assigningId: string | null;
+  onAssignCategory: (transactionId: string, categoryId: string) => void;
 }
 
 const STATUS_TONES: Record<TransactionStatus, ChStatusTone> = {
@@ -25,7 +31,11 @@ function transactionDate(transaction: Transaction): string | null {
 
 export default function TransactionsTable({
   transactions,
+  categories,
+  categoriesById,
   loading,
+  assigningId,
+  onAssignCategory,
 }: TransactionsTableProps) {
   const { t, locale } = useTranslation();
 
@@ -43,6 +53,18 @@ export default function TransactionsTable({
       sortable: true,
       sortValue: (row) => row.label,
       render: (row) => row.label,
+    },
+    {
+      key: "category_id",
+      header: t("budgy.transactions.category"),
+      render: (row) => (
+        <TransactionCategoryPicker
+          category={resolveCategory(categoriesById, row.category_id)}
+          categories={categories}
+          disabled={assigningId === row.id}
+          onSelect={(categoryId) => onAssignCategory(row.id, categoryId)}
+        />
+      ),
     },
     {
       key: "status",
