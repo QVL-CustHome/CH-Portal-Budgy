@@ -1,7 +1,14 @@
-import type { CSSProperties } from "react";
-import { Heading, Stack, useTranslation } from "canopui";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import {
+  Heading,
+  ProgressBar,
+  Stack,
+  StatusChip,
+  useTranslation,
+  type ChProgressSegment,
+} from "canopui";
 import type { RemainingBudgetCategory } from "../api/budgy";
-import { spendRatio } from "../lib/budget";
 import { formatMoneyCents } from "../lib/money";
 import { toCategoryIcon } from "../lib/categories";
 import CategoryBadge from "./CategoryBadge";
@@ -10,23 +17,12 @@ export interface ResteADepenserItemProps {
   category: RemainingBudgetCategory;
 }
 
-type ProgressStyle = CSSProperties & {
-  "--reste-ratio": string;
-  "--reste-fill": string;
-};
-
 const CURRENCY = "EUR";
 
 export default function ResteADepenserItem({
   category,
 }: ResteADepenserItemProps) {
   const { t, locale } = useTranslation();
-
-  const ratio = spendRatio(category.depense_cents, category.montant_prevu_cents);
-  const progressStyle: ProgressStyle = {
-    "--reste-ratio": String(ratio),
-    "--reste-fill": category.color,
-  };
 
   const spent = formatMoneyCents(category.depense_cents, CURRENCY, locale);
   const planned = formatMoneyCents(
@@ -41,8 +37,29 @@ export default function ResteADepenserItem({
     locale
   );
 
+  const progressSegments: ChProgressSegment[] = [
+    {
+      value: category.depense_cents,
+      color: category.depasse ? "error" : "primary",
+    },
+  ];
+  const progressMax = Math.max(
+    category.montant_prevu_cents,
+    category.depense_cents
+  );
+
   return (
-    <div className="reste-item" data-depasse={category.depasse}>
+    <Box
+      padding={2}
+      sx={{
+        borderRadius: "var(--ch-radius-md)",
+        border: "0.0625rem solid",
+        borderColor: category.depasse ? "error.main" : "divider",
+        backgroundColor: category.depasse
+          ? "color-mix(in srgb, var(--ch-palette-error-main) 8%, var(--ch-palette-background-paper))"
+          : "background.paper",
+      }}
+    >
       <Stack gap="sm">
         <Stack direction="row" alignItems="center" gap="md">
           <CategoryBadge
@@ -54,47 +71,50 @@ export default function ResteADepenserItem({
             <Heading level={3} size={5}>
               {category.category_name}
             </Heading>
-            <span className="reste-subline">
+            <Typography variant="body2" color="text.secondary">
               {t("budgy.dashboard.remaining.spentOfPlanned", {
                 spent,
                 planned,
               })}
-            </span>
+            </Typography>
           </Stack>
           {category.depasse ? (
-            <span className="reste-chip">
-              {t("budgy.dashboard.remaining.overspentBy", { amount: overspent })}
-            </span>
+            <StatusChip
+              tone="error"
+              size="small"
+              label={t("budgy.dashboard.remaining.overspentBy", {
+                amount: overspent,
+              })}
+            />
           ) : null}
         </Stack>
 
-        <div
-          className="reste-progress-track"
-          role="progressbar"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(ratio * 100)}
-          aria-label={t("budgy.dashboard.remaining.progressAria", {
+        <ProgressBar
+          segments={progressSegments}
+          max={progressMax}
+          ariaLabel={t("budgy.dashboard.remaining.progressAria", {
             spent,
             planned,
           })}
-        >
-          <div className="reste-progress-fill" style={progressStyle} />
-        </div>
+        />
 
         <Stack
           direction="row"
           justifyContent="space-between"
           alignItems="baseline"
         >
-          <span className="reste-label">
+          <Typography variant="body2" color="text.secondary">
             {t("budgy.dashboard.remaining.remainingLabel")}
-          </span>
-          <span className="reste-value" data-depasse={category.depasse}>
+          </Typography>
+          <Typography
+            component="span"
+            color={category.depasse ? "error.main" : "primary.main"}
+            sx={{ fontSize: "1.125rem", fontWeight: 700, whiteSpace: "nowrap" }}
+          >
             {remaining}
-          </span>
+          </Typography>
         </Stack>
       </Stack>
-    </div>
+    </Box>
   );
 }

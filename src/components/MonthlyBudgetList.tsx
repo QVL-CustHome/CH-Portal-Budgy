@@ -1,6 +1,7 @@
 import { CardGrid } from "canopui";
 import type { Budget, Category } from "../api/budgy";
 import { resolveCategory } from "../lib/categories";
+import AnimatedListItem from "./AnimatedListItem";
 import MonthlyBudgetItem from "./MonthlyBudgetItem";
 
 export interface MonthlyBudgetListProps {
@@ -15,16 +16,12 @@ export default function MonthlyBudgetList({
   return (
     <CardGrid minItemWidth="20rem" gap="md">
       {budgets.map((budget, index) => (
-        <div
-          key={budget.id}
-          className="budget-list-item"
-          style={{ animationDelay: `${Math.min(index, 8) * 55}ms` }}
-        >
+        <AnimatedListItem key={budget.id} index={index}>
           <MonthlyBudgetItem
             budget={budget}
             category={resolveCategory(categoriesById, budget.category_id)}
           />
-        </div>
+        </AnimatedListItem>
       ))}
     </CardGrid>
   );

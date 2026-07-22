@@ -1,5 +1,6 @@
 import { Stack } from "canopui";
 import type { RemainingBudgetCategory } from "../api/budgy";
+import AnimatedListItem from "./AnimatedListItem";
 import ResteADepenserItem from "./ResteADepenserItem";
 
 export interface ResteADepenserListProps {
@@ -12,13 +13,9 @@ export default function ResteADepenserList({
   return (
     <Stack gap="md">
       {categories.map((category, index) => (
-        <div
-          key={category.category_id}
-          className="reste-list-item"
-          style={{ animationDelay: `${Math.min(index, 8) * 55}ms` }}
-        >
+        <AnimatedListItem key={category.category_id} index={index}>
           <ResteADepenserItem category={category} />
-        </div>
+        </AnimatedListItem>
       ))}
     </Stack>
   );

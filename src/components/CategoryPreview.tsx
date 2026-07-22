@@ -1,3 +1,4 @@
+import Box from "@mui/material/Box";
 import {
   Heading,
   Stack,
@@ -7,6 +8,7 @@ import {
 } from "canopui";
 import type { CategoryKind } from "../api/budgy";
 import CategoryBadge from "./CategoryBadge";
+import FieldLabel from "./FieldLabel";
 
 export interface CategoryPreviewProps {
   name: string;
@@ -25,10 +27,19 @@ export default function CategoryPreview({
 
   return (
     <Stack gap="sm">
-      <span className="category-field-label">
-        {t("budgy.categories.form.previewLabel")}
-      </span>
-      <div className="category-preview">
+      <FieldLabel>{t("budgy.categories.form.previewLabel")}</FieldLabel>
+      <Box
+        display="flex"
+        alignItems="center"
+        gap={2}
+        padding={2}
+        sx={{
+          borderRadius: "var(--ch-radius-md)",
+          border: "0.0625rem solid",
+          borderColor: "divider",
+          backgroundColor: "background.default",
+        }}
+      >
         <CategoryBadge color={color} icon={icon} size="lg" />
         <Stack gap="xs">
           <Heading level={3} size={5}>
@@ -40,7 +51,7 @@ export default function CategoryPreview({
             size="small"
           />
         </Stack>
-      </div>
+      </Box>
     </Stack>
   );
 }

@@ -1,11 +1,13 @@
-import type { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 
-vi.mock("canopui", () => ({
-  useTranslation: () => ({ t: (key: string) => key, locale: "fr" }),
-  Stack: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-}));
+vi.mock("canopui", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("canopui")>();
+  return {
+    ...actual,
+    useTranslation: () => ({ t: (key: string) => key, locale: "fr" }),
+  };
+});
 
 import TransactionTypeFilter from "./TransactionTypeFilter";
 import TransactionsSort from "./TransactionsSort";
@@ -79,7 +81,7 @@ describe("CA-03 contrôle de tri", () => {
     expect(onFieldChange).toHaveBeenCalledWith("date");
   });
 
-  it("change l'ordre pour ascendant et descendant", () => {
+  it("émet asc quand on choisit l'ordre ascendant depuis l'ordre descendant", () => {
     const onOrderChange = vi.fn();
     render(
       <TransactionsSort
@@ -92,10 +94,26 @@ describe("CA-03 contrôle de tri", () => {
 
     const groups = screen.getAllByRole("radiogroup");
     const orderOptions = within(groups[1]).getAllByRole("radio");
-    fireEvent.click(orderOptions[0]);
     fireEvent.click(orderOptions[1]);
 
-    expect(onOrderChange).toHaveBeenNthCalledWith(1, "desc");
-    expect(onOrderChange).toHaveBeenNthCalledWith(2, "asc");
+    expect(onOrderChange).toHaveBeenCalledWith("asc");
+  });
+
+  it("émet desc quand on choisit l'ordre descendant depuis l'ordre ascendant", () => {
+    const onOrderChange = vi.fn();
+    render(
+      <TransactionsSort
+        field="date"
+        order="asc"
+        onFieldChange={vi.fn()}
+        onOrderChange={onOrderChange}
+      />
+    );
+
+    const groups = screen.getAllByRole("radiogroup");
+    const orderOptions = within(groups[1]).getAllByRole("radio");
+    fireEvent.click(orderOptions[0]);
+
+    expect(onOrderChange).toHaveBeenCalledWith("desc");
   });
 });

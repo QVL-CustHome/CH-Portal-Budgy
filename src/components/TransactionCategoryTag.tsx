@@ -1,3 +1,4 @@
+import Typography from "@mui/material/Typography";
 import { Stack, useTranslation } from "canopui";
 import type { Category } from "../api/budgy";
 import { toCategoryIcon } from "../lib/categories";
@@ -14,9 +15,9 @@ export default function TransactionCategoryTag({
 
   if (!category) {
     return (
-      <span className="transaction-category-name" data-empty="true">
+      <Typography component="span" color="text.secondary" noWrap>
         {t("budgy.transactions.uncategorized")}
-      </span>
+      </Typography>
     );
   }
 
@@ -28,7 +29,9 @@ export default function TransactionCategoryTag({
         size="sm"
         title={category.name}
       />
-      <span className="transaction-category-name">{category.name}</span>
+      <Typography component="span" color="text.primary" noWrap>
+        {category.name}
+      </Typography>
     </Stack>
   );
 }

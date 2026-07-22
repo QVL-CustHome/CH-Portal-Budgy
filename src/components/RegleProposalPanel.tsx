@@ -1,3 +1,4 @@
+import Box from "@mui/material/Box";
 import {
   Button,
   Feedback,
@@ -11,6 +12,7 @@ import {
 import type { Category } from "../api/budgy";
 import { toCategoryIcon } from "../lib/categories";
 import CategoryBadge from "./CategoryBadge";
+import FieldLabel from "./FieldLabel";
 
 export interface RegleProposalPanelProps {
   open: boolean;
@@ -80,10 +82,19 @@ export default function RegleProposalPanel({
             fullWidth
           />
           <Stack gap="sm">
-            <span className="category-field-label">
-              {t("budgy.rules.proposal.targetLabel")}
-            </span>
-            <div className="category-preview">
+            <FieldLabel>{t("budgy.rules.proposal.targetLabel")}</FieldLabel>
+            <Box
+              display="flex"
+              alignItems="center"
+              gap={2}
+              padding={2}
+              sx={{
+                borderRadius: "var(--ch-radius-md)",
+                border: "0.0625rem solid",
+                borderColor: "divider",
+                backgroundColor: "background.default",
+              }}
+            >
               <CategoryBadge
                 color={category.color}
                 icon={toCategoryIcon(category.icon)}
@@ -99,7 +110,7 @@ export default function RegleProposalPanel({
                   size="small"
                 />
               </Stack>
-            </div>
+            </Box>
           </Stack>
           {submitError ? (
             <Feedback severity="error">{submitError}</Feedback>

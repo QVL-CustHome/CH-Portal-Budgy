@@ -1,5 +1,6 @@
 import { CardGrid } from "canopui";
 import type { Category } from "../api/budgy";
+import AnimatedListItem from "./AnimatedListItem";
 import CategoryCard from "./CategoryCard";
 
 export interface CategoriesListProps {
@@ -16,17 +17,13 @@ export default function CategoriesList({
   return (
     <CardGrid minItemWidth="20rem" gap="md">
       {categories.map((category, index) => (
-        <div
-          key={category.id}
-          className="category-list-item"
-          style={{ animationDelay: `${Math.min(index, 8) * 55}ms` }}
-        >
+        <AnimatedListItem key={category.id} index={index}>
           <CategoryCard
             category={category}
             onEdit={onEdit}
             onDelete={onDelete}
           />
-        </div>
+        </AnimatedListItem>
       ))}
     </CardGrid>
   );

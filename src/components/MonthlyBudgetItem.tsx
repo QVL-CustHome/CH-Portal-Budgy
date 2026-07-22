@@ -1,3 +1,4 @@
+import Typography from "@mui/material/Typography";
 import { Card, Heading, Stack, useTranslation } from "canopui";
 import type { Budget, Category } from "../api/budgy";
 import { formatBudgetAmount } from "../lib/budget";
@@ -31,9 +32,13 @@ export default function MonthlyBudgetItem({
             {name}
           </Heading>
         </Stack>
-        <span className="budget-amount">
+        <Typography
+          component="span"
+          color="primary.main"
+          sx={{ fontSize: "1.125rem", fontWeight: 700, whiteSpace: "nowrap" }}
+        >
           {formatBudgetAmount(budget.montant_cents, locale)}
-        </span>
+        </Typography>
       </Stack>
     </Card>
   );
