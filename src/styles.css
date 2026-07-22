@@ -224,6 +224,22 @@ body {
   }
 }
 
+.budget-list-item {
+  display: flex;
+  animation: category-item-in 320ms var(--category-ease) both;
+}
+
+.budget-list-item > * {
+  width: 100%;
+}
+
+.budget-amount {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--ch-palette-primary-main);
+  white-space: nowrap;
+}
+
 .transaction-category-trigger {
   display: inline-flex;
   align-items: center;
@@ -328,7 +344,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .category-list-item {
+  .category-list-item,
+  .budget-list-item {
     animation: none;
   }
 
