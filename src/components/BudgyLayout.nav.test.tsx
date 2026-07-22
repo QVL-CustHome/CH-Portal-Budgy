@@ -65,6 +65,7 @@ vi.mock("./BudgyNotificationsProvider", () => ({
 vi.mock("./SyncErrorToast", () => ({ default: () => null }));
 
 vi.mock("../pages/Home", () => ({ default: () => <div>page-home</div> }));
+vi.mock("../pages/Dashboard", () => ({ default: () => <div>page-dashboard</div> }));
 vi.mock("../pages/RattacherBanque", () => ({ default: () => <div>page-banque</div> }));
 vi.mock("../pages/RattacherBanqueCallback", () => ({
   default: () => <div>page-banque-callback</div>,

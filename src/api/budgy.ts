@@ -109,6 +109,18 @@ export interface AccountsResponse {
   total: number;
 }
 
+export interface ConsolidatedAccount {
+  id: string;
+  iban_masked: string;
+  currency: string;
+  balance: number;
+}
+
+export interface ConsolidatedBalance {
+  total_cents: number;
+  accounts: ConsolidatedAccount[];
+}
+
 export type TransactionStatus = "booked" | "pending";
 
 export interface Transaction {
@@ -189,6 +201,10 @@ export function supprimerCategorie(categoryId: string) {
 
 export function listAccounts() {
   return request<AccountsResponse>("/budgy/v1/accounts");
+}
+
+export function getSoldesConsolides() {
+  return request<ConsolidatedBalance>("/budgy/v1/balance");
 }
 
 export function listTransactions(
