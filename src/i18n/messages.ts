@@ -46,6 +46,19 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.balances.empty":
       "Connectez votre banque pour voir vos soldes.",
     "budgy.dashboard.balances.connectBank": "Rattacher une banque",
+    "budgy.dashboard.remaining.title": "Reste à dépenser",
+    "budgy.dashboard.remaining.month": "Mois",
+    "budgy.dashboard.remaining.loading": "Chargement de votre budget",
+    "budgy.dashboard.remaining.error":
+      "Impossible de récupérer votre reste à dépenser. Réessayez.",
+    "budgy.dashboard.remaining.retry": "Réessayer",
+    "budgy.dashboard.remaining.empty":
+      "Aucun budget défini pour ce mois. Définissez un budget par catégorie pour suivre votre reste à dépenser.",
+    "budgy.dashboard.remaining.remainingLabel": "Reste à dépenser",
+    "budgy.dashboard.remaining.spentOfPlanned": "{spent} dépensés sur {planned}",
+    "budgy.dashboard.remaining.overspentBy": "Dépassé de {amount}",
+    "budgy.dashboard.remaining.progressAria":
+      "{spent} dépensés sur un budget de {planned}",
     "budgy.bank.title": "Rattacher ma banque",
     "budgy.bank.intro":
       "Sélectionnez votre banque puis autorisez l'accès à vos comptes pour suivre vos dépenses.",
@@ -296,6 +309,19 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.balances.empty":
       "Connect your bank to see your balances.",
     "budgy.dashboard.balances.connectBank": "Link a bank",
+    "budgy.dashboard.remaining.title": "Remaining to spend",
+    "budgy.dashboard.remaining.month": "Month",
+    "budgy.dashboard.remaining.loading": "Loading your budget",
+    "budgy.dashboard.remaining.error":
+      "Unable to load your remaining budget. Please try again.",
+    "budgy.dashboard.remaining.retry": "Try again",
+    "budgy.dashboard.remaining.empty":
+      "No budget set for this month. Set a budget per category to track what you have left to spend.",
+    "budgy.dashboard.remaining.remainingLabel": "Remaining to spend",
+    "budgy.dashboard.remaining.spentOfPlanned": "{spent} spent of {planned}",
+    "budgy.dashboard.remaining.overspentBy": "Over by {amount}",
+    "budgy.dashboard.remaining.progressAria":
+      "{spent} spent of a {planned} budget",
     "budgy.bank.title": "Link my bank",
     "budgy.bank.intro":
       "Select your bank then authorise access to your accounts to track your spending.",

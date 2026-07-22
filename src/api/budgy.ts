@@ -328,6 +328,31 @@ export function definirBudget(input: BudgetInput) {
   });
 }
 
+export interface RemainingBudgetCategory {
+  category_id: string;
+  category_name: string;
+  kind: CategoryKind;
+  color: string;
+  icon: string;
+  montant_prevu_cents: number;
+  depense_cents: number;
+  reste_cents: number;
+  depassement_cents: number;
+  depasse: boolean;
+}
+
+export interface RemainingBudgetsResponse {
+  month: string;
+  categories: RemainingBudgetCategory[];
+}
+
+export function getRemainingBudgets(month: string) {
+  const params = new URLSearchParams({ month });
+  return request<RemainingBudgetsResponse>(
+    `/budgy/v1/budgets/remaining?${params.toString()}`
+  );
+}
+
 export interface CategorizationRule {
   id: string;
   label_pattern: string;
