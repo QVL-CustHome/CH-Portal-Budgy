@@ -72,6 +72,9 @@ vi.mock("../pages/RattacherBanqueCallback", () => ({
 }));
 vi.mock("../pages/MesComptes", () => ({ default: () => <div>page-comptes</div> }));
 vi.mock("../pages/TransactionsCompte", () => ({
+  default: () => <div>page-transactions-compte</div>,
+}));
+vi.mock("../pages/Transactions", () => ({
   default: () => <div>page-transactions</div>,
 }));
 vi.mock("../pages/Consentements", () => ({

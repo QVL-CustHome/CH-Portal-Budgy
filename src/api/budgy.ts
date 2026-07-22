@@ -223,6 +223,65 @@ export function listTransactions(
   );
 }
 
+export type TransactionType = "credit" | "debit";
+
+export type TransactionSortField = "date" | "amount";
+
+export type TransactionSortOrder = "asc" | "desc";
+
+export interface TransactionsListQuery {
+  limit: number;
+  offset: number;
+  accountId?: string;
+  categoryId?: string;
+  type?: TransactionType;
+  from?: string;
+  to?: string;
+  sort?: TransactionSortField;
+  order?: TransactionSortOrder;
+}
+
+export function listAllTransactions({
+  limit,
+  offset,
+  accountId,
+  categoryId,
+  type,
+  from,
+  to,
+  sort,
+  order,
+}: TransactionsListQuery) {
+  const params = new URLSearchParams({
+    limit: String(limit),
+    offset: String(offset),
+  });
+  if (accountId) {
+    params.set("account_id", accountId);
+  }
+  if (categoryId) {
+    params.set("category_id", categoryId);
+  }
+  if (type) {
+    params.set("type", type);
+  }
+  if (from) {
+    params.set("from", from);
+  }
+  if (to) {
+    params.set("to", to);
+  }
+  if (sort) {
+    params.set("sort", sort);
+  }
+  if (order) {
+    params.set("order", order);
+  }
+  return request<TransactionsResponse>(
+    `/budgy/v1/transactions?${params.toString()}`
+  );
+}
+
 export function categoriserTransaction(
   accountId: string,
   transactionId: string,
