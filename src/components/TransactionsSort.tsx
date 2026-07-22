@@ -1,9 +1,15 @@
-import { Stack, useTranslation } from "canopui";
+import {
+  SegmentedControl,
+  Stack,
+  useTranslation,
+  type ChSegmentedControlOption,
+} from "canopui";
 import type { TransactionSortField, TransactionSortOrder } from "../api/budgy";
 import {
   TRANSACTION_SORT_FIELDS,
   TRANSACTION_SORT_ORDERS,
 } from "../lib/transactions";
+import FieldLabel from "./FieldLabel";
 
 export interface TransactionsSortProps {
   field: TransactionSortField;
@@ -22,58 +28,38 @@ export default function TransactionsSort({
 }: TransactionsSortProps) {
   const { t } = useTranslation();
 
+  const fieldOptions: ChSegmentedControlOption<TransactionSortField>[] =
+    TRANSACTION_SORT_FIELDS.map((option) => ({
+      value: option,
+      label: t(`budgy.transactions.sort.field.${option}`),
+      disabled,
+    }));
+
+  const orderOptions: ChSegmentedControlOption<TransactionSortOrder>[] =
+    TRANSACTION_SORT_ORDERS.map((option) => ({
+      value: option,
+      label: t(`budgy.transactions.sort.${field}.${option}`),
+      disabled,
+    }));
+
   return (
     <Stack gap="sm">
-      <span className="category-field-label">
-        {t("budgy.transactions.sort.label")}
-      </span>
+      <FieldLabel>{t("budgy.transactions.sort.label")}</FieldLabel>
       <Stack direction="row" gap="md" wrap>
-        <div
-          className="transaction-filter"
-          role="radiogroup"
-          aria-label={t("budgy.transactions.sort.fieldLabel")}
-        >
-          {TRANSACTION_SORT_FIELDS.map((option) => {
-            const selected = option === field;
-            return (
-              <button
-                key={option}
-                type="button"
-                role="radio"
-                aria-checked={selected}
-                className="transaction-filter-option"
-                data-selected={selected}
-                disabled={disabled}
-                onClick={() => onFieldChange(option)}
-              >
-                {t(`budgy.transactions.sort.field.${option}`)}
-              </button>
-            );
-          })}
-        </div>
-        <div
-          className="transaction-filter"
-          role="radiogroup"
-          aria-label={t("budgy.transactions.sort.orderLabel")}
-        >
-          {TRANSACTION_SORT_ORDERS.map((option) => {
-            const selected = option === order;
-            return (
-              <button
-                key={option}
-                type="button"
-                role="radio"
-                aria-checked={selected}
-                className="transaction-filter-option"
-                data-selected={selected}
-                disabled={disabled}
-                onClick={() => onOrderChange(option)}
-              >
-                {t(`budgy.transactions.sort.${field}.${option}`)}
-              </button>
-            );
-          })}
-        </div>
+        <SegmentedControl
+          options={fieldOptions}
+          value={field}
+          onChange={onFieldChange}
+          ariaLabel={t("budgy.transactions.sort.fieldLabel")}
+          size="small"
+        />
+        <SegmentedControl
+          options={orderOptions}
+          value={order}
+          onChange={onOrderChange}
+          ariaLabel={t("budgy.transactions.sort.orderLabel")}
+          size="small"
+        />
       </Stack>
     </Stack>
   );

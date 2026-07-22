@@ -1,13 +1,19 @@
 import { useMemo } from "react";
-import { Button, Card, Feedback, Spinner, Stack, useTranslation } from "canopui";
+import Typography from "@mui/material/Typography";
+import {
+  Button,
+  Card,
+  Donut,
+  Feedback,
+  Spinner,
+  Stack,
+  useTranslation,
+  type ChDonutSegment,
+} from "canopui";
 import { useExpensesByCategory } from "../hooks/useExpensesByCategory";
 import { formatMonthLabel } from "../lib/budget";
 import { formatMoneyCents } from "../lib/money";
 import MonthNavigator from "./MonthNavigator";
-import ExpensesByCategoryChart, {
-  type ExpenseSegmentView,
-} from "./ExpensesByCategoryChart";
-import ExpensesByCategoryLegend from "./ExpensesByCategoryLegend";
 
 export default function ExpensesByCategoryBlock() {
   const { t, locale } = useTranslation();
@@ -25,34 +31,22 @@ export default function ExpensesByCategoryBlock() {
     canGoNext,
   } = useExpensesByCategory();
 
-  const percentFormatter = useMemo(
+  const donutSegments = useMemo<ChDonutSegment[]>(
     () =>
-      new Intl.NumberFormat(locale, {
-        style: "percent",
-        maximumFractionDigits: 1,
-      }),
-    [locale]
+      segments.map((segment) => ({
+        id: segment.key,
+        label: segment.label ?? t("budgy.dashboard.expenses.uncategorized"),
+        value: segment.montantCents,
+      })),
+    [segments, t]
   );
 
-  const views = useMemo<ExpenseSegmentView[]>(
-    () =>
-      segments.map((segment) => {
-        const label =
-          segment.label ?? t("budgy.dashboard.expenses.uncategorized");
-        const amount = formatMoneyCents(segment.montantCents, currency, locale);
-        const percent = percentFormatter.format(segment.fraction);
-        return {
-          key: segment.key,
-          label,
-          color: segment.color,
-          amount,
-          percent,
-          fraction: segment.fraction,
-          startFraction: segment.startFraction,
-          title: `${label} : ${amount} (${percent})`,
-        };
-      }),
-    [segments, currency, locale, percentFormatter, t]
+  const formatSegmentValue = useMemo(
+    () => (segment: ChDonutSegment, percentage: number) => {
+      const amount = formatMoneyCents(segment.value, currency, locale);
+      return `${amount} · ${Math.round(percentage)} %`;
+    },
+    [currency, locale]
   );
 
   const monthSelector = (
@@ -90,15 +84,37 @@ export default function ExpensesByCategoryBlock() {
           {t("budgy.dashboard.expenses.empty")}
         </Feedback>
       ) : (
-        <Stack gap="lg" alignItems="center">
-          <ExpensesByCategoryChart
-            segments={views}
-            centerAmount={formatMoneyCents(totalCents, currency, locale)}
-            centerCaption={t("budgy.dashboard.expenses.totalCaption")}
-            ariaLabel={t("budgy.dashboard.expenses.chartAria")}
-          />
-          <ExpensesByCategoryLegend segments={views} />
-        </Stack>
+        <Donut
+          segments={donutSegments}
+          size="14rem"
+          thickness="thick"
+          showLegend
+          ariaLabel={t("budgy.dashboard.expenses.chartAria")}
+          formatValue={formatSegmentValue}
+          centerContent={
+            <Stack gap="xs" alignItems="center">
+              <Typography
+                component="span"
+                color="text.primary"
+                sx={{ fontSize: "1.5rem", fontWeight: 700, lineHeight: 1.1 }}
+              >
+                {formatMoneyCents(totalCents, currency, locale)}
+              </Typography>
+              <Typography
+                component="span"
+                color="text.secondary"
+                sx={{
+                  fontSize: "0.75rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.03em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {t("budgy.dashboard.expenses.totalCaption")}
+              </Typography>
+            </Stack>
+          }
+        />
       )}
     </Card>
   );

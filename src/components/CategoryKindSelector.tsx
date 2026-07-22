@@ -1,5 +1,11 @@
-import { Icon, Stack, useTranslation } from "canopui";
+import {
+  SegmentedControl,
+  Stack,
+  useTranslation,
+  type ChSegmentedControlOption,
+} from "canopui";
 import type { CategoryKind } from "../api/budgy";
+import FieldLabel from "./FieldLabel";
 
 export interface CategoryKindSelectorProps {
   value: CategoryKind;
@@ -14,33 +20,23 @@ export default function CategoryKindSelector({
 }: CategoryKindSelectorProps) {
   const { t } = useTranslation();
 
+  const options: ChSegmentedControlOption<CategoryKind>[] = OPTIONS.map(
+    (kind) => ({
+      value: kind,
+      label: t(`budgy.categories.kind.${kind}`),
+    })
+  );
+
   return (
     <Stack gap="sm">
-      <span className="category-field-label">
-        {t("budgy.categories.form.kindLabel")}
-      </span>
-      <div className="category-kind-selector" role="radiogroup">
-        {OPTIONS.map((kind) => {
-          const selected = kind === value;
-          return (
-            <button
-              key={kind}
-              type="button"
-              role="radio"
-              aria-checked={selected}
-              className="category-kind-option"
-              data-selected={selected}
-              data-kind={kind}
-              onClick={() => onChange(kind)}
-            >
-              {selected ? (
-                <Icon name="check" variant="solid" size="sm" color="inherit" />
-              ) : null}
-              {t(`budgy.categories.kind.${kind}`)}
-            </button>
-          );
-        })}
-      </div>
+      <FieldLabel>{t("budgy.categories.form.kindLabel")}</FieldLabel>
+      <SegmentedControl
+        options={options}
+        value={value}
+        onChange={onChange}
+        ariaLabel={t("budgy.categories.form.kindLabel")}
+        size="small"
+      />
     </Stack>
   );
 }

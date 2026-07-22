@@ -1,5 +1,11 @@
-import { Stack, useTranslation } from "canopui";
+import {
+  SegmentedControl,
+  Stack,
+  useTranslation,
+  type ChSegmentedControlOption,
+} from "canopui";
 import type { TransactionCategoryFilter as Filter } from "../api/budgy";
+import FieldLabel from "./FieldLabel";
 
 export interface TransactionCategoryFilterProps {
   value: Filter;
@@ -16,34 +22,22 @@ export default function TransactionCategoryFilter({
 }: TransactionCategoryFilterProps) {
   const { t } = useTranslation();
 
+  const options: ChSegmentedControlOption<Filter>[] = OPTIONS.map((option) => ({
+    value: option,
+    label: t(`budgy.transactions.filter.${option}`),
+    disabled,
+  }));
+
   return (
     <Stack gap="sm">
-      <span className="category-field-label">
-        {t("budgy.transactions.filter.label")}
-      </span>
-      <div
-        className="transaction-filter"
-        role="radiogroup"
-        aria-label={t("budgy.transactions.filter.label")}
-      >
-        {OPTIONS.map((option) => {
-          const selected = option === value;
-          return (
-            <button
-              key={option}
-              type="button"
-              role="radio"
-              aria-checked={selected}
-              className="transaction-filter-option"
-              data-selected={selected}
-              disabled={disabled}
-              onClick={() => onChange(option)}
-            >
-              {t(`budgy.transactions.filter.${option}`)}
-            </button>
-          );
-        })}
-      </div>
+      <FieldLabel>{t("budgy.transactions.filter.label")}</FieldLabel>
+      <SegmentedControl
+        options={options}
+        value={value}
+        onChange={onChange}
+        ariaLabel={t("budgy.transactions.filter.label")}
+        size="small"
+      />
     </Stack>
   );
 }

@@ -1,3 +1,6 @@
+import Typography from "@mui/material/Typography";
+import { IconActionButton, Stack } from "canopui";
+
 export interface MonthNavigatorProps {
   label: string;
   previousLabel: string;
@@ -6,36 +9,6 @@ export interface MonthNavigatorProps {
   disabled?: boolean;
   onPrevious: () => void;
   onNext: () => void;
-}
-
-function ChevronLeft() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M15 5 8 12l7 7"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ChevronRight() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M9 5l7 7-7 7"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
 }
 
 export default function MonthNavigator({
@@ -48,26 +21,35 @@ export default function MonthNavigator({
   onNext,
 }: MonthNavigatorProps) {
   return (
-    <div className="month-selector">
-      <button
-        type="button"
-        className="month-selector-nav"
+    <Stack direction="row" gap="xs" alignItems="center">
+      <IconActionButton
+        icon="caretLeft"
+        variant="secondary"
+        size={36}
         aria-label={previousLabel}
         disabled={disabled}
         onClick={onPrevious}
+      />
+      <Typography
+        component="span"
+        color="text.primary"
+        textAlign="center"
+        sx={{
+          minWidth: "8rem",
+          fontWeight: 600,
+          textTransform: "capitalize",
+        }}
       >
-        <ChevronLeft />
-      </button>
-      <span className="month-selector-label">{label}</span>
-      <button
-        type="button"
-        className="month-selector-nav"
+        {label}
+      </Typography>
+      <IconActionButton
+        icon="caretRight"
+        variant="secondary"
+        size={36}
         aria-label={nextLabel}
         disabled={disabled || !canGoNext}
         onClick={onNext}
-      >
-        <ChevronRight />
-      </button>
-    </div>
+      />
+    </Stack>
   );
 }

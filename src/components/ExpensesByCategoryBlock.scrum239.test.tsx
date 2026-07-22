@@ -59,11 +59,15 @@ function renderBlock() {
   );
 }
 
+function donutSegments(container: HTMLElement): NodeListOf<Element> {
+  return container.querySelectorAll("svg g circle");
+}
+
 function segmentFillRatio(segment: Element): number {
-  const [filled, total] = (segment.getAttribute("stroke-dasharray") ?? "")
+  const [dashLength] = (segment.getAttribute("stroke-dasharray") ?? "")
     .split(" ")
     .map(Number);
-  return filled / total;
+  return dashLength / 100;
 }
 
 beforeEach(() => {
@@ -104,7 +108,7 @@ describe("CA-01 - Graphique de répartition des dépenses par catégorie + total
     const { container } = renderBlock();
 
     await screen.findByRole("img", { name: CHART_ARIA });
-    const segments = container.querySelectorAll(".expenses-donut-segment");
+    const segments = donutSegments(container);
     expect(segments).toHaveLength(2);
     expect(segmentFillRatio(segments[0])).toBeCloseTo(0.6, 2);
     expect(segmentFillRatio(segments[1])).toBeCloseTo(0.4, 2);
@@ -165,7 +169,7 @@ describe("CA-01 - Cas limite : aucune dépense sur le mois → état vide propre
     expect(await screen.findByText(EMPTY_MESSAGE)).toBeInTheDocument();
     expect(screen.queryByRole("img", { name: CHART_ARIA })).not.toBeInTheDocument();
     expect(screen.queryByText(TOTAL_CAPTION)).not.toBeInTheDocument();
-    expect(container.querySelectorAll(".expenses-donut-segment")).toHaveLength(0);
+    expect(donutSegments(container)).toHaveLength(0);
     expect(container.textContent).not.toContain("NaN");
   });
 });

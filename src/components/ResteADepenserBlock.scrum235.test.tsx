@@ -188,7 +188,7 @@ describe("CA-02 - Dépassement mis en évidence et montant dépassé affiché", 
       screen.getByText(exactText("Dépassé de 50,00 €"))
     ).toBeInTheDocument();
     expect(
-      container.querySelector('[data-depasse="true"]')
+      container.querySelector(".MuiChip-colorError")
     ).not.toBeNull();
   });
 
@@ -208,7 +208,7 @@ describe("CA-02 - Dépassement mis en évidence et montant dépassé affiché", 
 
     expect(await screen.findByText("Loisirs")).toBeInTheDocument();
     expect(screen.queryByText(/Dépassé de/)).not.toBeInTheDocument();
-    expect(container.querySelector('[data-depasse="true"]')).toBeNull();
+    expect(container.querySelector(".MuiChip-colorError")).toBeNull();
   });
 
   it("isole la mise en évidence sur la seule catégorie en dépassement quand plusieurs coexistent", async () => {
@@ -240,8 +240,8 @@ describe("CA-02 - Dépassement mis en évidence et montant dépassé affiché", 
       screen.getByText(exactText("Dépassé de 75,00 €"))
     ).toBeInTheDocument();
     expect(
-      container.querySelectorAll('[data-depasse="true"]').length
-    ).toBeGreaterThan(0);
+      container.querySelectorAll(".MuiChip-colorError").length
+    ).toBe(1);
     expect(
       screen.getAllByText(/Dépassé de/).length
     ).toBe(1);
