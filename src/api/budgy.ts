@@ -342,6 +342,23 @@ export interface CategorizationRuleInput {
   priority?: number;
 }
 
+export interface ExpenseCategoryLine {
+  category: string | null;
+  montant_cents: number;
+}
+
+export interface ExpensesByCategory {
+  total_cents: number;
+  lignes: ExpenseCategoryLine[];
+}
+
+export function getExpensesByCategory(month: string) {
+  const params = new URLSearchParams({ month });
+  return request<ExpensesByCategory>(
+    `/budgy/v1/expenses/by-category?${params.toString()}`
+  );
+}
+
 export function creerRegleCategorisation({
   labelPattern,
   categoryId,

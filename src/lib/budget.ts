@@ -10,6 +10,21 @@ export function currentMonth(): string {
   return `${year}-${month}`;
 }
 
+export function shiftMonth(month: string, delta: number): string {
+  if (!MONTH_PATTERN.test(month)) {
+    return month;
+  }
+  const [year, monthIndex] = month.split("-").map(Number);
+  const date = new Date(year, monthIndex - 1 + delta, 1);
+  const shiftedYear = date.getFullYear();
+  const shiftedMonth = String(date.getMonth() + 1).padStart(2, "0");
+  return `${shiftedYear}-${shiftedMonth}`;
+}
+
+export function isFutureMonth(month: string): boolean {
+  return month > currentMonth();
+}
+
 export function parseBudgetAmountCents(raw: string): number | null {
   const normalized = raw.trim().replace(",", ".");
   if (!AMOUNT_PATTERN.test(normalized)) {
