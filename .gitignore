@@ -4,6 +4,9 @@ node_modules/
 # Build
 dist/
 
+# Worktrees git locaux (une branche par feature)
+.worktrees/
+
 # Couverture de tests
 coverage/
 
