@@ -72,6 +72,21 @@ export const messages: ChLocaleMessages = {
       "Répartition des dépenses du mois par catégorie",
     "budgy.dashboard.expenses.previousMonth": "Mois précédent",
     "budgy.dashboard.expenses.nextMonth": "Mois suivant",
+    "budgy.dashboard.forecast.title": "Budget prévisionnel",
+    "budgy.dashboard.forecast.loading": "Calcul de votre prévisionnel",
+    "budgy.dashboard.forecast.error":
+      "Impossible de calculer votre prévisionnel. Réessayez.",
+    "budgy.dashboard.forecast.retry": "Réessayer",
+    "budgy.dashboard.forecast.insufficient":
+      "Pas encore assez de données pour établir un prévisionnel fiable",
+    "budgy.dashboard.forecast.soldeLabel": "Solde prévisionnel",
+    "budgy.dashboard.forecast.revenusLabel": "Revenus récurrents",
+    "budgy.dashboard.forecast.depensesLabel": "Dépenses récurrentes",
+    "budgy.dashboard.forecast.budgetsLabel": "Budgets",
+    "budgy.dashboard.forecast.categoriesTitle": "Détail par catégorie",
+    "budgy.dashboard.forecast.uncategorized": "Sans catégorie",
+    "budgy.dashboard.forecast.chartAria":
+      "Contribution de chaque catégorie au solde prévisionnel",
     "budgy.bank.title": "Rattacher ma banque",
     "budgy.bank.intro":
       "Sélectionnez votre banque puis autorisez l'accès à vos comptes pour suivre vos dépenses.",
@@ -347,6 +362,21 @@ export const messages: ChLocaleMessages = {
       "Breakdown of this month's expenses by category",
     "budgy.dashboard.expenses.previousMonth": "Previous month",
     "budgy.dashboard.expenses.nextMonth": "Next month",
+    "budgy.dashboard.forecast.title": "Forecast budget",
+    "budgy.dashboard.forecast.loading": "Computing your forecast",
+    "budgy.dashboard.forecast.error":
+      "Unable to compute your forecast. Please try again.",
+    "budgy.dashboard.forecast.retry": "Try again",
+    "budgy.dashboard.forecast.insufficient":
+      "Not enough data yet to build a reliable forecast",
+    "budgy.dashboard.forecast.soldeLabel": "Forecast balance",
+    "budgy.dashboard.forecast.revenusLabel": "Recurring income",
+    "budgy.dashboard.forecast.depensesLabel": "Recurring expenses",
+    "budgy.dashboard.forecast.budgetsLabel": "Budgets",
+    "budgy.dashboard.forecast.categoriesTitle": "By category",
+    "budgy.dashboard.forecast.uncategorized": "Uncategorised",
+    "budgy.dashboard.forecast.chartAria":
+      "Each category's contribution to the forecast balance",
     "budgy.bank.title": "Link my bank",
     "budgy.bank.intro":
       "Select your bank then authorise access to your accounts to track your spending.",
