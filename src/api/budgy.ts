@@ -221,6 +221,38 @@ export function categoriserTransaction(
   );
 }
 
+export interface Budget {
+  id: string;
+  category_id: string;
+  montant_cents: number;
+  mois: string;
+}
+
+export interface BudgetsResponse {
+  data: Budget[];
+  total: number;
+}
+
+export interface BudgetInput {
+  category_id: string;
+  montant_cents: number;
+  mois: string;
+}
+
+export function listBudgets(mois: string) {
+  const params = new URLSearchParams({ mois });
+  return request<BudgetsResponse>(
+    `/budgy/v1/budgets?${params.toString()}`
+  );
+}
+
+export function definirBudget(input: BudgetInput) {
+  return request<Budget>("/budgy/v1/budgets", {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+}
+
 export interface CategorizationRule {
   id: string;
   label_pattern: string;

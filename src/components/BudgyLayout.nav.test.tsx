@@ -79,6 +79,9 @@ vi.mock("../pages/Consentements", () => ({
 vi.mock("../pages/Categories", () => ({
   default: () => <div>page-categories</div>,
 }));
+vi.mock("../pages/Budgets", () => ({
+  default: () => <div>page-budgets</div>,
+}));
 vi.mock("../pages/Forbidden", () => ({ default: () => <div>page-forbidden</div> }));
 
 function LocationProbe() {
@@ -125,6 +128,12 @@ describe("navigation du layout Budgy", () => {
       expect(screen.getByTestId("pathname").textContent).toBe(href);
       view.unmount();
     }
+  });
+
+  it("expose une entrée de nav vers l'écran budgets", () => {
+    renderAt("/home");
+
+    expect(navHrefs()).toContain("/budgets");
   });
 
   it("redirige une route inexistante vers /home (contrôle négatif)", () => {
