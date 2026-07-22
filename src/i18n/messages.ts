@@ -59,6 +59,19 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.remaining.overspentBy": "Dépassé de {amount}",
     "budgy.dashboard.remaining.progressAria":
       "{spent} dépensés sur un budget de {planned}",
+    "budgy.dashboard.expenses.title": "Dépenses par catégorie",
+    "budgy.dashboard.expenses.totalCaption": "Dépenses du mois",
+    "budgy.dashboard.expenses.loading": "Chargement de vos dépenses",
+    "budgy.dashboard.expenses.error":
+      "Impossible de récupérer vos dépenses. Réessayez.",
+    "budgy.dashboard.expenses.retry": "Réessayer",
+    "budgy.dashboard.expenses.empty":
+      "Aucune dépense catégorisée sur ce mois.",
+    "budgy.dashboard.expenses.uncategorized": "Sans catégorie",
+    "budgy.dashboard.expenses.chartAria":
+      "Répartition des dépenses du mois par catégorie",
+    "budgy.dashboard.expenses.previousMonth": "Mois précédent",
+    "budgy.dashboard.expenses.nextMonth": "Mois suivant",
     "budgy.bank.title": "Rattacher ma banque",
     "budgy.bank.intro":
       "Sélectionnez votre banque puis autorisez l'accès à vos comptes pour suivre vos dépenses.",
@@ -322,6 +335,18 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.remaining.overspentBy": "Over by {amount}",
     "budgy.dashboard.remaining.progressAria":
       "{spent} spent of a {planned} budget",
+    "budgy.dashboard.expenses.title": "Expenses by category",
+    "budgy.dashboard.expenses.totalCaption": "Expenses this month",
+    "budgy.dashboard.expenses.loading": "Loading your expenses",
+    "budgy.dashboard.expenses.error":
+      "Unable to load your expenses. Please try again.",
+    "budgy.dashboard.expenses.retry": "Try again",
+    "budgy.dashboard.expenses.empty": "No categorised expense this month.",
+    "budgy.dashboard.expenses.uncategorized": "Uncategorised",
+    "budgy.dashboard.expenses.chartAria":
+      "Breakdown of this month's expenses by category",
+    "budgy.dashboard.expenses.previousMonth": "Previous month",
+    "budgy.dashboard.expenses.nextMonth": "Next month",
     "budgy.bank.title": "Link my bank",
     "budgy.bank.intro":
       "Select your bank then authorise access to your accounts to track your spending.",

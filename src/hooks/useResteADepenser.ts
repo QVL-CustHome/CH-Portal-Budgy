@@ -5,8 +5,7 @@ import {
   getRemainingBudgets,
   type RemainingBudgetCategory,
 } from "../api/budgy";
-import { currentMonth } from "../lib/budget";
-import { recentMonths } from "../lib/month";
+import { currentMonth, recentMonths } from "../lib/budget";
 
 const MONTH_OPTIONS_COUNT = 12;
 
