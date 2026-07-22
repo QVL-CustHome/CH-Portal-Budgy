@@ -384,6 +384,29 @@ export function getExpensesByCategory(month: string) {
   );
 }
 
+export interface ForecastCategory {
+  category_id: string | null;
+  category: string | null;
+  revenus_recurrents_cents: number;
+  depenses_recurrentes_cents: number;
+  budget_cents: number;
+}
+
+export interface Forecast {
+  month: string;
+  solde_previsionnel_cents: number;
+  revenus_recurrents_cents: number;
+  depenses_recurrentes_cents: number;
+  budgets_cents: number;
+  donnees_suffisantes: boolean;
+  categories: ForecastCategory[];
+}
+
+export function getForecast(month: string) {
+  const params = new URLSearchParams({ month });
+  return request<Forecast>(`/budgy/v1/forecast?${params.toString()}`);
+}
+
 export function creerRegleCategorisation({
   labelPattern,
   categoryId,
