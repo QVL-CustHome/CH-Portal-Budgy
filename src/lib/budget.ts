@@ -34,6 +34,13 @@ export function formatBudgetAmount(cents: number, locale: ChLocale): string {
   }).format(cents / 100);
 }
 
+export function spendRatio(depenseCents: number, prevuCents: number): number {
+  if (prevuCents <= 0) {
+    return depenseCents > 0 ? 1 : 0;
+  }
+  return Math.min(depenseCents / prevuCents, 1);
+}
+
 export function formatMonthLabel(month: string, locale: ChLocale): string {
   if (!MONTH_PATTERN.test(month)) {
     return month;

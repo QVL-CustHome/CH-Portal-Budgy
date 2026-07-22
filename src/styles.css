@@ -240,6 +240,95 @@ body {
   white-space: nowrap;
 }
 
+.reste-list-item {
+  display: flex;
+  animation: category-item-in 320ms var(--category-ease) both;
+}
+
+.reste-list-item > * {
+  width: 100%;
+}
+
+.reste-item {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--ch-palette-divider);
+  background: var(--ch-palette-background-default);
+  transition:
+    border-color 200ms var(--category-ease),
+    background-color 200ms var(--category-ease);
+}
+
+.reste-item[data-depasse="true"] {
+  border-color: var(--ch-palette-error-main);
+  background: color-mix(
+    in srgb,
+    var(--ch-palette-error-main) 8%,
+    var(--ch-palette-background-default)
+  );
+}
+
+.reste-subline {
+  font-size: 0.875rem;
+  color: var(--ch-palette-text-secondary);
+}
+
+.reste-chip {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--ch-palette-error-contrastText);
+  background: var(--ch-palette-error-main);
+}
+
+.reste-progress-track {
+  position: relative;
+  inline-size: 100%;
+  block-size: 0.5rem;
+  border-radius: 999rem;
+  overflow: hidden;
+  background: color-mix(
+    in srgb,
+    var(--ch-palette-text-secondary) 18%,
+    transparent
+  );
+}
+
+.reste-progress-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--reste-fill);
+  transform-origin: left center;
+  transform: scaleX(var(--reste-ratio));
+  transition: transform 480ms var(--category-ease);
+}
+
+.reste-item[data-depasse="true"] .reste-progress-fill {
+  background: var(--ch-palette-error-main);
+}
+
+.reste-label {
+  font-size: 0.875rem;
+  color: var(--ch-palette-text-secondary);
+}
+
+.reste-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--ch-palette-primary-main);
+}
+
+.reste-value[data-depasse="true"] {
+  color: var(--ch-palette-error-main);
+}
+
 .transaction-category-trigger {
   display: inline-flex;
   align-items: center;
@@ -345,7 +434,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .category-list-item,
-  .budget-list-item {
+  .budget-list-item,
+  .reste-list-item {
     animation: none;
   }
 
@@ -353,7 +443,9 @@ body {
   .category-icon-tile,
   .category-kind-option,
   .transaction-category-trigger,
-  .transaction-filter-option {
+  .transaction-filter-option,
+  .reste-item,
+  .reste-progress-fill {
     transition: none;
   }
 
