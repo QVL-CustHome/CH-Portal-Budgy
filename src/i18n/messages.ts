@@ -8,6 +8,7 @@ export const messages: ChLocaleMessages = {
     "budgy.loading": "Chargement",
     "budgy.logout": "Se déconnecter",
     "budgy.nav.home": "Accueil",
+    "budgy.nav.dashboard": "Tableau de bord",
     "budgy.nav.accounts": "Comptes",
     "budgy.nav.categories": "Catégories",
     "budgy.nav.budgets": "Budgets",
@@ -33,6 +34,17 @@ export const messages: ChLocaleMessages = {
       "Recevez des alertes sur votre activité bancaire et vos seuils de budget.",
     "budgy.home.comingSoon": "Bientôt disponible",
     "budgy.home.open": "Ouvrir",
+    "budgy.dashboard.title": "Tableau de bord",
+    "budgy.dashboard.balances.title": "Soldes consolidés",
+    "budgy.dashboard.balances.totalLabel": "Solde total",
+    "budgy.dashboard.balances.perAccountLabel": "Par compte",
+    "budgy.dashboard.balances.loading": "Chargement de vos soldes",
+    "budgy.dashboard.balances.error":
+      "Impossible de récupérer vos soldes. Réessayez.",
+    "budgy.dashboard.balances.retry": "Réessayer",
+    "budgy.dashboard.balances.empty":
+      "Connectez votre banque pour voir vos soldes.",
+    "budgy.dashboard.balances.connectBank": "Rattacher une banque",
     "budgy.bank.title": "Rattacher ma banque",
     "budgy.bank.intro":
       "Sélectionnez votre banque puis autorisez l'accès à vos comptes pour suivre vos dépenses.",
@@ -219,6 +231,7 @@ export const messages: ChLocaleMessages = {
     "budgy.loading": "Loading",
     "budgy.logout": "Log out",
     "budgy.nav.home": "Home",
+    "budgy.nav.dashboard": "Dashboard",
     "budgy.nav.accounts": "Accounts",
     "budgy.nav.categories": "Categories",
     "budgy.nav.budgets": "Budgets",
@@ -244,6 +257,17 @@ export const messages: ChLocaleMessages = {
       "Get alerts about your banking activity and budget thresholds.",
     "budgy.home.comingSoon": "Coming soon",
     "budgy.home.open": "Open",
+    "budgy.dashboard.title": "Dashboard",
+    "budgy.dashboard.balances.title": "Consolidated balances",
+    "budgy.dashboard.balances.totalLabel": "Total balance",
+    "budgy.dashboard.balances.perAccountLabel": "By account",
+    "budgy.dashboard.balances.loading": "Loading your balances",
+    "budgy.dashboard.balances.error":
+      "Unable to load your balances. Please try again.",
+    "budgy.dashboard.balances.retry": "Try again",
+    "budgy.dashboard.balances.empty":
+      "Connect your bank to see your balances.",
+    "budgy.dashboard.balances.connectBank": "Link a bank",
     "budgy.bank.title": "Link my bank",
     "budgy.bank.intro":
       "Select your bank then authorise access to your accounts to track your spending.",
