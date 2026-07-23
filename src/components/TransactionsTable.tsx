@@ -1,5 +1,9 @@
+import Box from "@mui/material/Box";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   DataTable,
+  Spinner,
+  Stack,
   StatusChip,
   useTranslation,
   type ChColumn,
@@ -10,6 +14,7 @@ import { formatMoneyCents } from "../lib/money";
 import { formatDate } from "../lib/date";
 import { resolveCategory } from "../lib/categories";
 import TransactionCategoryPicker from "./TransactionCategoryPicker";
+import TransactionCardEditable from "./TransactionCardEditable";
 
 export interface TransactionsTableProps {
   transactions: Transaction[];
@@ -38,6 +43,7 @@ export default function TransactionsTable({
   onAssignCategory,
 }: TransactionsTableProps) {
   const { t, locale } = useTranslation();
+  const isMobile = useMediaQuery("(max-width:899.95px)");
 
   const columns: ChColumn<Transaction>[] = [
     {
@@ -90,6 +96,37 @@ export default function TransactionsTable({
         }),
     },
   ];
+
+  if (isMobile) {
+    if (loading) {
+      return (
+        <Stack alignItems="center" padding="lg">
+          <Spinner />
+        </Stack>
+      );
+    }
+    if (transactions.length === 0) {
+      return (
+        <Box paddingY="lg" textAlign="center" color="text.secondary">
+          {t("budgy.transactions.empty")}
+        </Box>
+      );
+    }
+    return (
+      <Stack gap="sm">
+        {transactions.map((row) => (
+          <TransactionCardEditable
+            key={row.id}
+            transaction={row}
+            categories={categories}
+            categoriesById={categoriesById}
+            assigning={assigningId === row.id}
+            onAssignCategory={onAssignCategory}
+          />
+        ))}
+      </Stack>
+    );
+  }
 
   return (
     <DataTable
