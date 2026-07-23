@@ -27,8 +27,8 @@ export function useSoldesConsolides(): UseSoldesConsolidesResult {
     setError(null);
     try {
       const response = await getSoldesConsolides();
-      setTotalCents(response.total_cents);
-      setComptes(response.accounts);
+      setTotalCents(response?.total_cents ?? 0);
+      setComptes(response?.accounts ?? []);
     } catch (caught) {
       const code = caught instanceof ApiError ? caught.code : undefined;
       setError(apiErrorMessage(t, code, t("budgy.dashboard.balances.error")));

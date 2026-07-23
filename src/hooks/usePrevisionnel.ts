@@ -41,7 +41,7 @@ export function usePrevisionnel(): UsePrevisionnelResult {
     setError(null);
     try {
       const response = await getForecast(month);
-      setForecast(response);
+      setForecast(response ?? null);
     } catch (caught) {
       const code = caught instanceof ApiError ? caught.code : undefined;
       setError(apiErrorMessage(t, code, t("budgy.dashboard.forecast.error")));

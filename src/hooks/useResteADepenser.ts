@@ -32,7 +32,7 @@ export function useResteADepenser(): UseResteADepenserResult {
     setError(null);
     try {
       const response = await getRemainingBudgets(month);
-      setCategories(response.categories);
+      setCategories(response?.categories ?? []);
     } catch (caught) {
       const code = caught instanceof ApiError ? caught.code : undefined;
       setError(apiErrorMessage(t, code, t("budgy.dashboard.remaining.error")));
