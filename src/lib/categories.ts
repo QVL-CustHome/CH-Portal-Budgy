@@ -20,7 +20,24 @@ export const CATEGORY_COLOR_OPTIONS: readonly string[] = [
 ];
 
 export const CATEGORY_ICON_OPTIONS: readonly ChIconName[] = [
+  "wallet",
+  "shoppingCart",
+  "utensils",
+  "car",
   "home",
+  "heartPulse",
+  "gamepad",
+  "fileText",
+  "receipt",
+  "briefcase",
+  "coffee",
+  "plane",
+  "gift",
+  "tag",
+  "star",
+  "barChart",
+  "calendar",
+  "plusCircle",
   "apps",
   "folder",
   "file",
@@ -28,25 +45,42 @@ export const CATEGORY_ICON_OPTIONS: readonly ChIconName[] = [
   "user",
   "mail",
   "shield",
-  "save",
   "settings",
   "search",
-  "sun",
-  "moon",
-  "download",
-  "upload",
-  "info",
+  "more",
 ];
+
+const BACK_ICON_TO_CH: Readonly<Record<string, ChIconName>> = {
+  briefcase: "briefcase",
+  "plus-circle": "plusCircle",
+  home: "home",
+  "shopping-cart": "shoppingCart",
+  car: "car",
+  "gamepad-2": "gamepad",
+  "heart-pulse": "heartPulse",
+  utensils: "utensils",
+  "file-text": "fileText",
+  ellipsis: "more",
+};
 
 export const DEFAULT_CATEGORY_COLOR = CATEGORY_COLOR_OPTIONS[0];
 export const DEFAULT_CATEGORY_ICON: ChIconName = CATEGORY_ICON_OPTIONS[0];
 export const DEFAULT_CATEGORY_KIND: CategoryKind = "depense";
 
+const KNOWN_CH_ICONS: ReadonlySet<string> = new Set<string>([
+  ...CATEGORY_ICON_OPTIONS,
+  ...Object.values(BACK_ICON_TO_CH),
+]);
+
 export function isChIconName(value: string): value is ChIconName {
-  return (CATEGORY_ICON_OPTIONS as readonly string[]).includes(value);
+  return KNOWN_CH_ICONS.has(value);
 }
 
 export function toCategoryIcon(value: string): ChIconName {
+  const mapped = BACK_ICON_TO_CH[value];
+  if (mapped) {
+    return mapped;
+  }
   return isChIconName(value) ? value : DEFAULT_CATEGORY_ICON;
 }
 

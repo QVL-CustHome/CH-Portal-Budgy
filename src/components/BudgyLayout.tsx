@@ -16,11 +16,11 @@ export default function BudgyLayout() {
 
   const items: ChNavbarItem[] = [
     { label: t("budgy.nav.home"), href: "/home", icon: "home" },
-    { label: t("budgy.nav.dashboard"), href: "/dashboard", icon: "apps" },
-    { label: t("budgy.nav.accounts"), href: "/comptes", icon: "apps" },
-    { label: t("budgy.nav.transactions"), href: "/transactions", icon: "file" },
-    { label: t("budgy.nav.categories"), href: "/categories", icon: "folder" },
-    { label: t("budgy.nav.budgets"), href: "/budgets", icon: "settings" },
+    { label: t("budgy.nav.dashboard"), href: "/dashboard", icon: "barChart" },
+    { label: t("budgy.nav.accounts"), href: "/comptes", icon: "wallet" },
+    { label: t("budgy.nav.transactions"), href: "/transactions", icon: "receipt" },
+    { label: t("budgy.nav.categories"), href: "/categories", icon: "tag" },
+    { label: t("budgy.nav.budgets"), href: "/budgets", icon: "calendar" },
     { label: t("budgy.nav.consents"), href: "/consentements", icon: "shield" },
   ];
 
