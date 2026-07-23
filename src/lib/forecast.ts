@@ -19,7 +19,7 @@ export interface ForecastCategoryView {
 export function buildForecastCategoryViews(
   categories: readonly ForecastCategory[]
 ): ForecastCategoryView[] {
-  const lines = categories
+  const lines = (categories ?? [])
     .filter(
       (category) =>
         category.revenus_recurrents_cents > 0 ||

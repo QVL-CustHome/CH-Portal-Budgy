@@ -35,8 +35,8 @@ export function useExpensesByCategory(): UseExpensesByCategoryResult {
       setError(null);
       try {
         const response = await getExpensesByCategory(targetMonth);
-        setTotalCents(response.total_cents);
-        setLignes(response.lignes);
+        setTotalCents(response?.total_cents ?? 0);
+        setLignes(response?.lignes ?? []);
       } catch (caught) {
         const code = caught instanceof ApiError ? caught.code : undefined;
         setError(apiErrorMessage(t, code, t("budgy.dashboard.expenses.error")));

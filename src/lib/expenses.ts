@@ -30,7 +30,7 @@ export function buildExpenseSegments(
   lines: readonly ExpenseCategoryLine[],
   totalCents: number
 ): ExpenseSegment[] {
-  if (totalCents <= 0) {
+  if (!lines?.length || !(totalCents > 0)) {
     return [];
   }
   const sorted = lines
