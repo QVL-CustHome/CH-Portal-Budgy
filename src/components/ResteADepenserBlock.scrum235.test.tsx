@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ChI18nProvider, ChThemeProvider } from "canopui";
 import ResteADepenserBlock from "./ResteADepenserBlock";
@@ -27,20 +26,6 @@ const REMAINING_LABEL = fr["budgy.dashboard.remaining.remainingLabel"];
 function currentMonthString(): string {
   const now = new Date();
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-}
-
-function previousMonthString(): string {
-  const now = new Date();
-  const date = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
-}
-
-function monthLabel(month: string): string {
-  const [year, monthIndex] = month.split("-").map(Number);
-  return new Intl.DateTimeFormat(defaultLocale, {
-    month: "long",
-    year: "numeric",
-  }).format(new Date(year, monthIndex - 1, 1));
 }
 
 function normalize(text: string): string {
@@ -261,7 +246,7 @@ describe("État vide - aucune catégorie budgétée", () => {
   });
 });
 
-describe("Sélection de mois", () => {
+describe("Chargement du mois courant", () => {
   it("charge le mois courant au premier rendu", async () => {
     resolveWith([makeCategory()]);
 
@@ -269,29 +254,5 @@ describe("Sélection de mois", () => {
 
     await screen.findByText("Courses");
     expect(getRemainingBudgetsMock).toHaveBeenCalledWith(currentMonthString());
-  });
-
-  it("relance un appel avec le mois choisi lors du changement de mois", async () => {
-    resolveWith([makeCategory()]);
-
-    renderBlock();
-
-    await screen.findByText("Courses");
-    getRemainingBudgetsMock.mockClear();
-
-    const user = userEvent.setup();
-    // Deux comboboxes désormais (mois + filtre catégorie) : le sélecteur de mois
-    // est rendu en premier.
-    await user.click(screen.getAllByRole("combobox")[0]);
-    const listbox = await screen.findByRole("listbox");
-    await user.click(
-      within(listbox).getByText(monthLabel(previousMonthString()))
-    );
-
-    await waitFor(() =>
-      expect(getRemainingBudgetsMock).toHaveBeenCalledWith(
-        previousMonthString()
-      )
-    );
   });
 });

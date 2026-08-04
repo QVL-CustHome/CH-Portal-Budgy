@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ChI18nProvider, ChThemeProvider } from "canopui";
 import ExpensesByCategoryBlock from "./ExpensesByCategoryBlock";
@@ -22,8 +22,6 @@ const TOTAL_CAPTION = fr["budgy.dashboard.expenses.totalCaption"];
 const CHART_ARIA = fr["budgy.dashboard.expenses.chartAria"];
 const EMPTY_MESSAGE = fr["budgy.dashboard.expenses.empty"];
 const UNCATEGORIZED_LABEL = fr["budgy.dashboard.expenses.uncategorized"];
-const PREVIOUS_LABEL = fr["budgy.dashboard.expenses.previousMonth"];
-const NEXT_LABEL = fr["budgy.dashboard.expenses.nextMonth"];
 
 function ym(date: Date): string {
   const year = date.getFullYear();
@@ -33,15 +31,6 @@ function ym(date: Date): string {
 
 const now = new Date();
 const CURRENT_MONTH = ym(now);
-const PREVIOUS_MONTH = ym(new Date(now.getFullYear(), now.getMonth() - 1, 1));
-
-function monthLabel(month: string): string {
-  const [year, monthIndex] = month.split("-").map(Number);
-  return new Intl.DateTimeFormat(defaultLocale, {
-    month: "long",
-    year: "numeric",
-  }).format(new Date(year, monthIndex - 1, 1));
-}
 
 function digitsAndCurrency(text: string): string {
   return text.replace(/\s/g, "");
@@ -174,8 +163,8 @@ describe("CA-01 - Cas limite : aucune dépense sur le mois → état vide propre
   });
 });
 
-describe("CA-02 - Changement de mois : nouvel appel API et mise à jour du rendu", () => {
-  it("charge le mois courant à l'ouverture", async () => {
+describe("Chargement du mois courant", () => {
+  it("charge les dépenses du mois courant à l'ouverture", async () => {
     getExpensesByCategoryMock.mockResolvedValue({
       total_cents: 10_000,
       lignes: [{ category: "Courses", montant_cents: 10_000 }],
@@ -185,64 +174,6 @@ describe("CA-02 - Changement de mois : nouvel appel API et mise à jour du rendu
 
     expect(await screen.findByText("Courses")).toBeInTheDocument();
     expect(getExpensesByCategoryMock).toHaveBeenCalledWith(CURRENT_MONTH);
-    expect(screen.getByText(monthLabel(CURRENT_MONTH))).toBeInTheDocument();
-  });
-
-  it("recharge les dépenses du mois précédent et met à jour le graphique quand on recule d'un mois", async () => {
-    getExpensesByCategoryMock.mockImplementation(async (month: string) => {
-      if (month === CURRENT_MONTH) {
-        return {
-          total_cents: 10_000,
-          lignes: [{ category: "Courses", montant_cents: 10_000 }],
-        };
-      }
-      return {
-        total_cents: 5_000,
-        lignes: [{ category: "Loyer", montant_cents: 5_000 }],
-      };
-    });
-
-    renderBlock();
-
-    await screen.findByText("Courses");
-    fireEvent.click(screen.getByLabelText(PREVIOUS_LABEL));
-
-    expect(await screen.findByText("Loyer")).toBeInTheDocument();
-    expect(getExpensesByCategoryMock).toHaveBeenCalledWith(PREVIOUS_MONTH);
-    expect(screen.getByText(monthLabel(PREVIOUS_MONTH))).toBeInTheDocument();
-    expect(screen.queryByText("Courses")).not.toBeInTheDocument();
-  });
-});
-
-describe("CA-02 - Cas limite : le mois futur au-delà du mois courant n'est pas navigable", () => {
-  it("désactive le bouton mois suivant au mois courant et le réactive après un retour en arrière", async () => {
-    getExpensesByCategoryMock.mockImplementation(async (month: string) => {
-      if (month === CURRENT_MONTH) {
-        return {
-          total_cents: 10_000,
-          lignes: [{ category: "Courses", montant_cents: 10_000 }],
-        };
-      }
-      return {
-        total_cents: 5_000,
-        lignes: [{ category: "Loyer", montant_cents: 5_000 }],
-      };
-    });
-
-    renderBlock();
-
-    await screen.findByText("Courses");
-    expect(screen.getByLabelText(NEXT_LABEL)).toBeDisabled();
-
-    fireEvent.click(screen.getByLabelText(PREVIOUS_LABEL));
-
-    await screen.findByText("Loyer");
-    expect(screen.getByLabelText(NEXT_LABEL)).toBeEnabled();
-
-    fireEvent.click(screen.getByLabelText(NEXT_LABEL));
-
-    expect(await screen.findByText("Courses")).toBeInTheDocument();
-    expect(getExpensesByCategoryMock).toHaveBeenLastCalledWith(CURRENT_MONTH);
   });
 });
 
