@@ -1,3 +1,4 @@
+import Box from "@mui/material/Box";
 import { Button, Heading, Stack, useTranslation } from "canopui";
 
 export interface PaginationProps {
@@ -27,12 +28,14 @@ export default function Pagination({
       >
         {t("budgy.pagination.previous")}
       </Button>
-      <Heading level={2} size={5}>
-        {t("budgy.pagination.status", {
-          page: page + 1,
-          pageCount,
-        })}
-      </Heading>
+      <Box sx={{ whiteSpace: "nowrap", flex: "none" }}>
+        <Heading level={2} size={5}>
+          {t("budgy.pagination.status", {
+            page: page + 1,
+            pageCount,
+          })}
+        </Heading>
+      </Box>
       <Button
         variant="secondary"
         size="small"

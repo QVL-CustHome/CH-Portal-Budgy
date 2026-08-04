@@ -57,8 +57,8 @@ export default function TransactionsTable({
       key: "label",
       header: t("budgy.transactions.label"),
       sortable: true,
-      sortValue: (row) => row.label,
-      render: (row) => row.label,
+      sortValue: (row) => row.clean_label || row.label,
+      render: (row) => row.clean_label || row.label,
     },
     {
       key: "category_id",

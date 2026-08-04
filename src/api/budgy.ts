@@ -126,6 +126,8 @@ export type TransactionStatus = "booked" | "pending";
 export interface Transaction {
   id: string;
   label: string;
+  /** Libellé nettoyé (tiers/marchand) fourni par l'API ; fallback sur `label`. */
+  clean_label?: string;
   amount_cents: number;
   currency: string;
   status: TransactionStatus;
@@ -420,4 +422,30 @@ export function creerRegleCategorisation({
       ...(priority === undefined ? {} : { priority }),
     }),
   });
+}
+
+/** Catégorise automatiquement en « Salaire » tous les crédits non catégorisés. */
+export function recategoriserCredits() {
+  return request<{ categorisees: number }>(
+    "/budgy/v1/transactions/recategoriser",
+    { method: "POST" }
+  );
+}
+
+/**
+ * Crée une règle à partir d'une transaction : l'API dérive elle-même le motif
+ * (le tiers) depuis le libellé, puis l'applique rétroactivement. Aucune saisie.
+ */
+export function creerRegleDepuisTransaction(
+  accountId: string,
+  transactionId: string,
+  categoryId: string
+) {
+  return request<CategorizationRule>(
+    `/budgy/v1/accounts/${encodeURIComponent(accountId)}/transactions/${encodeURIComponent(transactionId)}/rule`,
+    {
+      method: "POST",
+      body: JSON.stringify({ category_id: categoryId }),
+    }
+  );
 }

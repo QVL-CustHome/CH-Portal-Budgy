@@ -48,6 +48,8 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.balances.connectBank": "Rattacher une banque",
     "budgy.dashboard.remaining.title": "Reste à dépenser",
     "budgy.dashboard.remaining.month": "Mois",
+    "budgy.dashboard.remaining.category": "Catégorie",
+    "budgy.dashboard.remaining.allCategories": "Toutes les catégories",
     "budgy.dashboard.remaining.loading": "Chargement de votre budget",
     "budgy.dashboard.remaining.error":
       "Impossible de récupérer votre reste à dépenser. Réessayez.",
@@ -339,6 +341,8 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.balances.connectBank": "Link a bank",
     "budgy.dashboard.remaining.title": "Remaining to spend",
     "budgy.dashboard.remaining.month": "Month",
+    "budgy.dashboard.remaining.category": "Category",
+    "budgy.dashboard.remaining.allCategories": "All categories",
     "budgy.dashboard.remaining.loading": "Loading your budget",
     "budgy.dashboard.remaining.error":
       "Unable to load your remaining budget. Please try again.",

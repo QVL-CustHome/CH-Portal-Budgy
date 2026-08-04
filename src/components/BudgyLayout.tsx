@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { PageScaffold, useTranslation, type ChNavbarItem } from "canopui";
 import { useCurrentUser } from "../context/current-user";
 import { logout } from "../api/auth";
+import { recategoriserCredits } from "../api/budgy";
 import { navigateTo } from "../lib/navigation";
 import { cguUrl, loginUrl } from "../lib/auth-redirect";
 import BudgyNotificationsProvider from "./BudgyNotificationsProvider";
@@ -14,13 +16,17 @@ export default function BudgyLayout() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Catégorisation automatique des crédits (revenus) en « Salaire » à l'entrée
+  // dans l'app : rattrape les transactions synchronisées depuis la dernière visite.
+  // Idempotent côté API ; erreurs ignorées (best-effort, non bloquant).
+  useEffect(() => {
+    void recategoriserCredits().catch(() => {});
+  }, []);
+
   const items: ChNavbarItem[] = [
-    { label: t("budgy.nav.home"), href: "/home", icon: "home" },
-    { label: t("budgy.nav.dashboard"), href: "/dashboard", icon: "barChart" },
+    { label: t("budgy.nav.dashboard"), href: "/", icon: "barChart" },
     { label: t("budgy.nav.accounts"), href: "/comptes", icon: "wallet" },
-    { label: t("budgy.nav.transactions"), href: "/transactions", icon: "receipt" },
     { label: t("budgy.nav.categories"), href: "/categories", icon: "tag" },
-    { label: t("budgy.nav.budgets"), href: "/budgets", icon: "calendar" },
     { label: t("budgy.nav.consents"), href: "/consentements", icon: "shield" },
   ];
 

@@ -64,7 +64,6 @@ vi.mock("./BudgyNotificationsProvider", () => ({
 
 vi.mock("./SyncErrorToast", () => ({ default: () => null }));
 
-vi.mock("../pages/Home", () => ({ default: () => <div>page-home</div> }));
 vi.mock("../pages/Dashboard", () => ({ default: () => <div>page-dashboard</div> }));
 vi.mock("../pages/RattacherBanque", () => ({ default: () => <div>page-banque</div> }));
 vi.mock("../pages/RattacherBanqueCallback", () => ({
@@ -74,17 +73,11 @@ vi.mock("../pages/MesComptes", () => ({ default: () => <div>page-comptes</div> }
 vi.mock("../pages/TransactionsCompte", () => ({
   default: () => <div>page-transactions-compte</div>,
 }));
-vi.mock("../pages/Transactions", () => ({
-  default: () => <div>page-transactions</div>,
-}));
 vi.mock("../pages/Consentements", () => ({
   default: () => <div>page-consentements</div>,
 }));
 vi.mock("../pages/Categories", () => ({
   default: () => <div>page-categories</div>,
-}));
-vi.mock("../pages/Budgets", () => ({
-  default: () => <div>page-budgets</div>,
 }));
 vi.mock("../pages/Forbidden", () => ({ default: () => <div>page-forbidden</div> }));
 
@@ -110,7 +103,7 @@ function navHrefs(): string[] {
 
 describe("navigation du layout Budgy", () => {
   it("n'expose aucune entrée Notifications dans la nav", () => {
-    renderAt("/home");
+    renderAt("/");
 
     const links = screen.getAllByTestId("nav-link");
     const hrefs = links.map((link) => link.getAttribute("href") ?? "");
@@ -121,7 +114,7 @@ describe("navigation du layout Budgy", () => {
   });
 
   it("pointe chaque entrée de nav vers une route déclarée dans App", () => {
-    const initial = renderAt("/home");
+    const initial = renderAt("/");
     const hrefs = navHrefs();
     initial.unmount();
 
@@ -134,15 +127,23 @@ describe("navigation du layout Budgy", () => {
     }
   });
 
-  it("expose une entrée de nav vers l'écran budgets", () => {
-    renderAt("/home");
+  it("expose le tableau de bord comme page d'accueil de la nav", () => {
+    renderAt("/");
 
-    expect(navHrefs()).toContain("/budgets");
+    expect(navHrefs()).toContain("/");
   });
 
-  it("redirige une route inexistante vers /home (contrôle négatif)", () => {
+  it("n'expose plus les entrées Transactions ni Budgets", () => {
+    renderAt("/");
+
+    const hrefs = navHrefs();
+    expect(hrefs).not.toContain("/transactions");
+    expect(hrefs).not.toContain("/budgets");
+  });
+
+  it("redirige une route inexistante vers l'accueil (contrôle négatif)", () => {
     renderAt("/notifications");
 
-    expect(screen.getByTestId("pathname").textContent).toBe("/home");
+    expect(screen.getByTestId("pathname").textContent).toBe("/");
   });
 });

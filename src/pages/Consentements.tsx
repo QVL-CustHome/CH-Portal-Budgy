@@ -8,6 +8,7 @@ import {
 } from "canopui";
 import ConsentementsList from "../components/ConsentementsList";
 import ReconsentementAlerte from "../components/ReconsentementAlerte";
+import FeatureCard from "../components/FeatureCard";
 import { useReconsentement } from "../hooks/useReconsentement";
 
 export default function Consentements() {
@@ -26,6 +27,12 @@ export default function Consentements() {
   return (
     <PageContent title={t("budgy.consents.title")}>
       <Stack gap="lg">
+        <FeatureCard
+          icon="plus"
+          title={t("budgy.home.bank.title")}
+          description={t("budgy.home.bank.description")}
+          to="/banque"
+        />
         {loading ? (
           <Stack alignItems="center" padding="lg">
             <Spinner label={t("budgy.consents.loading")} />

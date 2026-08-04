@@ -46,7 +46,7 @@ export default function TransactionCardEditable({
     >
       <Box display="flex" alignItems="baseline" justifyContent="space-between" gap="0.75rem">
         <Typography component="p" color="text.primary" noWrap sx={{ fontWeight: 600, minWidth: 0 }}>
-          {transaction.label}
+          {transaction.clean_label || transaction.label}
         </Typography>
         <Typography
           component="span"

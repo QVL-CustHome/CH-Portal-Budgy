@@ -7,33 +7,18 @@ import {
   useTranslation,
 } from "canopui";
 import { usePrevisionnel } from "../hooks/usePrevisionnel";
-import MonthSelector from "./MonthSelector";
 import PrevisionnelHero from "./PrevisionnelHero";
 import PrevisionnelChart from "./PrevisionnelChart";
 
 export default function PrevisionnelBlock() {
   const { t } = useTranslation();
-  const {
-    month,
-    monthOptions,
-    summary,
-    categories,
-    hasEnoughData,
-    loading,
-    error,
-    selectMonth,
-    reload,
-  } = usePrevisionnel();
+  // Prévisionnel du mois en cours uniquement (pas de navigation mensuelle).
+  const { summary, categories, hasEnoughData, loading, error, reload } =
+    usePrevisionnel();
 
   return (
     <Card title={t("budgy.dashboard.forecast.title")} elevation="sm" fill>
       <Stack gap="md">
-        <MonthSelector
-          months={monthOptions}
-          value={month}
-          onChange={selectMonth}
-        />
-
         {loading ? (
           <Stack alignItems="center" padding="lg">
             <Spinner label={t("budgy.dashboard.forecast.loading")} />
