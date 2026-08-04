@@ -3,7 +3,6 @@ import {
   Button,
   Feedback,
   Heading,
-  InputText,
   SidePanel,
   Stack,
   StatusChip,
@@ -17,13 +16,8 @@ import FieldLabel from "./FieldLabel";
 export interface RegleProposalPanelProps {
   open: boolean;
   category: Category | null;
-  labelPattern: string;
-  patternMax: number;
-  patternError: string | null;
-  canSubmit: boolean;
   submitting: boolean;
   submitError: string | null;
-  onLabelPatternChange: (value: string) => void;
   onAccept: () => void;
   onRefuse: () => void;
 }
@@ -31,13 +25,8 @@ export interface RegleProposalPanelProps {
 export default function RegleProposalPanel({
   open,
   category,
-  labelPattern,
-  patternMax,
-  patternError,
-  canSubmit,
   submitting,
   submitError,
-  onLabelPatternChange,
   onAccept,
   onRefuse,
 }: RegleProposalPanelProps) {
@@ -53,12 +42,7 @@ export default function RegleProposalPanel({
           <Button variant="secondary" onClick={onRefuse} disabled={submitting}>
             {t("budgy.rules.proposal.refuse")}
           </Button>
-          <Button
-            variant="primary"
-            onClick={onAccept}
-            loading={submitting}
-            disabled={!canSubmit}
-          >
+          <Button variant="primary" onClick={onAccept} loading={submitting}>
             {t("budgy.rules.proposal.accept")}
           </Button>
         </Stack>
@@ -69,18 +53,6 @@ export default function RegleProposalPanel({
           <Feedback severity="info">
             {t("budgy.rules.proposal.description", { category: category.name })}
           </Feedback>
-          <InputText
-            label={t("budgy.rules.proposal.patternLabel")}
-            value={labelPattern}
-            onChange={onLabelPatternChange}
-            error={patternError}
-            helperText={t("budgy.rules.proposal.patternHelper", {
-              max: patternMax,
-            })}
-            required
-            autoFocus
-            fullWidth
-          />
           <Stack gap="sm">
             <FieldLabel>{t("budgy.rules.proposal.targetLabel")}</FieldLabel>
             <Box

@@ -27,7 +27,7 @@ export default function TransactionsCompte() {
     () => indexCategoriesById(categories),
     [categories]
   );
-  const proposal = useRegleProposal(categoriesById);
+  const proposal = useRegleProposal(accountId, categoriesById);
   const {
     transactions,
     pageCount,
@@ -89,13 +89,8 @@ export default function TransactionsCompte() {
       <RegleProposalPanel
         open={proposal.isOpen}
         category={proposal.category}
-        labelPattern={proposal.labelPattern}
-        patternMax={proposal.patternMax}
-        patternError={proposal.patternError}
-        canSubmit={proposal.canSubmit}
         submitting={proposal.submitting}
         submitError={proposal.submitError}
-        onLabelPatternChange={proposal.setLabelPattern}
         onAccept={proposal.accept}
         onRefuse={proposal.refuse}
       />

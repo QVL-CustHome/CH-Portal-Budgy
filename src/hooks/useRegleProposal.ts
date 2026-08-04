@@ -1,78 +1,61 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { apiErrorMessage, useTranslation } from "canopui";
 import { ApiError } from "../api/client";
-import { creerRegleCategorisation, type Category } from "../api/budgy";
+import { creerRegleDepuisTransaction, type Category } from "../api/budgy";
 import { resolveCategory } from "../lib/categories";
-import { RULE_PATTERN_MAX, validateRulePattern } from "../lib/rules";
 
 export interface CategoryAssignment {
+  transactionId: string;
   categoryId: string;
   label: string;
 }
 
 interface RegleProposal {
   category: Category;
+  transactionId: string;
   label: string;
 }
 
 export interface UseRegleProposalResult {
   isOpen: boolean;
   category: Category | null;
-  labelPattern: string;
-  patternMax: number;
-  patternError: string | null;
-  canSubmit: boolean;
+  transactionLabel: string;
   submitting: boolean;
   submitError: string | null;
   successOpen: boolean;
   successMessage: string;
-  setLabelPattern: (value: string) => void;
   propose: (assignment: CategoryAssignment) => void;
   accept: () => Promise<void>;
   refuse: () => void;
   dismissSuccess: () => void;
 }
 
+/**
+ * Propose de créer une règle de catégorisation à partir d'une transaction qu'on
+ * vient de catégoriser. L'utilisateur n'a RIEN à saisir : à l'acceptation, l'API
+ * dérive elle-même le motif (le tiers) depuis le libellé et l'applique.
+ */
 export function useRegleProposal(
+  accountId: string,
   categoriesById: Map<string, Category>
 ): UseRegleProposalResult {
   const { t } = useTranslation();
   const [proposal, setProposal] = useState<RegleProposal | null>(null);
-  const [labelPattern, setLabelPattern] = useState("");
-  const [touched, setTouched] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const patternErrorKind = validateRulePattern(labelPattern);
-
-  const patternError = useMemo(() => {
-    if (!touched || !patternErrorKind) {
-      return null;
-    }
-    return patternErrorKind === "required"
-      ? t("budgy.rules.proposal.patternRequired")
-      : t("budgy.rules.proposal.patternTooLong");
-  }, [touched, patternErrorKind, t]);
-
   const propose = useCallback(
-    ({ categoryId, label }: CategoryAssignment) => {
+    ({ transactionId, categoryId, label }: CategoryAssignment) => {
       const category = resolveCategory(categoriesById, categoryId);
       if (!category) {
         return;
       }
       setSubmitError(null);
-      setTouched(false);
-      setLabelPattern(label);
-      setProposal({ category, label });
+      setProposal({ category, transactionId, label });
     },
     [categoriesById]
   );
-
-  const handleLabelPattern = useCallback((value: string) => {
-    setLabelPattern(value);
-    setTouched(true);
-  }, []);
 
   const refuse = useCallback(() => {
     setProposal(null);
@@ -82,21 +65,17 @@ export function useRegleProposal(
     if (!proposal) {
       return;
     }
-    setTouched(true);
-    if (validateRulePattern(labelPattern)) {
-      return;
-    }
-    const pattern = labelPattern.trim();
     setSubmitting(true);
     setSubmitError(null);
     try {
-      await creerRegleCategorisation({
-        labelPattern: pattern,
-        categoryId: proposal.category.id,
-      });
+      const regle = await creerRegleDepuisTransaction(
+        accountId,
+        proposal.transactionId,
+        proposal.category.id
+      );
       setSuccessMessage(
         t("budgy.rules.proposal.success", {
-          pattern,
+          pattern: regle.label_pattern,
           category: proposal.category.name,
         })
       );
@@ -113,22 +92,18 @@ export function useRegleProposal(
     } finally {
       setSubmitting(false);
     }
-  }, [proposal, labelPattern, t]);
+  }, [proposal, accountId, t]);
 
   const dismissSuccess = useCallback(() => setSuccessMessage(null), []);
 
   return {
     isOpen: proposal !== null,
     category: proposal?.category ?? null,
-    labelPattern,
-    patternMax: RULE_PATTERN_MAX,
-    patternError,
-    canSubmit: patternErrorKind === null,
+    transactionLabel: proposal?.label ?? "",
     submitting,
     submitError,
     successOpen: successMessage !== null,
     successMessage: successMessage ?? "",
-    setLabelPattern: handleLabelPattern,
     propose,
     accept,
     refuse,
