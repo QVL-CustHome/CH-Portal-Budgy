@@ -280,7 +280,9 @@ describe("Sélection de mois", () => {
     getRemainingBudgetsMock.mockClear();
 
     const user = userEvent.setup();
-    await user.click(screen.getByRole("combobox"));
+    // Deux comboboxes désormais (mois + filtre catégorie) : le sélecteur de mois
+    // est rendu en premier.
+    await user.click(screen.getAllByRole("combobox")[0]);
     const listbox = await screen.findByRole("listbox");
     await user.click(
       within(listbox).getByText(monthLabel(previousMonthString()))
