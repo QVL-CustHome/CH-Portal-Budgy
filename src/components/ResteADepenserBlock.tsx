@@ -10,23 +10,14 @@ import {
   type ChMultiSelectOption,
 } from "canopui";
 import { useResteADepenser } from "../hooks/useResteADepenser";
-import MonthSelector from "./MonthSelector";
 import ResteADepenserList from "./ResteADepenserList";
 
 const TOUTES = "__all__";
 
 export default function ResteADepenserBlock() {
   const { t } = useTranslation();
-  const {
-    month,
-    monthOptions,
-    categories,
-    isEmpty,
-    loading,
-    error,
-    selectMonth,
-    reload,
-  } = useResteADepenser();
+  // Mois courant uniquement (pas de navigation mensuelle sur le dashboard).
+  const { categories, isEmpty, loading, error, reload } = useResteADepenser();
 
   const [selected, setSelected] = useState<string>(TOUTES);
 
@@ -52,12 +43,6 @@ export default function ResteADepenserBlock() {
   return (
     <Card title={t("budgy.dashboard.remaining.title")} elevation="sm" fill>
       <Stack gap="md">
-        <MonthSelector
-          months={monthOptions}
-          value={month}
-          onChange={selectMonth}
-        />
-
         {loading ? (
           <Stack alignItems="center" padding="lg">
             <Spinner label={t("budgy.dashboard.remaining.loading")} />

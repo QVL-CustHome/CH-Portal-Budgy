@@ -11,25 +11,13 @@ import {
   type ChDonutSegment,
 } from "canopui";
 import { useExpensesByCategory } from "../hooks/useExpensesByCategory";
-import { formatMonthLabel } from "../lib/budget";
 import { formatMoneyCents } from "../lib/money";
-import MonthNavigator from "./MonthNavigator";
 
 export default function ExpensesByCategoryBlock() {
   const { t, locale } = useTranslation();
-  const {
-    month,
-    segments,
-    totalCents,
-    currency,
-    isEmpty,
-    loading,
-    error,
-    reload,
-    goToPreviousMonth,
-    goToNextMonth,
-    canGoNext,
-  } = useExpensesByCategory();
+  // Mois courant uniquement (pas de navigation mensuelle sur le dashboard).
+  const { segments, totalCents, currency, isEmpty, loading, error, reload } =
+    useExpensesByCategory();
 
   const donutSegments = useMemo<ChDonutSegment[]>(
     () =>
@@ -49,25 +37,8 @@ export default function ExpensesByCategoryBlock() {
     [currency, locale]
   );
 
-  const monthSelector = (
-    <MonthNavigator
-      label={formatMonthLabel(month, locale)}
-      previousLabel={t("budgy.dashboard.expenses.previousMonth")}
-      nextLabel={t("budgy.dashboard.expenses.nextMonth")}
-      canGoNext={canGoNext}
-      disabled={loading}
-      onPrevious={goToPreviousMonth}
-      onNext={goToNextMonth}
-    />
-  );
-
   return (
-    <Card
-      title={t("budgy.dashboard.expenses.title")}
-      actions={monthSelector}
-      elevation="sm"
-      fill
-    >
+    <Card title={t("budgy.dashboard.expenses.title")} elevation="sm" fill>
       {loading ? (
         <Stack alignItems="center" padding="lg">
           <Spinner label={t("budgy.dashboard.expenses.loading")} />
