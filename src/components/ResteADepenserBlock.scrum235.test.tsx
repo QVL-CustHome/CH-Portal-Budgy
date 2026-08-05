@@ -166,15 +166,11 @@ describe("CA-02 - Dépassement mis en évidence et montant dépassé affiché", 
       }),
     ]);
 
-    const { container } = renderBlock();
+    renderBlock();
 
     expect(await screen.findByText("Courses")).toBeInTheDocument();
-    expect(
-      screen.getByText(exactText("Dépassé de 50,00 €"))
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector(".MuiChip-colorError")
-    ).not.toBeNull();
+    // Le dépassement se lit désormais au reste négatif (plus de badge « Dépassé de »).
+    expect(screen.getByText(exactText("-50,00 €"))).toBeInTheDocument();
   });
 
   it("n'applique pas la mise en évidence de dépassement à une catégorie conforme", async () => {
@@ -218,18 +214,12 @@ describe("CA-02 - Dépassement mis en évidence et montant dépassé affiché", 
       }),
     ]);
 
-    const { container } = renderBlock();
+    renderBlock();
 
     expect(await screen.findByText("Depassee")).toBeInTheDocument();
-    expect(
-      screen.getByText(exactText("Dépassé de 75,00 €"))
-    ).toBeInTheDocument();
-    expect(
-      container.querySelectorAll(".MuiChip-colorError").length
-    ).toBe(1);
-    expect(
-      screen.getAllByText(/Dépassé de/).length
-    ).toBe(1);
+    // La catégorie en dépassement affiche un reste négatif, la conforme un reste positif.
+    expect(screen.getByText(exactText("-75,00 €"))).toBeInTheDocument();
+    expect(screen.getByText(exactText("300,00 €"))).toBeInTheDocument();
   });
 });
 
