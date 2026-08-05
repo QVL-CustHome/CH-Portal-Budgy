@@ -353,7 +353,9 @@ export interface RemainingBudgetTotal {
 export interface RemainingBudgetsResponse {
   month: string;
   categories: RemainingBudgetCategory[];
-  total: RemainingBudgetTotal;
+  // L'API renvoie toujours le total ; optionnel cote type pour rester tolerant
+  // (mocks de test, anciennes reponses) — le hook/composant gerent son absence.
+  total?: RemainingBudgetTotal;
 }
 
 export function getRemainingBudgets(month: string) {

@@ -5,16 +5,21 @@ import {
   Button,
   Card,
   Feedback,
+  Select,
   Spinner,
   Stack,
   useTranslation,
+  type ChSelectOption,
 } from "canopui";
 import { useResteADepenser } from "../hooks/useResteADepenser";
 import ResteADepenserList from "./ResteADepenserList";
-import CategoryFilterSelect, { ALL_CATEGORIES } from "./CategoryFilterSelect";
+import CategoryBadge from "./CategoryBadge";
+import { toCategoryIcon } from "../lib/categories";
 import { formatMoneyCents } from "../lib/money";
 
 const CURRENCY = "EUR";
+/** Valeur sentinelle : aucune catégorie sélectionnée (toutes affichées). */
+const ALL_CATEGORIES = "__all__";
 
 export default function ResteADepenserBlock() {
   const { t, locale } = useTranslation();
@@ -22,6 +27,29 @@ export default function ResteADepenserBlock() {
   const { categories, total, isEmpty, loading, error, reload } =
     useResteADepenser();
   const [selected, setSelected] = useState<string>(ALL_CATEGORIES);
+
+  // Options du filtre mono-catégorie : chaque catégorie porte sa pastille
+  // (couleur + icône) via le Select CanopUI, plus l'entrée « toutes ».
+  const categoryOptions = useMemo<ChSelectOption[]>(
+    () => [
+      {
+        value: ALL_CATEGORIES,
+        label: t("budgy.dashboard.remaining.allCategories"),
+      },
+      ...categories.map((category) => ({
+        value: category.category_id,
+        label: category.category_name,
+        icon: (
+          <CategoryBadge
+            color={category.color}
+            icon={toCategoryIcon(category.icon)}
+            size="sm"
+          />
+        ),
+      })),
+    ],
+    [categories, t]
+  );
 
   const visibleCategories = useMemo(
     () =>
@@ -53,8 +81,9 @@ export default function ResteADepenserBlock() {
               </Feedback>
             ) : (
               <Stack gap="md">
-                <CategoryFilterSelect
-                  categories={categories}
+                <Select
+                  label={t("budgy.dashboard.remaining.category")}
+                  options={categoryOptions}
                   value={selected}
                   onChange={setSelected}
                 />
