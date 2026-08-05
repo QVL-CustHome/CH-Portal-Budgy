@@ -4,7 +4,6 @@ import {
   Heading,
   ProgressBar,
   Stack,
-  StatusChip,
   useTranslation,
   type ChProgressSegment,
 } from "canopui";
@@ -31,11 +30,6 @@ export default function ResteADepenserItem({
     locale
   );
   const remaining = formatMoneyCents(category.reste_cents, CURRENCY, locale);
-  const overspent = formatMoneyCents(
-    category.depassement_cents,
-    CURRENCY,
-    locale
-  );
 
   const progressSegments: ChProgressSegment[] = [
     {
@@ -78,15 +72,6 @@ export default function ResteADepenserItem({
               })}
             </Typography>
           </Stack>
-          {category.depasse ? (
-            <StatusChip
-              tone="error"
-              size="small"
-              label={t("budgy.dashboard.remaining.overspentBy", {
-                amount: overspent,
-              })}
-            />
-          ) : null}
         </Stack>
 
         <ProgressBar

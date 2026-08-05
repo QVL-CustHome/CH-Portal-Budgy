@@ -57,6 +57,7 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.remaining.empty":
       "Aucun budget défini pour ce mois. Définissez un budget par catégorie pour suivre votre reste à dépenser.",
     "budgy.dashboard.remaining.remainingLabel": "Reste à dépenser",
+    "budgy.dashboard.remaining.totalLabel": "Total reste à dépenser",
     "budgy.dashboard.remaining.spentOfPlanned": "{spent} dépensés sur {planned}",
     "budgy.dashboard.remaining.overspentBy": "Dépassé de {amount}",
     "budgy.dashboard.remaining.progressAria":
@@ -350,6 +351,7 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.remaining.empty":
       "No budget set for this month. Set a budget per category to track what you have left to spend.",
     "budgy.dashboard.remaining.remainingLabel": "Remaining to spend",
+    "budgy.dashboard.remaining.totalLabel": "Total remaining to spend",
     "budgy.dashboard.remaining.spentOfPlanned": "{spent} spent of {planned}",
     "budgy.dashboard.remaining.overspentBy": "Over by {amount}",
     "budgy.dashboard.remaining.progressAria":

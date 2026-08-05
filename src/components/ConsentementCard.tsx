@@ -36,7 +36,7 @@ export default function ConsentementCard({
 
   return (
     <Card
-      title={t("budgy.consents.bankFallback")}
+      title={consent.bank ?? t("budgy.consents.bankFallback")}
       elevation="sm"
       fill
       actions={

@@ -43,6 +43,7 @@ export type ConsentRenewal = "up-to-date" | "renewal-required" | "expired";
 
 export interface Consent {
   consent_id: string;
+  bank: string | null;
   status: ConsentStatus;
   renewal: ConsentRenewal;
   renewable: boolean;
@@ -343,9 +344,16 @@ export interface RemainingBudgetCategory {
   depasse: boolean;
 }
 
+export interface RemainingBudgetTotal {
+  montant_prevu_cents: number;
+  depense_cents: number;
+  reste_cents: number;
+}
+
 export interface RemainingBudgetsResponse {
   month: string;
   categories: RemainingBudgetCategory[];
+  total: RemainingBudgetTotal;
 }
 
 export function getRemainingBudgets(month: string) {
