@@ -9,12 +9,20 @@ export interface SoldesParCompteListProps {
 export default function SoldesParCompteList({
   comptes,
 }: SoldesParCompteListProps) {
-  const { locale } = useTranslation();
+  const { t, locale } = useTranslation();
 
-  const items: ChDescriptionItem[] = comptes.map((compte) => ({
-    label: compte.iban_masked,
-    value: formatMoneyCents(compte.balance, compte.currency, locale),
-  }));
+  const items: ChDescriptionItem[] = comptes.map((compte) => {
+    const solde = formatMoneyCents(compte.balance, compte.currency, locale);
+    const value =
+      compte.solde_a_venir_cents != null
+        ? `${solde} · ${t("budgy.dashboard.balances.upcomingAccountLabel")} ${formatMoneyCents(
+            compte.solde_a_venir_cents,
+            compte.currency,
+            locale
+          )}`
+        : solde;
+    return { label: compte.iban_masked, value };
+  });
 
   return <DescriptionList items={items} />;
 }

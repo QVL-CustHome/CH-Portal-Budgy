@@ -7,6 +7,7 @@ const DEFAULT_CURRENCY = "EUR";
 
 interface UseSoldesConsolidesResult {
   totalCents: number;
+  totalAVenirCents: number | null;
   comptes: ConsolidatedAccount[];
   displayCurrency: string;
   hasAccounts: boolean;
@@ -18,6 +19,7 @@ interface UseSoldesConsolidesResult {
 export function useSoldesConsolides(): UseSoldesConsolidesResult {
   const { t } = useTranslation();
   const [totalCents, setTotalCents] = useState(0);
+  const [totalAVenirCents, setTotalAVenirCents] = useState<number | null>(null);
   const [comptes, setComptes] = useState<ConsolidatedAccount[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -28,6 +30,7 @@ export function useSoldesConsolides(): UseSoldesConsolidesResult {
     try {
       const response = await getSoldesConsolides();
       setTotalCents(response?.total_cents ?? 0);
+      setTotalAVenirCents(response?.total_a_venir_cents ?? null);
       setComptes(response?.accounts ?? []);
     } catch (caught) {
       const code = caught instanceof ApiError ? caught.code : undefined;
@@ -48,6 +51,7 @@ export function useSoldesConsolides(): UseSoldesConsolidesResult {
 
   return {
     totalCents,
+    totalAVenirCents,
     comptes,
     displayCurrency,
     hasAccounts: comptes.length > 0,

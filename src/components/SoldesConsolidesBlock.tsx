@@ -1,4 +1,5 @@
 import { Link as RouterLink } from "react-router-dom";
+import Typography from "@mui/material/Typography";
 import {
   Button,
   Card,
@@ -20,6 +21,7 @@ export default function SoldesConsolidesBlock() {
   const { t, locale } = useTranslation();
   const {
     totalCents,
+    totalAVenirCents,
     comptes,
     displayCurrency,
     hasAccounts,
@@ -61,6 +63,17 @@ export default function SoldesConsolidesBlock() {
               locale
             )}
           />
+          {totalAVenirCents != null ? (
+            <Typography
+              component="p"
+              variant="body2"
+              color="text.secondary"
+              sx={{ textAlign: "center" }}
+            >
+              {t("budgy.dashboard.balances.upcomingTotalLabel")} ·{" "}
+              {formatMoneyCents(totalAVenirCents, displayCurrency, locale)}
+            </Typography>
+          ) : null}
           <Divider spacing="sm" />
           <Heading level={3} size={5}>
             {t("budgy.dashboard.balances.perAccountLabel")}

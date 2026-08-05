@@ -38,6 +38,8 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.title": "Tableau de bord",
     "budgy.dashboard.balances.title": "Soldes consolidés",
     "budgy.dashboard.balances.totalLabel": "Solde total",
+    "budgy.dashboard.balances.upcomingTotalLabel": "Solde à venir",
+    "budgy.dashboard.balances.upcomingAccountLabel": "à venir",
     "budgy.dashboard.balances.perAccountLabel": "Par compte",
     "budgy.dashboard.balances.loading": "Chargement de vos soldes",
     "budgy.dashboard.balances.error":
@@ -332,6 +334,8 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.title": "Dashboard",
     "budgy.dashboard.balances.title": "Consolidated balances",
     "budgy.dashboard.balances.totalLabel": "Total balance",
+    "budgy.dashboard.balances.upcomingTotalLabel": "Upcoming balance",
+    "budgy.dashboard.balances.upcomingAccountLabel": "upcoming",
     "budgy.dashboard.balances.perAccountLabel": "By account",
     "budgy.dashboard.balances.loading": "Loading your balances",
     "budgy.dashboard.balances.error":

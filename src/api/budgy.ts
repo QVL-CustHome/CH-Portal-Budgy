@@ -115,10 +115,14 @@ export interface ConsolidatedAccount {
   iban_masked: string;
   currency: string;
   balance: number;
+  /** Solde à venir (opérations en attente incluses), si la banque le fournit. */
+  solde_a_venir_cents?: number | null;
 }
 
 export interface ConsolidatedBalance {
   total_cents: number;
+  /** Total à venir consolidé, présent seulement si au moins un compte l'expose. */
+  total_a_venir_cents?: number | null;
   accounts: ConsolidatedAccount[];
 }
 
