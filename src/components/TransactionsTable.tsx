@@ -90,10 +90,19 @@ export default function TransactionsTable({
       align: "right",
       sortable: true,
       sortValue: (row) => row.amount_cents,
-      render: (row) =>
-        formatMoneyCents(row.amount_cents, row.currency, locale, {
-          signDisplay: true,
-        }),
+      render: (row) => (
+        <Box
+          component="span"
+          sx={{
+            color: row.amount_cents >= 0 ? "success.main" : "error.main",
+            fontWeight: 600,
+          }}
+        >
+          {formatMoneyCents(row.amount_cents, row.currency, locale, {
+            signDisplay: true,
+          })}
+        </Box>
+      ),
     },
   ];
 

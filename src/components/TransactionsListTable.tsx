@@ -57,10 +57,19 @@ export default function TransactionsListTable({
       key: "amount",
       header: t("budgy.transactions.amount"),
       align: "right",
-      render: (row) =>
-        formatMoneyCents(row.amount_cents, row.currency, locale, {
-          signDisplay: true,
-        }),
+      render: (row) => (
+        <Box
+          component="span"
+          sx={{
+            color: row.amount_cents >= 0 ? "success.main" : "error.main",
+            fontWeight: 600,
+          }}
+        >
+          {formatMoneyCents(row.amount_cents, row.currency, locale, {
+            signDisplay: true,
+          })}
+        </Box>
+      ),
     },
   ];
 

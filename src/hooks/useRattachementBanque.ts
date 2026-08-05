@@ -6,6 +6,7 @@ import {
   listBanks,
   type Bank,
 } from "../api/budgy";
+import { generaliserBanques } from "../lib/banks";
 import { navigateTo } from "../lib/navigation";
 
 interface UseRattachementBanqueResult {
@@ -34,7 +35,7 @@ export function useRattachementBanque(): UseRattachementBanqueResult {
     setBanksError(null);
     try {
       const response = await listBanks();
-      setBanks(response.data);
+      setBanks(generaliserBanques(response.data));
     } catch (error) {
       const code = error instanceof ApiError ? error.code : undefined;
       setBanksError(apiErrorMessage(t, code, t("budgy.bank.banksError")));
