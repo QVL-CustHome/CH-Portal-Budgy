@@ -87,8 +87,6 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.forecast.soldeLabel": "Solde prévisionnel",
     "budgy.dashboard.forecast.revenusLabel": "Revenus récurrents",
     "budgy.dashboard.forecast.depensesLabel": "Dépenses récurrentes",
-    "budgy.dashboard.forecast.budgetsLabel": "Budgets",
-    "budgy.dashboard.forecast.categoriesTitle": "Détail par catégorie",
     "budgy.dashboard.forecast.uncategorized": "Sans catégorie",
     "budgy.dashboard.forecast.chartAria":
       "Contribution de chaque catégorie au solde prévisionnel",
@@ -382,8 +380,6 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.forecast.soldeLabel": "Forecast balance",
     "budgy.dashboard.forecast.revenusLabel": "Recurring income",
     "budgy.dashboard.forecast.depensesLabel": "Recurring expenses",
-    "budgy.dashboard.forecast.budgetsLabel": "Budgets",
-    "budgy.dashboard.forecast.categoriesTitle": "By category",
     "budgy.dashboard.forecast.uncategorized": "Uncategorised",
     "budgy.dashboard.forecast.chartAria":
       "Each category's contribution to the forecast balance",

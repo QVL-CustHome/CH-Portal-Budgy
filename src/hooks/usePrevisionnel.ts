@@ -3,10 +3,6 @@ import { apiErrorMessage, useTranslation } from "canopui";
 import { ApiError } from "../api/client";
 import { getForecast, type Forecast } from "../api/budgy";
 import { currentMonth, recentMonths } from "../lib/budget";
-import {
-  buildForecastCategoryViews,
-  type ForecastCategoryView,
-} from "../lib/forecast";
 
 const MONTH_OPTIONS_COUNT = 12;
 
@@ -21,7 +17,6 @@ interface UsePrevisionnelResult {
   month: string;
   monthOptions: string[];
   summary: PrevisionnelSummary | null;
-  categories: ForecastCategoryView[];
   hasEnoughData: boolean;
   loading: boolean;
   error: string | null;
@@ -73,18 +68,10 @@ export function usePrevisionnel(): UsePrevisionnelResult {
     };
   }, [forecast]);
 
-  const categories = useMemo<ForecastCategoryView[]>(() => {
-    if (!forecast || !forecast.donnees_suffisantes) {
-      return [];
-    }
-    return buildForecastCategoryViews(forecast.categories);
-  }, [forecast]);
-
   return {
     month,
     monthOptions,
     summary,
-    categories,
     hasEnoughData,
     loading,
     error,

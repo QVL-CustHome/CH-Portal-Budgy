@@ -21,8 +21,6 @@ const INSUFFICIENT_MESSAGE = "Pas encore assez de données pour établir un pré
 const SOLDE_LABEL = fr["budgy.dashboard.forecast.soldeLabel"];
 const REVENUS_LABEL = fr["budgy.dashboard.forecast.revenusLabel"];
 const DEPENSES_LABEL = fr["budgy.dashboard.forecast.depensesLabel"];
-const BUDGETS_LABEL = fr["budgy.dashboard.forecast.budgetsLabel"];
-const CATEGORIES_TITLE = fr["budgy.dashboard.forecast.categoriesTitle"];
 
 function normalize(text: string): string {
   return text.replace(/\s/g, "");
@@ -100,7 +98,7 @@ describe("CA-01 - Solde prévisionnel et ses composantes affichés", () => {
     expect(screen.getByText(exactText("+900,00 €"))).toBeInTheDocument();
   });
 
-  it("affiche les trois composantes revenus, dépenses et budgets", async () => {
+  it("affiche les deux composantes revenus et dépenses", async () => {
     getForecastMock.mockResolvedValue(makeForecast());
 
     const { container } = renderBlock();
@@ -113,41 +111,22 @@ describe("CA-01 - Solde prévisionnel et ses composantes affichés", () => {
     const zone = within(breakdown);
 
     expect(zone.getByText(DEPENSES_LABEL)).toBeInTheDocument();
-    expect(zone.getByText(BUDGETS_LABEL)).toBeInTheDocument();
     expect(zone.getByText(exactText("+2 000,00 €"))).toBeInTheDocument();
     expect(zone.getByText(exactText("-800,00 €"))).toBeInTheDocument();
-    expect(zone.getByText(exactText("-300,00 €"))).toBeInTheDocument();
-  });
-});
-
-describe("CA-02 - Détail des montants prévus par catégorie affiché", () => {
-  it("affiche la section de détail par catégorie", async () => {
-    getForecastMock.mockResolvedValue(makeForecast());
-
-    renderBlock();
-
-    expect(await screen.findByText(CATEGORIES_TITLE)).toBeInTheDocument();
   });
 
-  it("affiche chaque catégorie ayant des récurrents ou un budget", async () => {
-    getForecastMock.mockResolvedValue(makeForecast());
-
-    renderBlock();
-
-    expect(await screen.findByText("Salaire")).toBeInTheDocument();
-    expect(screen.getByText("Loyer")).toBeInTheDocument();
-    expect(screen.getByText("Courses")).toBeInTheDocument();
-  });
-
-  it("liste une ligne par catégorie prévisionnelle", async () => {
+  it("n'affiche ni ligne budgets ni détail par catégorie", async () => {
     getForecastMock.mockResolvedValue(makeForecast());
 
     const { container } = renderBlock();
 
-    await screen.findByText("Salaire");
+    await screen.findByText(REVENUS_LABEL);
+    expect(screen.queryByText("Budgets")).not.toBeInTheDocument();
+    expect(screen.queryByText("Salaire")).not.toBeInTheDocument();
+    expect(screen.queryByText("Loyer")).not.toBeInTheDocument();
     expect(
       container.querySelectorAll(".previsionnel-chart-row").length
-    ).toBe(3);
+    ).toBe(0);
   });
 });
 
@@ -168,7 +147,7 @@ describe("CA-03 - Données insuffisantes", () => {
     );
   });
 
-  it("n'affiche ni solde ni détail par catégorie en cas de données insuffisantes", async () => {
+  it("n'affiche pas le solde en cas de données insuffisantes", async () => {
     getForecastMock.mockResolvedValue(
       makeForecast({ donnees_suffisantes: false })
     );
@@ -177,6 +156,6 @@ describe("CA-03 - Données insuffisantes", () => {
 
     await screen.findByText(INSUFFICIENT_MESSAGE);
     expect(screen.queryByText(SOLDE_LABEL)).not.toBeInTheDocument();
-    expect(screen.queryByText(CATEGORIES_TITLE)).not.toBeInTheDocument();
+    expect(screen.queryByText(REVENUS_LABEL)).not.toBeInTheDocument();
   });
 });

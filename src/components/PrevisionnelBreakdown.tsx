@@ -42,12 +42,6 @@ export default function PrevisionnelBreakdown({
       amountCents: summary.depensesRecurrentesCents,
       tone: "negative",
     },
-    {
-      key: "budgets",
-      label: t("budgy.dashboard.forecast.budgetsLabel"),
-      amountCents: summary.budgetsCents,
-      tone: "negative",
-    },
   ];
 
   return (
