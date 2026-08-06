@@ -12,38 +12,45 @@ Env : copier `.env.example` vers `.env` (`PORT`, `GATEWAY_URL`, `VITE_AUTH_PORTA
 
 ## Routes
 
-`/home`, `/dashboard`, `/banque` (+ `/banque/callback`), `/comptes` (+ `/comptes/:accountId`), `/transactions`, `/categories`, `/budgets`, `/consentements`, `/forbidden`. Tout est monté sous `RequireBudgy` puis `BudgyLayout` (sauf `/forbidden`).
+`/` (dashboard), `/banque` (+ `/banque/callback`), `/comptes` (+ `/comptes/:accountId`), `/categories`, `/consentements`, `/forbidden`. Toute route inconnue redirige vers `/`. Tout est monté sous `RequireBudgy` puis `BudgyLayout` (sauf `/forbidden`).
+
+La navigation compte **4 entrées** : dashboard, comptes, catégories, consentements. Les pages `/transactions` et `/budgets` ont été retirées : la première faisait doublon avec le détail d'un compte, la seconde est devenue inutile depuis que le reste à dépenser se prédit tout seul.
 
 ## Vues métier
 
-### Dashboard (`/dashboard`)
+### Dashboard (`/`)
 
-Grille de blocs (`DashboardGrid`) alimentés chacun par son propre hook :
+Grille de blocs (`DashboardGrid`) alimentés chacun par son propre hook. **Mois courant uniquement** — pas de navigation mensuelle.
 
-- **Soldes consolidés** (`SoldesConsolidesBlock`, `useSoldesConsolides`) — total tous comptes + détail par compte.
-- **Reste à dépenser** (`ResteADepenserBlock`, `useResteADepenser`) — par catégorie budgétée sur le mois sélectionné.
-- **Budget prévisionnel mensuel** (`PrevisionnelBlock`, `usePrevisionnel`, SCRUM-237) — solde prévisionnel du mois à partir des revenus/dépenses récurrents et des budgets, avec ventilation par catégorie ; affiche un état « données insuffisantes » quand l'historique ne suffit pas.
-- **Dépenses par catégorie** (`ExpensesByCategoryBlock`, `useExpensesByCategory`) — donut SVG *home-made* (`ExpensesByCategoryChart`, aucune lib de charting) + légende, couleurs issues des tokens `canopui`, navigation mois précédent/suivant.
+- **Soldes consolidés** (`SoldesConsolidesBlock`, `useSoldesConsolides`) — total tous comptes + détail par compte. Affiche le **solde à venir** (opérations en attente incluses) sous le total et par compte, uniquement quand la banque le fournit.
+- **Reste à dépenser** (`ResteADepenserBlock`, `useResteADepenser`) — une ligne par catégorie, filtrables via un `Select` mono-catégorie (composant `canopui`, options portant leur pastille couleur + icône), et un total en bas. Le dépassement se lit au reste négatif, sans badge dédié.
+- **Budget prévisionnel mensuel** (`PrevisionnelBlock`, `usePrevisionnel`) — solde prévisionnel du mois et ses deux composantes (revenus, dépenses récurrentes). Affiche un état « données insuffisantes » tant qu'aucune récurrence ni aucun revenu n'est prédit.
 
-### Transactions (`/transactions`)
+Au montage du layout, le portail appelle `recategoriser()` : réconciliation idempotente côté API (virements internes, règles, crédits). Les données se réparent seules, sans écran d'administration.
 
-Liste consolidée tous comptes avec filtres (compte, catégorie, période, type), tri (champ + ordre) et pagination. Logique dans `useTransactions`.
+### Comptes (`/comptes`, `/comptes/:accountId`)
 
-### Budgets (`/budgets`)
+Liste des comptes puis transactions du compte. Les montants sont colorés **vert (crédit) / rouge (débit) sur mobile comme sur desktop**. Le libellé affiché est le `clean_label` renvoyé par l'API (le tiers, pas le bruit bancaire). Catégoriser une transaction propose de créer la règle correspondante **en un clic** : le motif est dérivé côté API, l'utilisateur ne saisit rien.
 
-Gestion des budgets mensuels par catégorie : formulaire d'ajout/modification (`BudgetForm`) et liste des budgets du mois (`MonthlyBudgetList`). Logique dans `useMonthlyBudget`.
+### Rattachement bancaire (`/banque`)
+
+Sélection de l'établissement puis redirection vers le consentement. Les **caisses régionales du Crédit Agricole sont fusionnées** en une entrée générique « Crédit Agricole » (`lib/banks.ts`) : l'API en expose une quarantaine qui redirigent toutes vers la même page de sélection d'agence. Un Crédit Agricole hors France reste distinct.
 
 ## Architecture front
 
 - **Logique dans les hooks** (`src/hooks`) — chargement, état, sélection de mois, gestion d'erreur (`usePrevisionnel`, `useResteADepenser`, `useExpensesByCategory`, `useSoldesConsolides`, `useTransactions`, `useMonthlyBudget`…).
 - **Rendu pur dans les composants** (`src/components`) et pages (`src/pages`) minces qui câblent hook + composants.
-- **Préparation des données dans `src/lib`** (`budget.ts`, `forecast.ts`, `expenses.ts`, `transactions.ts`, `categories.ts`…) — dérivations, segments de graphique, mois disponibles, indexation.
+- **Préparation des données dans `src/lib`** (`budget.ts`, `banks.ts`, `expenses.ts`, `transactions.ts`, `categories.ts`, `money.ts`…) — dérivations, généralisation des banques, mois disponibles, indexation.
 
-## Dépendance UI — `canopui@1.0.1`
+## Dépendance UI — `canopui`
 
-Le portail build sur le paquet npm publié **`canopui@1.0.1`** (registre privé, version épinglée dans `package.json`), et **non** sur la source `CH-UI-Library`.
+Le portail build sur le paquet npm publié **`canopui`** (registre privé Verdaccio), et **non** sur une source locale.
 
-Conséquence : modifier la source `CH-UI-Library` n'a **aucun effet** sur le portail tant que `canopui` n'est pas republié et la version bumpée ici. Pour ajouter/étendre un composant, s'appuyer uniquement sur ce qui est exposé par `canopui@1.0.1`.
+`package.json` déclare `^2.3.0`, mais le job `build` de la CI exécute `npm install canopui@latest` avant de builder : **l'artefact déployé embarque toujours la dernière version publiée**. Une correction du design system se propage donc au prochain build, sans bump manuel ici.
+
+Règle d'équipe : tout besoin de composant se traite **dans CanopUI**, pas en local. Le `Select` mono-sélection (avec icône par option) et l'export d'icônes supplémentaires ont été ajoutés au design system pour ce portail plutôt que dupliqués ici.
+
+Le job `update-checkout` de la CI fait par ailleurs un `git pull` du clone local sur `/mnt/c` à chaque push sur `main`, pour que la copie de travail de la machine ne dérive pas.
 
 ## Tests
 
