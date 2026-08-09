@@ -84,6 +84,7 @@ const entree: Transaction = {
   booking_date: "2026-06-01",
   value_date: "2026-06-01",
   category_id: "cat-1",
+  enveloppe_id: null,
 };
 
 const sortie: Transaction = {
@@ -95,6 +96,7 @@ const sortie: Transaction = {
   booking_date: "2026-06-02",
   value_date: "2026-06-02",
   category_id: null,
+  enveloppe_id: null,
 };
 
 describe("CA-01 colonnes de la liste des transactions", () => {

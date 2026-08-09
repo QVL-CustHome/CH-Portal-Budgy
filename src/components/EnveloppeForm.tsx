@@ -1,19 +1,12 @@
 import { useState } from "react";
-import {
-  Button,
-  Feedback,
-  Input,
-  Stack,
-  useTranslation,
-  type ChIconName,
-} from "canopui";
+import { Form, InputText, useTranslation, type ChIconName } from "canopui";
 import type { Enveloppe, EnveloppeInput } from "../api/budgy";
 import CategoryColorPicker from "./CategoryColorPicker";
 import CategoryIconPicker from "./CategoryIconPicker";
-import FieldLabel from "./FieldLabel";
 
 const COULEUR_DEFAUT = "#5E35B1";
 const ICONE_DEFAUT: ChIconName = "wallet";
+const NOM_MAX = 30;
 
 export interface EnveloppeFormProps {
   initial: Enveloppe | null;
@@ -48,47 +41,49 @@ export default function EnveloppeForm({
   );
 
   const centimes = versCentimes(montant);
-  const valide = nom.trim().length > 0 && centimes !== null;
+  const nomTropLong = nom.trim().length > NOM_MAX;
+  const montantInvalide = montant.trim() !== "" && centimes === null;
+  const peutValider = nom.trim().length > 0 && !nomTropLong && centimes !== null;
 
   return (
-    <Stack
-      as="form"
-      gap="md"
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (!valide || centimes === null) return;
+    <Form
+      onSubmit={() => {
+        if (!peutValider || centimes === null) return;
         onSubmit({ nom: nom.trim(), icon, color, montant_cents: centimes });
       }}
+      submitLabel={t(
+        initial
+          ? "budgy.enveloppes.form.submitEdit"
+          : "budgy.enveloppes.form.submitCreate"
+      )}
+      loading={saving}
+      submitDisabled={!peutValider}
+      error={error}
+      gap="lg"
     >
-      <Input
+      <InputText
         label={t("budgy.enveloppes.form.name")}
+        placeholder={t("budgy.enveloppes.form.namePlaceholder")}
         value={nom}
         onChange={setNom}
+        error={nomTropLong ? t("budgy.enveloppes.form.nameTooLong") : undefined}
         required
         autoFocus
+        fullWidth
+        helperText={t("budgy.enveloppes.form.nameHelper", { max: NOM_MAX })}
       />
-      <Input
+      <InputText
         label={t("budgy.enveloppes.form.amount")}
+        placeholder={t("budgy.enveloppes.form.amountPlaceholder")}
         value={montant}
         onChange={setMontant}
+        error={montantInvalide ? t("budgy.enveloppes.form.amountInvalid") : undefined}
         required
+        fullWidth
+        helperText={t("budgy.enveloppes.form.amountHelper")}
       />
-
-      <Stack gap="xs">
-        <FieldLabel>{t("budgy.enveloppes.form.icon")}</FieldLabel>
-        <CategoryIconPicker value={icon} onChange={setIcon} />
-      </Stack>
-
-      <Stack gap="xs">
-        <FieldLabel>{t("budgy.enveloppes.form.color")}</FieldLabel>
-        <CategoryColorPicker value={color} onChange={setColor} />
-      </Stack>
-
-      {error ? <Feedback severity="error">{error}</Feedback> : null}
-
-      <Button type="submit" loading={saving} disabled={!valide}>
-        {t("budgy.enveloppes.form.submit")}
-      </Button>
-    </Stack>
+      <CategoryColorPicker value={color} onChange={setColor} />
+      <CategoryIconPicker value={icon} onChange={setIcon} />
+    </Form>
   );
 }

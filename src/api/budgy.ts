@@ -139,6 +139,8 @@ export interface Transaction {
   booking_date: string | null;
   value_date: string | null;
   category_id: string | null;
+  /** Budget libre, indépendant de la catégorie. */
+  enveloppe_id: string | null;
 }
 
 export interface TransactionsResponse {
