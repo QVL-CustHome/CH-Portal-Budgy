@@ -3,12 +3,14 @@ import {
   Feedback,
   Icon,
   PageContent,
+  Separator,
   Spinner,
   Stack,
   useTranslation,
 } from "canopui";
 import CategoriesList from "../components/CategoriesList";
 import CategoryEditorPanel from "../components/CategoryEditorPanel";
+import EnveloppesSection from "../components/EnveloppesSection";
 import { useCategoriesManager } from "../hooks/useCategoriesManager";
 
 export default function Categories() {
@@ -68,6 +70,10 @@ export default function Categories() {
             onDelete={deleteCategory}
           />
         )}
+
+        <Separator />
+
+        <EnveloppesSection />
       </Stack>
 
       <CategoryEditorPanel

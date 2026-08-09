@@ -7,6 +7,7 @@ import {
   useTranslation,
 } from "canopui";
 import ConsentementsList from "../components/ConsentementsList";
+import JourDebutMoisCard from "../components/JourDebutMoisCard";
 import ReconsentementAlerte from "../components/ReconsentementAlerte";
 import FeatureCard from "../components/FeatureCard";
 import { useReconsentement } from "../hooks/useReconsentement";
@@ -27,6 +28,7 @@ export default function Consentements() {
   return (
     <PageContent title={t("budgy.consents.title")}>
       <Stack gap="lg">
+        <JourDebutMoisCard />
         <FeatureCard
           icon="plus"
           title={t("budgy.home.bank.title")}

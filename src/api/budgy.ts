@@ -463,3 +463,88 @@ export function creerRegleDepuisTransaction(
     }
   );
 }
+
+// ---------------------------------------------------------------------------
+// Préférences : jour de départ du mois budgétaire.
+// ---------------------------------------------------------------------------
+
+export interface Preferences {
+  jour_debut_mois: number;
+}
+
+export function getPreferences() {
+  return request<Preferences>("/budgy/v1/preferences");
+}
+
+export function definirJourDebutMois(jour: number) {
+  return request<Preferences>("/budgy/v1/preferences", {
+    method: "PUT",
+    body: JSON.stringify({ jour_debut_mois: jour }),
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Enveloppes — les « budgets » de l'interface. À ne pas confondre avec les
+// budgets mensuels par catégorie (listBudgets / definirBudget ci-dessus).
+// ---------------------------------------------------------------------------
+
+export interface Enveloppe {
+  id: string;
+  nom: string;
+  icon: string;
+  color: string;
+  montant_cents: number;
+  depense_cents: number;
+  restant_cents: number;
+  pourcentage_consomme: number;
+  depasse: boolean;
+  nombre_transactions: number;
+}
+
+export interface EnveloppesResponse {
+  data: Enveloppe[];
+  total: number;
+}
+
+export interface EnveloppeInput {
+  nom: string;
+  icon: string;
+  color: string;
+  montant_cents: number;
+}
+
+export function listEnveloppes() {
+  return request<EnveloppesResponse>("/budgy/v1/enveloppes");
+}
+
+export function creerEnveloppe(input: EnveloppeInput) {
+  return request<Enveloppe>("/budgy/v1/enveloppes", {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+}
+
+export function modifierEnveloppe(enveloppeId: string, input: EnveloppeInput) {
+  return request<Enveloppe>(
+    `/budgy/v1/enveloppes/${encodeURIComponent(enveloppeId)}`,
+    { method: "PUT", body: JSON.stringify(input) }
+  );
+}
+
+export function supprimerEnveloppe(enveloppeId: string) {
+  return request<void>(
+    `/budgy/v1/enveloppes/${encodeURIComponent(enveloppeId)}`,
+    { method: "DELETE" }
+  );
+}
+
+/** `null` retire la transaction de son enveloppe. */
+export function affecterEnveloppe(
+  transactionId: string,
+  enveloppeId: string | null
+) {
+  return request<void>(
+    `/budgy/v1/transactions/${encodeURIComponent(transactionId)}/enveloppe`,
+    { method: "PUT", body: JSON.stringify({ enveloppe_id: enveloppeId }) }
+  );
+}
