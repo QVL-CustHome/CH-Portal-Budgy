@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import {
   Button,
@@ -15,6 +15,8 @@ import Pagination from "../components/Pagination";
 import RegleProposalPanel from "../components/RegleProposalPanel";
 import { useTransactionsCompte } from "../hooks/useTransactionsCompte";
 import { useCategories } from "../hooks/useCategories";
+import { useEnveloppes } from "../hooks/useEnveloppes";
+import { affecterEnveloppe } from "../api/budgy";
 import { useRegleProposal } from "../hooks/useRegleProposal";
 import { useReloadTransactionsOnRelay } from "../hooks/useReloadOnRelay";
 import { indexCategoriesById } from "../lib/categories";
@@ -28,6 +30,10 @@ export default function TransactionsCompte() {
     [categories]
   );
   const proposal = useRegleProposal(accountId, categoriesById);
+  const { enveloppes, reload: reloadEnveloppes } = useEnveloppes();
+  const [assigningEnveloppeId, setAssigningEnveloppeId] = useState<
+    string | null
+  >(null);
   const {
     transactions,
     pageCount,
@@ -46,6 +52,22 @@ export default function TransactionsCompte() {
     onCategoryAssigned: proposal.propose,
   });
   useReloadTransactionsOnRelay(accountId, reload);
+
+  // Les deux listes bougent : la transaction change de budget, et le budget
+  // voit sa consommation évoluer.
+  const assignEnveloppe = useCallback(
+    async (transactionId: string, enveloppeId: string | null) => {
+      setAssigningEnveloppeId(transactionId);
+      try {
+        await affecterEnveloppe(transactionId, enveloppeId);
+        reload();
+        reloadEnveloppes();
+      } finally {
+        setAssigningEnveloppeId(null);
+      }
+    },
+    [reload, reloadEnveloppes]
+  );
 
   return (
     <PageContent title={t("budgy.transactions.title")}>
@@ -71,9 +93,12 @@ export default function TransactionsCompte() {
               transactions={transactions}
               categories={categories}
               categoriesById={categoriesById}
+              enveloppes={enveloppes}
               loading={loading}
               assigningId={assigningId}
+              assigningEnveloppeId={assigningEnveloppeId}
               onAssignCategory={assignCategory}
+              onAssignEnveloppe={(id, env) => void assignEnveloppe(id, env)}
             />
             {pageCount > 1 ? (
               <Pagination

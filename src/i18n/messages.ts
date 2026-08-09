@@ -170,6 +170,11 @@ export const messages: ChLocaleMessages = {
     "budgy.transactions.uncategorized": "Non catégorisée",
     "budgy.transactions.changeCategoryAria": "Catégorie : {label}. Choisir une catégorie",
     "budgy.transactions.categoryMenuAria": "Choisir une catégorie",
+    "budgy.transactions.budget": "Budget",
+    "budgy.transactions.noBudget": "Aucun budget",
+    "budgy.transactions.removeBudget": "Retirer du budget",
+    "budgy.transactions.changeBudgetAria": "Changer le budget ({label})",
+    "budgy.transactions.budgetMenuAria": "Choisir un budget",
     "budgy.transactions.assignError":
       "Impossible de catégoriser la transaction. Réessayez.",
     "budgy.transactions.filter.label": "Filtrer les transactions",
@@ -499,6 +504,11 @@ export const messages: ChLocaleMessages = {
     "budgy.transactions.uncategorized": "Uncategorised",
     "budgy.transactions.changeCategoryAria": "Category: {label}. Choose a category",
     "budgy.transactions.categoryMenuAria": "Choose a category",
+    "budgy.transactions.budget": "Budget",
+    "budgy.transactions.noBudget": "No budget",
+    "budgy.transactions.removeBudget": "Remove from budget",
+    "budgy.transactions.changeBudgetAria": "Change budget ({label})",
+    "budgy.transactions.budgetMenuAria": "Choose a budget",
     "budgy.transactions.assignError":
       "Unable to categorise the transaction. Please try again.",
     "budgy.transactions.filter.label": "Filter transactions",

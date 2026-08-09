@@ -1,11 +1,17 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { StatusChip, useTranslation, type ChStatusTone } from "canopui";
-import type { Category, Transaction, TransactionStatus } from "../api/budgy";
+import type {
+  Category,
+  Enveloppe,
+  Transaction,
+  TransactionStatus,
+} from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 import { formatDate } from "../lib/date";
 import { resolveCategory } from "../lib/categories";
 import TransactionCategoryPicker from "./TransactionCategoryPicker";
+import TransactionEnveloppePicker from "./TransactionEnveloppePicker";
 import { transactionCardSurfaceSx } from "./TransactionCard";
 
 const STATUS_TONES: Record<TransactionStatus, ChStatusTone> = {
@@ -21,16 +27,25 @@ export interface TransactionCardEditableProps {
   transaction: Transaction;
   categories: Category[];
   categoriesById: Map<string, Category>;
+  enveloppes: Enveloppe[];
   assigning: boolean;
+  assigningEnveloppe: boolean;
   onAssignCategory: (transactionId: string, categoryId: string) => void;
+  onAssignEnveloppe: (
+    transactionId: string,
+    enveloppeId: string | null
+  ) => void;
 }
 
 export default function TransactionCardEditable({
   transaction,
   categories,
   categoriesById,
+  enveloppes,
   assigning,
+  assigningEnveloppe,
   onAssignCategory,
+  onAssignEnveloppe,
 }: TransactionCardEditableProps) {
   const { t, locale } = useTranslation();
   const category = resolveCategory(categoriesById, transaction.category_id);
@@ -60,12 +75,22 @@ export default function TransactionCardEditable({
         </Typography>
       </Box>
       <Box display="flex" alignItems="center" justifyContent="space-between" gap="0.5rem">
-        <Box minWidth={0}>
+        <Box minWidth={0} display="flex" flexDirection="column" gap="0.25rem">
           <TransactionCategoryPicker
             category={category}
             categories={categories}
             disabled={assigning}
             onSelect={(categoryId) => onAssignCategory(transaction.id, categoryId)}
+          />
+          <TransactionEnveloppePicker
+            enveloppe={
+              enveloppes.find((e) => e.id === transaction.enveloppe_id) ?? null
+            }
+            enveloppes={enveloppes}
+            disabled={assigningEnveloppe}
+            onSelect={(enveloppeId) =>
+              onAssignEnveloppe(transaction.id, enveloppeId)
+            }
           />
         </Box>
         <Box display="flex" alignItems="center" gap="0.5rem" flex="none">

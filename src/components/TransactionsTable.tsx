@@ -9,20 +9,32 @@ import {
   type ChColumn,
   type ChStatusTone,
 } from "canopui";
-import type { Category, Transaction, TransactionStatus } from "../api/budgy";
+import type {
+  Category,
+  Enveloppe,
+  Transaction,
+  TransactionStatus,
+} from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 import { formatDate } from "../lib/date";
 import { resolveCategory } from "../lib/categories";
 import TransactionCategoryPicker from "./TransactionCategoryPicker";
+import TransactionEnveloppePicker from "./TransactionEnveloppePicker";
 import TransactionCardEditable from "./TransactionCardEditable";
 
 export interface TransactionsTableProps {
   transactions: Transaction[];
   categories: Category[];
   categoriesById: Map<string, Category>;
+  enveloppes: Enveloppe[];
   loading: boolean;
   assigningId: string | null;
+  assigningEnveloppeId: string | null;
   onAssignCategory: (transactionId: string, categoryId: string) => void;
+  onAssignEnveloppe: (
+    transactionId: string,
+    enveloppeId: string | null
+  ) => void;
 }
 
 const STATUS_TONES: Record<TransactionStatus, ChStatusTone> = {
@@ -38,9 +50,12 @@ export default function TransactionsTable({
   transactions,
   categories,
   categoriesById,
+  enveloppes,
   loading,
   assigningId,
+  assigningEnveloppeId,
   onAssignCategory,
+  onAssignEnveloppe,
 }: TransactionsTableProps) {
   const { t, locale } = useTranslation();
   const isMobile = useMediaQuery("(max-width:899.95px)");
@@ -69,6 +84,18 @@ export default function TransactionsTable({
           categories={categories}
           disabled={assigningId === row.id}
           onSelect={(categoryId) => onAssignCategory(row.id, categoryId)}
+        />
+      ),
+    },
+    {
+      key: "enveloppe",
+      header: t("budgy.transactions.budget"),
+      render: (row) => (
+        <TransactionEnveloppePicker
+          enveloppe={enveloppes.find((e) => e.id === row.enveloppe_id) ?? null}
+          enveloppes={enveloppes}
+          disabled={assigningEnveloppeId === row.id}
+          onSelect={(enveloppeId) => onAssignEnveloppe(row.id, enveloppeId)}
         />
       ),
     },
@@ -129,8 +156,11 @@ export default function TransactionsTable({
             transaction={row}
             categories={categories}
             categoriesById={categoriesById}
+            enveloppes={enveloppes}
             assigning={assigningId === row.id}
+            assigningEnveloppe={assigningEnveloppeId === row.id}
             onAssignCategory={onAssignCategory}
+            onAssignEnveloppe={onAssignEnveloppe}
           />
         ))}
       </Stack>
