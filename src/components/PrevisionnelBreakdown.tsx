@@ -6,7 +6,7 @@ import { formatMoneyCents } from "../lib/money";
 
 const CURRENCY = "EUR";
 
-type BreakdownTone = "positive" | "negative";
+type BreakdownTone = "neutral" | "positive" | "negative";
 
 interface BreakdownItem {
   key: string;
@@ -16,6 +16,7 @@ interface BreakdownItem {
 }
 
 const toneColor: Record<BreakdownTone, string> = {
+  neutral: "var(--ch-palette-text-primary)",
   positive: "var(--ch-palette-success-main)",
   negative: "var(--ch-palette-error-main)",
 };
@@ -29,17 +30,25 @@ export default function PrevisionnelBreakdown({
 }: PrevisionnelBreakdownProps) {
   const { t, locale } = useTranslation();
 
+  // Le détail rend le calcul lisible : on part du solde d'aujourd'hui, on
+  // ajoute ce qui doit encore rentrer et on retire ce qui doit encore sortir.
   const items: BreakdownItem[] = [
+    {
+      key: "solde",
+      label: t("budgy.dashboard.forecast.soldeActuelLabel"),
+      amountCents: summary.soldeActuelCents,
+      tone: "neutral",
+    },
     {
       key: "revenus",
       label: t("budgy.dashboard.forecast.revenusLabel"),
-      amountCents: summary.revenusRecurrentsCents,
+      amountCents: summary.revenusRestantsCents,
       tone: "positive",
     },
     {
       key: "depenses",
       label: t("budgy.dashboard.forecast.depensesLabel"),
-      amountCents: summary.depensesRecurrentesCents,
+      amountCents: summary.depensesRestantesCents,
       tone: "negative",
     },
   ];

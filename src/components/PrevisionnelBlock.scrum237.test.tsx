@@ -21,6 +21,7 @@ const INSUFFICIENT_MESSAGE = "Pas encore assez de données pour établir un pré
 const SOLDE_LABEL = fr["budgy.dashboard.forecast.soldeLabel"];
 const REVENUS_LABEL = fr["budgy.dashboard.forecast.revenusLabel"];
 const DEPENSES_LABEL = fr["budgy.dashboard.forecast.depensesLabel"];
+const SOLDE_ACTUEL_LABEL = fr["budgy.dashboard.forecast.soldeActuelLabel"];
 
 function normalize(text: string): string {
   return text.replace(/\s/g, "");
@@ -38,32 +39,33 @@ function currentMonthString(): string {
 function makeForecast(overrides: Partial<Forecast> = {}): Forecast {
   return {
     month: currentMonthString(),
-    solde_previsionnel_cents: 90_000,
-    revenus_recurrents_cents: 200_000,
-    depenses_recurrentes_cents: 80_000,
-    budgets_cents: 30_000,
+    // 1 500 en poche, 2 000 encore attendus, 800 encore a sortir.
+    solde_previsionnel_cents: 270_000,
+    solde_actuel_cents: 150_000,
+    revenus_restants_cents: 200_000,
+    depenses_restantes_cents: 80_000,
     donnees_suffisantes: true,
     categories: [
       {
         category_id: "cat-salaire",
         category: "Salaire",
-        revenus_recurrents_cents: 200_000,
-        depenses_recurrentes_cents: 0,
-        budget_cents: 0,
+        prevu_cents: 200_000,
+        realise_cents: 0,
+        restant_cents: 200_000,
       },
       {
         category_id: "cat-loyer",
         category: "Loyer",
-        revenus_recurrents_cents: 0,
-        depenses_recurrentes_cents: 80_000,
-        budget_cents: 0,
+        prevu_cents: 80_000,
+        realise_cents: 0,
+        restant_cents: 80_000,
       },
       {
         category_id: "cat-courses",
         category: "Courses",
-        revenus_recurrents_cents: 0,
-        depenses_recurrentes_cents: 0,
-        budget_cents: 30_000,
+        prevu_cents: 30_000,
+        realise_cents: 30_000,
+        restant_cents: 0,
       },
     ],
     ...overrides,
@@ -98,7 +100,7 @@ describe("CA-01 - Solde prévisionnel et ses composantes affichés", () => {
     expect(screen.getByText(exactText("+900,00 €"))).toBeInTheDocument();
   });
 
-  it("affiche les deux composantes revenus et dépenses", async () => {
+  it("affiche le solde du jour puis ce qui reste à venir", async () => {
     getForecastMock.mockResolvedValue(makeForecast());
 
     const { container } = renderBlock();
@@ -110,7 +112,10 @@ describe("CA-01 - Solde prévisionnel et ses composantes affichés", () => {
     expect(breakdown).not.toBeNull();
     const zone = within(breakdown);
 
+    expect(zone.getByText(SOLDE_ACTUEL_LABEL)).toBeInTheDocument();
     expect(zone.getByText(DEPENSES_LABEL)).toBeInTheDocument();
+    // Le solde de départ, puis ce qui doit encore entrer et sortir.
+    expect(zone.getByText(exactText("+1 500,00 €"))).toBeInTheDocument();
     expect(zone.getByText(exactText("+2 000,00 €"))).toBeInTheDocument();
     expect(zone.getByText(exactText("-800,00 €"))).toBeInTheDocument();
   });

@@ -7,10 +7,11 @@ import { currentMonth, recentMonths } from "../lib/budget";
 const MONTH_OPTIONS_COUNT = 12;
 
 export interface PrevisionnelSummary {
+  /** Solde attendu au dernier jour du cycle. */
   soldePrevisionnelCents: number;
-  revenusRecurrentsCents: number;
-  depensesRecurrentesCents: number;
-  budgetsCents: number;
+  soldeActuelCents: number;
+  revenusRestantsCents: number;
+  depensesRestantesCents: number;
 }
 
 interface UsePrevisionnelResult {
@@ -62,9 +63,9 @@ export function usePrevisionnel(): UsePrevisionnelResult {
     }
     return {
       soldePrevisionnelCents: forecast.solde_previsionnel_cents,
-      revenusRecurrentsCents: forecast.revenus_recurrents_cents,
-      depensesRecurrentesCents: forecast.depenses_recurrentes_cents,
-      budgetsCents: forecast.budgets_cents,
+      soldeActuelCents: forecast.solde_actuel_cents,
+      revenusRestantsCents: forecast.revenus_restants_cents,
+      depensesRestantesCents: forecast.depenses_restantes_cents,
     };
   }, [forecast]);
 

@@ -405,17 +405,21 @@ export function getExpensesByCategory(month: string) {
 export interface ForecastCategory {
   category_id: string | null;
   category: string | null;
-  revenus_recurrents_cents: number;
-  depenses_recurrentes_cents: number;
-  budget_cents: number;
+  /** Attendu sur le cycle entier. */
+  prevu_cents: number;
+  /** Déjà constaté depuis le début du cycle. */
+  realise_cents: number;
+  /** Ce qui reste à venir d'ici la fin du cycle. */
+  restant_cents: number;
 }
 
 export interface Forecast {
   month: string;
+  /** Solde attendu au dernier jour du cycle. */
   solde_previsionnel_cents: number;
-  revenus_recurrents_cents: number;
-  depenses_recurrentes_cents: number;
-  budgets_cents: number;
+  solde_actuel_cents: number;
+  revenus_restants_cents: number;
+  depenses_restantes_cents: number;
   donnees_suffisantes: boolean;
   categories: ForecastCategory[];
 }

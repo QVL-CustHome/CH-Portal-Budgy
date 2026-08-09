@@ -84,9 +84,10 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.forecast.retry": "Réessayer",
     "budgy.dashboard.forecast.insufficient":
       "Pas encore assez de données pour établir un prévisionnel fiable",
-    "budgy.dashboard.forecast.soldeLabel": "Solde prévisionnel",
-    "budgy.dashboard.forecast.revenusLabel": "Revenus récurrents",
-    "budgy.dashboard.forecast.depensesLabel": "Dépenses récurrentes",
+    "budgy.dashboard.forecast.soldeLabel": "Solde à la fin du mois",
+    "budgy.dashboard.forecast.soldeActuelLabel": "Solde aujourd'hui",
+    "budgy.dashboard.forecast.revenusLabel": "Revenus encore attendus",
+    "budgy.dashboard.forecast.depensesLabel": "Dépenses encore attendues",
     "budgy.dashboard.forecast.uncategorized": "Sans catégorie",
     "budgy.dashboard.forecast.chartAria":
       "Contribution de chaque catégorie au solde prévisionnel",
@@ -424,9 +425,10 @@ export const messages: ChLocaleMessages = {
     "budgy.dashboard.forecast.retry": "Try again",
     "budgy.dashboard.forecast.insufficient":
       "Not enough data yet to build a reliable forecast",
-    "budgy.dashboard.forecast.soldeLabel": "Forecast balance",
-    "budgy.dashboard.forecast.revenusLabel": "Recurring income",
-    "budgy.dashboard.forecast.depensesLabel": "Recurring expenses",
+    "budgy.dashboard.forecast.soldeLabel": "Balance at month end",
+    "budgy.dashboard.forecast.soldeActuelLabel": "Balance today",
+    "budgy.dashboard.forecast.revenusLabel": "Income still expected",
+    "budgy.dashboard.forecast.depensesLabel": "Spending still expected",
     "budgy.dashboard.forecast.uncategorized": "Uncategorised",
     "budgy.dashboard.forecast.chartAria":
       "Each category's contribution to the forecast balance",
