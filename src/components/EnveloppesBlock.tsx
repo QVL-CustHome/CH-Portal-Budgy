@@ -1,6 +1,6 @@
-import Typography from "@mui/material/Typography";
-import { CardGrid, Spinner, Stack, useTranslation } from "canopui";
-import EnveloppeCard from "./EnveloppeCard";
+import Box from "@mui/material/Box";
+import { Card, CardGrid, Spinner, Stack, useTranslation } from "canopui";
+import { EnveloppeContenu } from "./EnveloppeCard";
 import { useEnveloppes } from "../hooks/useEnveloppes";
 
 /**
@@ -10,6 +10,9 @@ import { useEnveloppes } from "../hooks/useEnveloppes";
  * les catégories et le prévisionnel n'apprendrait rien et couperait la lecture.
  * Une erreur de chargement l'efface aussi — le tableau de bord doit rester
  * lisible même si une brique manque.
+ *
+ * Les budgets vivent dans la carte, sous son titre, et non dans des cartes
+ * emboîtées : chaque budget est une ligne du bloc, pas un bloc à lui seul.
  */
 export default function EnveloppesBlock() {
   const { t } = useTranslation();
@@ -28,15 +31,21 @@ export default function EnveloppesBlock() {
   }
 
   return (
-    <Stack gap="sm">
-      <Typography variant="h6" color="text.primary">
-        {t("budgy.enveloppes.title")}
-      </Typography>
+    <Card title={t("budgy.enveloppes.title")} elevation="sm" fill>
       <CardGrid minItemWidth="16rem" gap="md">
         {enveloppes.map((enveloppe) => (
-          <EnveloppeCard key={enveloppe.id} enveloppe={enveloppe} />
+          <Box
+            key={enveloppe.id}
+            sx={{
+              padding: "0.75rem",
+              borderRadius: "var(--ch-radius-md)",
+              backgroundColor: "var(--ch-palette-surface-sunken)",
+            }}
+          >
+            <EnveloppeContenu enveloppe={enveloppe} />
+          </Box>
         ))}
       </CardGrid>
-    </Stack>
+    </Card>
   );
 }
