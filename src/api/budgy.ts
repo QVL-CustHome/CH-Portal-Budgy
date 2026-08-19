@@ -141,6 +141,9 @@ export interface Transaction {
   category_id: string | null;
   /** Budget libre, indépendant de la catégorie. */
   enveloppe_id: string | null;
+  /** Virement entre deux comptes du propriétaire : affiché, mais exclu des
+   *  dépenses, des revenus et du prévisionnel. */
+  is_internal_transfer?: boolean;
 }
 
 export interface TransactionsResponse {

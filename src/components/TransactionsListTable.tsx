@@ -107,7 +107,11 @@ export default function TransactionsListTable({
                 ) : undefined
               }
               label={row.label}
-              secondary={`${formatDate(transactionDate(row), locale)} · ${categoryName}`}
+              secondary={
+                row.is_internal_transfer
+                  ? `${formatDate(transactionDate(row), locale)} · ${t("budgy.transactions.internalTransfer")}`
+                  : `${formatDate(transactionDate(row), locale)} · ${categoryName}`
+              }
               amount={formatMoneyCents(row.amount_cents, row.currency, locale, {
                 signDisplay: true,
               })}
