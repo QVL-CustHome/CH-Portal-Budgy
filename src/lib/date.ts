@@ -1,8 +1,8 @@
-import type { ChLocale } from "canopui";
+import type { CanopLocale } from "canopui";
 
 export function formatDate(
   value: string | null | undefined,
-  locale: ChLocale
+  locale: CanopLocale
 ): string {
   if (!value) {
     return "";

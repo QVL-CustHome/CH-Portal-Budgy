@@ -12,7 +12,7 @@ export default function LegalLinks() {
       direction="row"
       gap="xs"
       alignItems="center"
-      label={t("budgy.legal.footerLabel")}
+      ariaLabel={t("budgy.legal.footerLabel")}
     >
       <Link href={cguUrl()} size="small" color="secondary">
         {t("budgy.legal.cgu")}

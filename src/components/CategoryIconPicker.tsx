@@ -1,12 +1,12 @@
 import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
-import { Icon, Stack, useTranslation, type ChIconName } from "canopui";
+import { Icon, Stack, useTranslation, type CanopIconName } from "canopui";
 import { CATEGORY_ICON_OPTIONS } from "../lib/categories";
 import FieldLabel from "./FieldLabel";
 
 export interface CategoryIconPickerProps {
-  value: ChIconName;
-  onChange: (icon: ChIconName) => void;
+  value: CanopIconName;
+  onChange: (icon: CanopIconName) => void;
 }
 
 export default function CategoryIconPicker({
@@ -20,9 +20,11 @@ export default function CategoryIconPicker({
       <FieldLabel>{t("budgy.categories.form.iconLabel")}</FieldLabel>
       <Box
         role="radiogroup"
-        display="grid"
-        gap="0.5rem"
-        sx={{ gridTemplateColumns: "repeat(auto-fill, minmax(3rem, 1fr))" }}
+        sx={{
+          display: "grid",
+          gap: "0.5rem",
+          gridTemplateColumns: "repeat(auto-fill, minmax(3rem, 1fr))",
+        }}
       >
         {CATEGORY_ICON_OPTIONS.map((icon) => {
           const selected = icon === value;
@@ -36,23 +38,23 @@ export default function CategoryIconPicker({
               focusRipple
               sx={{
                 aspectRatio: "1 / 1",
-                borderRadius: "var(--ch-radius-md)",
+                borderRadius: "var(--canop-radius-md)",
                 border: "0.0625rem solid",
                 borderColor: selected
-                  ? "var(--ch-palette-primary-main)"
-                  : "var(--ch-palette-divider)",
+                  ? "var(--canop-palette-primary-main)"
+                  : "var(--canop-palette-divider)",
                 backgroundColor: selected
-                  ? "color-mix(in srgb, var(--ch-palette-primary-main) 12%, var(--ch-palette-background-paper))"
-                  : "var(--ch-palette-background-paper)",
+                  ? "color-mix(in srgb, var(--canop-palette-primary-main) 12%, var(--canop-palette-background-paper))"
+                  : "var(--canop-palette-background-paper)",
                 transition:
-                  "transform var(--ch-motion-duration-fast) var(--ch-motion-ease-organic), border-color var(--ch-motion-duration-fast) var(--ch-motion-ease-organic), background-color var(--ch-motion-duration-fast) var(--ch-motion-ease-organic)",
+                  "transform var(--canop-motion-duration-fast) var(--canop-motion-ease-organic), border-color var(--canop-motion-duration-fast) var(--canop-motion-ease-organic), background-color var(--canop-motion-duration-fast) var(--canop-motion-ease-organic)",
                 "&:hover": {
                   transform: "translateY(-0.125rem)",
-                  borderColor: "var(--ch-palette-primary-light)",
+                  borderColor: "var(--canop-palette-primary-light)",
                 },
                 "&:active": { transform: "translateY(0) scale(0.97)" },
                 "&:focus-visible": {
-                  outline: "0.125rem solid var(--ch-palette-primary-main)",
+                  outline: "0.125rem solid var(--canop-palette-primary-main)",
                   outlineOffset: "0.125rem",
                 },
               }}

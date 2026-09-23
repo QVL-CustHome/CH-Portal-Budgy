@@ -6,7 +6,7 @@ import {
   Menu,
   MenuItem,
   useTranslation,
-  type ChIconName,
+  type CanopIconName,
 } from "canopui";
 import { useRef, useState } from "react";
 import type { Enveloppe } from "../api/budgy";
@@ -61,18 +61,18 @@ export default function TransactionEnveloppePicker({
           maxWidth: "100%",
           paddingX: "0.5rem",
           paddingY: "0.25rem",
-          borderRadius: "var(--ch-radius-sm)",
+          borderRadius: "var(--canop-radius-sm)",
           border: "0.0625rem solid transparent",
           color: enveloppe
-            ? "var(--ch-palette-text-primary)"
-            : "var(--ch-palette-text-secondary)",
+            ? "var(--canop-palette-text-primary)"
+            : "var(--canop-palette-text-secondary)",
           "&:hover": {
-            backgroundColor: "var(--ch-palette-background-default)",
-            borderColor: "var(--ch-palette-divider)",
+            backgroundColor: "var(--canop-palette-background-default)",
+            borderColor: "var(--canop-palette-divider)",
           },
           "&:active": { transform: "scale(0.98)" },
           "&:focus-visible": {
-            outline: "0.125rem solid var(--ch-palette-primary-main)",
+            outline: "0.125rem solid var(--canop-palette-primary-main)",
             outlineOffset: "0.125rem",
           },
           "&.Mui-disabled": { cursor: "progress", opacity: 0.6 },
@@ -81,21 +81,21 @@ export default function TransactionEnveloppePicker({
         {enveloppe ? (
           <CategoryBadge
             color={enveloppe.color}
-            icon={enveloppe.icon as ChIconName}
+            icon={enveloppe.icon as CanopIconName}
             size="sm"
           />
         ) : (
           <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flex="none"
-            color="text.secondary"
             sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flex: "none",
+              color: "text.secondary",
               width: "1.75rem",
               height: "1.75rem",
-              borderRadius: "var(--ch-radius-sm)",
-              border: "0.0625rem dashed var(--ch-palette-divider)",
+              borderRadius: "var(--canop-radius-sm)",
+              border: "0.0625rem dashed var(--canop-palette-divider)",
             }}
           >
             <Icon name="wallet" size="sm" color="inherit" />
@@ -110,7 +110,7 @@ export default function TransactionEnveloppePicker({
         open={open}
         onClose={() => setOpen(false)}
         anchorEl={anchorRef.current}
-        label={t("budgy.transactions.budgetMenuAria")}
+        ariaLabel={t("budgy.transactions.budgetMenuAria")}
       >
         {enveloppes.map((option) => (
           <MenuItem
@@ -119,7 +119,7 @@ export default function TransactionEnveloppePicker({
             icon={
               <CategoryBadge
                 color={option.color}
-                icon={option.icon as ChIconName}
+                icon={option.icon as CanopIconName}
                 size="sm"
               />
             }

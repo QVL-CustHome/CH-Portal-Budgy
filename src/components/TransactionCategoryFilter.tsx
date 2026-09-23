@@ -2,7 +2,7 @@ import {
   SegmentedControl,
   Stack,
   useTranslation,
-  type ChSegmentedControlOption,
+  type CanopSegmentedControlOption,
 } from "canopui";
 import type { TransactionCategoryFilter as Filter } from "../api/budgy";
 import FieldLabel from "./FieldLabel";
@@ -22,7 +22,7 @@ export default function TransactionCategoryFilter({
 }: TransactionCategoryFilterProps) {
   const { t } = useTranslation();
 
-  const options: ChSegmentedControlOption<Filter>[] = OPTIONS.map((option) => ({
+  const options: CanopSegmentedControlOption<Filter>[] = OPTIONS.map((option) => ({
     value: option,
     label: t(`budgy.transactions.filter.${option}`),
     disabled,

@@ -1,8 +1,8 @@
-import type { ChLocale, ChLocaleMessages } from "canopui";
+import type { CanopLocale, CanopLocaleMessages } from "canopui";
 
-export const defaultLocale: ChLocale = "fr";
+export const defaultLocale: CanopLocale = "fr";
 
-export const messages: ChLocaleMessages = {
+export const messages: CanopLocaleMessages = {
   fr: {
     "budgy.brand": "Budgy",
     "budgy.loading": "Chargement",
@@ -338,9 +338,9 @@ export const messages: ChLocaleMessages = {
       "Votre consentement bancaire doit être renouvelé pour continuer à synchroniser vos comptes.",
     "budgy.notifications.consentExpired":
       "Votre consentement bancaire a expiré. Rattachez votre banque pour reprendre le suivi.",
-    "ch.error.consentement_refuse":
+    "canop.error.consentement_refuse":
       "Vous avez refusé le partage de vos données bancaires. Vous pouvez recommencer.",
-    "ch.error.banque_indisponible":
+    "canop.error.banque_indisponible":
       "Banque momentanément indisponible, réessayez plus tard.",
     "budgy.legal.footerLabel": "Liens légaux",
     "budgy.legal.cgu": "Conditions générales d'utilisation",
@@ -668,9 +668,9 @@ export const messages: ChLocaleMessages = {
       "Your bank consent needs to be renewed to keep syncing your accounts.",
     "budgy.notifications.consentExpired":
       "Your bank consent has expired. Link your bank again to resume tracking.",
-    "ch.error.consentement_refuse":
+    "canop.error.consentement_refuse":
       "You declined sharing your banking data. You can start over.",
-    "ch.error.banque_indisponible":
+    "canop.error.banque_indisponible":
       "Bank temporarily unavailable, please try again later.",
     "budgy.legal.footerLabel": "Legal links",
     "budgy.legal.cgu": "Terms of use",

@@ -5,12 +5,12 @@ import {
   Stack,
   StatusChip,
   useTranslation,
-  type ChStatusTone,
+  type CanopStatusTone,
 } from "canopui";
 import type { Consent, ConsentStatus } from "../api/budgy";
 import { formatDate } from "../lib/date";
 
-const STATUS_TONES: Record<ConsentStatus, ChStatusTone> = {
+const STATUS_TONES: Record<ConsentStatus, CanopStatusTone> = {
   pending: "info",
   active: "success",
   expired: "error",

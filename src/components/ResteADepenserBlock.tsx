@@ -9,7 +9,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-  type ChSelectOption,
+  type CanopSelectOption,
 } from "canopui";
 import { useResteADepenser } from "../hooks/useResteADepenser";
 import ResteADepenserList from "./ResteADepenserList";
@@ -30,7 +30,7 @@ export default function ResteADepenserBlock() {
 
   // Options du filtre mono-catégorie : chaque catégorie porte sa pastille
   // (couleur + icône) via le Select CanopUI, plus l'entrée « toutes ».
-  const categoryOptions = useMemo<ChSelectOption[]>(
+  const categoryOptions = useMemo<CanopSelectOption[]>(
     () => [
       {
         value: ALL_CATEGORIES,
@@ -64,7 +64,7 @@ export default function ResteADepenserBlock() {
       <Stack gap="md">
         {loading ? (
           <Stack alignItems="center" padding="lg">
-            <Spinner label={t("budgy.dashboard.remaining.loading")} />
+            <Spinner ariaLabel={t("budgy.dashboard.remaining.loading")} />
           </Stack>
         ) : error ? (
           <Stack gap="md" alignItems="start">

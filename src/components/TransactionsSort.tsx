@@ -2,7 +2,7 @@ import {
   SegmentedControl,
   Stack,
   useTranslation,
-  type ChSegmentedControlOption,
+  type CanopSegmentedControlOption,
 } from "canopui";
 import type { TransactionSortField, TransactionSortOrder } from "../api/budgy";
 import {
@@ -28,14 +28,14 @@ export default function TransactionsSort({
 }: TransactionsSortProps) {
   const { t } = useTranslation();
 
-  const fieldOptions: ChSegmentedControlOption<TransactionSortField>[] =
+  const fieldOptions: CanopSegmentedControlOption<TransactionSortField>[] =
     TRANSACTION_SORT_FIELDS.map((option) => ({
       value: option,
       label: t(`budgy.transactions.sort.field.${option}`),
       disabled,
     }));
 
-  const orderOptions: ChSegmentedControlOption<TransactionSortOrder>[] =
+  const orderOptions: CanopSegmentedControlOption<TransactionSortOrder>[] =
     TRANSACTION_SORT_ORDERS.map((option) => ({
       value: option,
       label: t(`budgy.transactions.sort.${field}.${option}`),

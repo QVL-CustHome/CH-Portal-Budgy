@@ -19,7 +19,7 @@ export default function PrevisionnelBlock() {
       <Stack gap="md">
         {loading ? (
           <Stack alignItems="center" padding="lg">
-            <Spinner label={t("budgy.dashboard.forecast.loading")} />
+            <Spinner ariaLabel={t("budgy.dashboard.forecast.loading")} />
           </Stack>
         ) : error ? (
           <Stack gap="md" alignItems="start">

@@ -6,11 +6,11 @@ import {
   Stack,
   StatusChip,
   useTranslation,
-  type ChIconName,
+  type CanopIconName,
 } from "canopui";
 
 export interface FeatureCardProps {
-  icon: ChIconName;
+  icon: CanopIconName;
   title: string;
   description: string;
   badge?: string;

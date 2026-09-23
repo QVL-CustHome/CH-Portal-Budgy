@@ -37,7 +37,7 @@ export default function Consentements() {
         />
         {loading ? (
           <Stack alignItems="center" padding="lg">
-            <Spinner label={t("budgy.consents.loading")} />
+            <Spinner ariaLabel={t("budgy.consents.loading")} />
           </Stack>
         ) : error ? (
           <Stack gap="md" alignItems="start">

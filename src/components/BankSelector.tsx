@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { MultiSelect, useTranslation, type ChMultiSelectOption } from "canopui";
+import { MultiSelect, useTranslation, type CanopMultiSelectOption } from "canopui";
 import type { Bank } from "../api/budgy";
 
 export interface BankSelectorProps {
@@ -15,7 +15,7 @@ export default function BankSelector({
 }: BankSelectorProps) {
   const { t } = useTranslation();
 
-  const options = useMemo<ChMultiSelectOption[]>(
+  const options = useMemo<CanopMultiSelectOption[]>(
     () =>
       banks.map((bank) => ({
         value: bank.id,

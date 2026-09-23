@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { ChI18nProvider, ChThemeProvider } from "canopui";
+import { CanopI18nProvider, CanopThemeProvider } from "canopui";
 import RattacherBanqueCallback from "./RattacherBanqueCallback";
 import { defaultLocale, messages } from "../i18n/messages";
 import { completerConsentement } from "../api/budgy";
@@ -18,13 +18,13 @@ const completerConsentementMock = vi.mocked(completerConsentement);
 
 const renderCallback = (search: string) =>
   render(
-    <ChI18nProvider locale={defaultLocale} messages={messages}>
-      <ChThemeProvider defaultMode="light">
+    <CanopI18nProvider locale={defaultLocale} messages={messages}>
+      <CanopThemeProvider defaultMode="light">
         <MemoryRouter initialEntries={[`/banque/callback${search}`]}>
           <RattacherBanqueCallback />
         </MemoryRouter>
-      </ChThemeProvider>
-    </ChI18nProvider>
+      </CanopThemeProvider>
+    </CanopI18nProvider>
   );
 
 const fr = messages[defaultLocale]!;

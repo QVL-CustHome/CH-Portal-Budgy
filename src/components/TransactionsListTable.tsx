@@ -5,7 +5,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-  type ChColumn,
+  type CanopColumn,
 } from "canopui";
 import type { Category, Transaction } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
@@ -33,7 +33,7 @@ export default function TransactionsListTable({
   const { t, locale } = useTranslation();
   const isMobile = useMediaQuery("(max-width:899.95px)");
 
-  const columns: ChColumn<Transaction>[] = [
+  const columns: CanopColumn<Transaction>[] = [
     {
       key: "date",
       header: t("budgy.transactions.date"),
@@ -83,7 +83,9 @@ export default function TransactionsListTable({
     }
     if (transactions.length === 0) {
       return (
-        <Box paddingY="lg" textAlign="center" color="text.secondary">
+        <Box
+          sx={{ paddingY: "lg", textAlign: "center", color: "text.secondary" }}
+        >
           {t("budgy.transactions.noResults")}
         </Box>
       );
@@ -130,7 +132,7 @@ export default function TransactionsListTable({
       getRowKey={(row) => row.id}
       loading={loading}
       emptyMessage={t("budgy.transactions.noResults")}
-      animateRows
+      animated
     />
   );
 }

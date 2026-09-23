@@ -25,16 +25,16 @@ export default function MonthNavigator({
       <IconActionButton
         icon="caretLeft"
         variant="secondary"
-        size={36}
-        aria-label={previousLabel}
+        size="2.25rem"
+        ariaLabel={previousLabel}
         disabled={disabled}
         onClick={onPrevious}
       />
       <Typography
         component="span"
         color="text.primary"
-        textAlign="center"
         sx={{
+          textAlign: "center",
           minWidth: "8rem",
           fontWeight: 600,
           textTransform: "capitalize",
@@ -45,8 +45,8 @@ export default function MonthNavigator({
       <IconActionButton
         icon="caretRight"
         variant="secondary"
-        size={36}
-        aria-label={nextLabel}
+        size="2.25rem"
+        ariaLabel={nextLabel}
         disabled={disabled || !canGoNext}
         onClick={onNext}
       />

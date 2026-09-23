@@ -1,4 +1,4 @@
-import { DescriptionList, useTranslation, type ChDescriptionItem } from "canopui";
+import { DescriptionList, useTranslation, type CanopDescriptionItem } from "canopui";
 import type { ConsolidatedAccount } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 
@@ -11,7 +11,7 @@ export default function SoldesParCompteList({
 }: SoldesParCompteListProps) {
   const { t, locale } = useTranslation();
 
-  const items: ChDescriptionItem[] = comptes.map((compte) => {
+  const items: CanopDescriptionItem[] = comptes.map((compte) => {
     const solde = formatMoneyCents(compte.balance, compte.currency, locale);
     const value =
       compte.solde_a_venir_cents != null

@@ -2,7 +2,7 @@ import {
   SegmentedControl,
   Stack,
   useTranslation,
-  type ChSegmentedControlOption,
+  type CanopSegmentedControlOption,
 } from "canopui";
 import type { TransactionType } from "../api/budgy";
 import { TRANSACTION_TYPES } from "../lib/transactions";
@@ -26,7 +26,7 @@ export default function TransactionTypeFilter({
   const { t } = useTranslation();
   const current: TypeValue = value ?? "all";
 
-  const options: ChSegmentedControlOption<TypeValue>[] = OPTIONS.map(
+  const options: CanopSegmentedControlOption<TypeValue>[] = OPTIONS.map(
     (option) => ({
       value: option,
       label: t(`budgy.transactions.type.${option}`),

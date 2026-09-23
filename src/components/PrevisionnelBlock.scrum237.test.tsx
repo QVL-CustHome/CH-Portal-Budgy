@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { ChI18nProvider, ChThemeProvider } from "canopui";
+import { CanopI18nProvider, CanopThemeProvider } from "canopui";
 import PrevisionnelBlock from "./PrevisionnelBlock";
 import { defaultLocale, messages } from "../i18n/messages";
 import { getForecast, type Forecast } from "../api/budgy";
@@ -74,13 +74,13 @@ function makeForecast(overrides: Partial<Forecast> = {}): Forecast {
 
 function renderBlock() {
   return render(
-    <ChI18nProvider locale={defaultLocale} messages={messages}>
-      <ChThemeProvider defaultMode="light">
+    <CanopI18nProvider locale={defaultLocale} messages={messages}>
+      <CanopThemeProvider defaultMode="light">
         <MemoryRouter>
           <PrevisionnelBlock />
         </MemoryRouter>
-      </ChThemeProvider>
-    </ChI18nProvider>
+      </CanopThemeProvider>
+    </CanopI18nProvider>
   );
 }
 

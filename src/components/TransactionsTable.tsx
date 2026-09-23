@@ -6,8 +6,8 @@ import {
   Stack,
   StatusChip,
   useTranslation,
-  type ChColumn,
-  type ChStatusTone,
+  type CanopColumn,
+  type CanopStatusTone,
 } from "canopui";
 import type {
   Category,
@@ -37,7 +37,7 @@ export interface TransactionsTableProps {
   ) => void;
 }
 
-const STATUS_TONES: Record<TransactionStatus, ChStatusTone> = {
+const STATUS_TONES: Record<TransactionStatus, CanopStatusTone> = {
   booked: "success",
   pending: "warning",
 };
@@ -60,7 +60,7 @@ export default function TransactionsTable({
   const { t, locale } = useTranslation();
   const isMobile = useMediaQuery("(max-width:899.95px)");
 
-  const columns: ChColumn<Transaction>[] = [
+  const columns: CanopColumn<Transaction>[] = [
     {
       key: "booking_date",
       header: t("budgy.transactions.date"),
@@ -143,7 +143,9 @@ export default function TransactionsTable({
     }
     if (transactions.length === 0) {
       return (
-        <Box paddingY="lg" textAlign="center" color="text.secondary">
+        <Box
+          sx={{ paddingY: "lg", textAlign: "center", color: "text.secondary" }}
+        >
           {t("budgy.transactions.empty")}
         </Box>
       );
@@ -174,7 +176,7 @@ export default function TransactionsTable({
       getRowKey={(row) => row.id}
       loading={loading}
       emptyMessage={t("budgy.transactions.empty")}
-      animateRows
+      animated
     />
   );
 }

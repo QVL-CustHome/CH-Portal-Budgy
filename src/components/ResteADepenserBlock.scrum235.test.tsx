@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { ChI18nProvider, ChThemeProvider } from "canopui";
+import { CanopI18nProvider, CanopThemeProvider } from "canopui";
 import ResteADepenserBlock from "./ResteADepenserBlock";
 import { defaultLocale, messages } from "../i18n/messages";
 import {
@@ -63,13 +63,13 @@ function resolveWith(categories: RemainingBudgetCategory[]) {
 
 function renderBlock() {
   return render(
-    <ChI18nProvider locale={defaultLocale} messages={messages}>
-      <ChThemeProvider defaultMode="light">
+    <CanopI18nProvider locale={defaultLocale} messages={messages}>
+      <CanopThemeProvider defaultMode="light">
         <MemoryRouter>
           <ResteADepenserBlock />
         </MemoryRouter>
-      </ChThemeProvider>
-    </ChI18nProvider>
+      </CanopThemeProvider>
+    </CanopI18nProvider>
   );
 }
 

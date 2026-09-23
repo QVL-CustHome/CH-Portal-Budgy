@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { StatusChip, useTranslation, type ChStatusTone } from "canopui";
+import { StatusChip, useTranslation, type CanopStatusTone } from "canopui";
 import type {
   Category,
   Enveloppe,
@@ -14,7 +14,7 @@ import TransactionCategoryPicker from "./TransactionCategoryPicker";
 import TransactionEnveloppePicker from "./TransactionEnveloppePicker";
 import { transactionCardSurfaceSx } from "./TransactionCard";
 
-const STATUS_TONES: Record<TransactionStatus, ChStatusTone> = {
+const STATUS_TONES: Record<TransactionStatus, CanopStatusTone> = {
   booked: "success",
   pending: "warning",
 };
@@ -59,7 +59,14 @@ export default function TransactionCardEditable({
         gap: "0.625rem",
       }}
     >
-      <Box display="flex" alignItems="baseline" justifyContent="space-between" gap="0.75rem">
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "space-between",
+          gap: "0.75rem",
+        }}
+      >
         <Typography component="p" color="text.primary" noWrap sx={{ fontWeight: 600, minWidth: 0 }}>
           {transaction.clean_label || transaction.label}
         </Typography>
@@ -74,8 +81,22 @@ export default function TransactionCardEditable({
           })}
         </Typography>
       </Box>
-      <Box display="flex" alignItems="center" justifyContent="space-between" gap="0.5rem">
-        <Box minWidth={0} display="flex" flexDirection="column" gap="0.25rem">
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "0.5rem",
+        }}
+      >
+        <Box
+          sx={{
+            minWidth: 0,
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.25rem",
+          }}
+        >
           <TransactionCategoryPicker
             category={category}
             categories={categories}
@@ -93,7 +114,14 @@ export default function TransactionCardEditable({
             }
           />
         </Box>
-        <Box display="flex" alignItems="center" gap="0.5rem" flex="none">
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            flex: "none",
+          }}
+        >
           {transaction.status === "pending" ? (
             <StatusChip
               tone={STATUS_TONES[transaction.status]}

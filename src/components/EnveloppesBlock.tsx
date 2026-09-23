@@ -21,7 +21,7 @@ export default function EnveloppesBlock() {
   if (loading) {
     return (
       <Stack alignItems="center" padding="md">
-        <Spinner label={t("budgy.enveloppes.loading")} />
+        <Spinner ariaLabel={t("budgy.enveloppes.loading")} />
       </Stack>
     );
   }
@@ -38,8 +38,8 @@ export default function EnveloppesBlock() {
             key={enveloppe.id}
             sx={{
               padding: "0.75rem",
-              borderRadius: "var(--ch-radius-md)",
-              backgroundColor: "var(--ch-palette-surface-sunken)",
+              borderRadius: "var(--canop-radius-md)",
+              backgroundColor: "var(--canop-palette-surface-sunken)",
             }}
           >
             <EnveloppeContenu enveloppe={enveloppe} />

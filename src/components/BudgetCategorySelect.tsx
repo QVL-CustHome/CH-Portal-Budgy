@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { MultiSelect, useTranslation, type ChMultiSelectOption } from "canopui";
+import { MultiSelect, useTranslation, type CanopMultiSelectOption } from "canopui";
 import type { Category } from "../api/budgy";
 
 export interface BudgetCategorySelectProps {
@@ -15,7 +15,7 @@ export default function BudgetCategorySelect({
 }: BudgetCategorySelectProps) {
   const { t } = useTranslation();
 
-  const options = useMemo<ChMultiSelectOption[]>(
+  const options = useMemo<CanopMultiSelectOption[]>(
     () =>
       categories.map((category) => ({
         value: category.id,

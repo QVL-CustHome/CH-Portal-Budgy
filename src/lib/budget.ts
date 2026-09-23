@@ -1,4 +1,4 @@
-import type { ChLocale } from "canopui";
+import type { CanopLocale } from "canopui";
 
 const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
 const AMOUNT_PATTERN = /^\d+([.,]\d{1,2})?$/;
@@ -46,7 +46,7 @@ export function centsToInput(cents: number): string {
   return Number.isInteger(euros) ? String(euros) : euros.toFixed(2);
 }
 
-export function formatBudgetAmount(cents: number, locale: ChLocale): string {
+export function formatBudgetAmount(cents: number, locale: CanopLocale): string {
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency: "EUR",
@@ -60,7 +60,7 @@ export function spendRatio(depenseCents: number, prevuCents: number): number {
   return Math.min(depenseCents / prevuCents, 1);
 }
 
-export function formatMonthLabel(month: string, locale: ChLocale): string {
+export function formatMonthLabel(month: string, locale: CanopLocale): string {
   if (!MONTH_PATTERN.test(month)) {
     return month;
   }

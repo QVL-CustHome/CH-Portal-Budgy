@@ -16,9 +16,9 @@ interface BreakdownItem {
 }
 
 const toneColor: Record<BreakdownTone, string> = {
-  neutral: "var(--ch-palette-text-primary)",
-  positive: "var(--ch-palette-success-main)",
-  negative: "var(--ch-palette-error-main)",
+  neutral: "var(--canop-palette-text-primary)",
+  positive: "var(--canop-palette-success-main)",
+  negative: "var(--canop-palette-error-main)",
 };
 
 export interface PrevisionnelBreakdownProps {
@@ -57,12 +57,14 @@ export default function PrevisionnelBreakdown({
     <Box
       className="previsionnel-breakdown"
       component="ul"
-      display="flex"
-      flexDirection="column"
-      gap="0.5rem"
-      margin={0}
-      padding={0}
-      sx={{ listStyle: "none" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.5rem",
+        margin: 0,
+        padding: 0,
+        listStyle: "none",
+      }}
     >
       {items.map((item) => {
         const signedCents =
@@ -71,17 +73,21 @@ export default function PrevisionnelBreakdown({
           <Box
             key={item.key}
             component="li"
-            display="grid"
-            alignItems="center"
-            gap="0.625rem"
-            sx={{ gridTemplateColumns: "auto 1fr auto" }}
+            sx={{
+              display: "grid",
+              alignItems: "center",
+              gap: "0.625rem",
+              gridTemplateColumns: "auto 1fr auto",
+            }}
           >
             <Box
-              width="0.75rem"
-              height="0.75rem"
-              flex="none"
-              borderRadius="50%"
-              sx={{ backgroundColor: toneColor[item.tone] }}
+              sx={{
+                width: "0.75rem",
+                height: "0.75rem",
+                flex: "none",
+                borderRadius: "50%",
+                backgroundColor: toneColor[item.tone],
+              }}
             />
             <Typography component="span" color="text.primary" noWrap>
               {item.label}

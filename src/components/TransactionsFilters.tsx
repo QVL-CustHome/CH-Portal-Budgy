@@ -3,7 +3,7 @@ import {
   MultiSelect,
   Stack,
   useTranslation,
-  type ChMultiSelectOption,
+  type CanopMultiSelectOption,
 } from "canopui";
 import type { Account, Category, TransactionType } from "../api/budgy";
 import {
@@ -49,7 +49,7 @@ export default function TransactionsFilters({
 }: TransactionsFiltersProps) {
   const { t } = useTranslation();
 
-  const accountOptions = useMemo<ChMultiSelectOption[]>(
+  const accountOptions = useMemo<CanopMultiSelectOption[]>(
     () =>
       accounts.map((account) => ({
         value: account.id,
@@ -58,7 +58,7 @@ export default function TransactionsFilters({
     [accounts]
   );
 
-  const categoryOptions = useMemo<ChMultiSelectOption[]>(
+  const categoryOptions = useMemo<CanopMultiSelectOption[]>(
     () =>
       categories.map((category) => ({
         value: category.id,
@@ -67,7 +67,7 @@ export default function TransactionsFilters({
     [categories]
   );
 
-  const periodOptions = useMemo<ChMultiSelectOption[]>(
+  const periodOptions = useMemo<CanopMultiSelectOption[]>(
     () =>
       TRANSACTION_PERIODS.map((value) => ({
         value,

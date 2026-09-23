@@ -1,4 +1,4 @@
-import { palette, type ChIconName } from "canopui";
+import { palette, type CanopIconName } from "canopui";
 import type { Category, CategoryKind } from "../api/budgy";
 
 export const CATEGORY_NAME_MIN = 1;
@@ -19,7 +19,7 @@ export const CATEGORY_COLOR_OPTIONS: readonly string[] = [
   palette.error.dark,
 ];
 
-export const CATEGORY_ICON_OPTIONS: readonly ChIconName[] = [
+export const CATEGORY_ICON_OPTIONS: readonly CanopIconName[] = [
   // Argent / finance
   "wallet",
   "card",
@@ -115,7 +115,7 @@ export const CATEGORY_ICON_OPTIONS: readonly ChIconName[] = [
   "more",
 ];
 
-const BACK_ICON_TO_CH: Readonly<Record<string, ChIconName>> = {
+const BACK_ICON_TO_CH: Readonly<Record<string, CanopIconName>> = {
   briefcase: "briefcase",
   "plus-circle": "plusCircle",
   home: "home",
@@ -129,7 +129,7 @@ const BACK_ICON_TO_CH: Readonly<Record<string, ChIconName>> = {
 };
 
 export const DEFAULT_CATEGORY_COLOR = CATEGORY_COLOR_OPTIONS[0];
-export const DEFAULT_CATEGORY_ICON: ChIconName = CATEGORY_ICON_OPTIONS[0];
+export const DEFAULT_CATEGORY_ICON: CanopIconName = CATEGORY_ICON_OPTIONS[0];
 export const DEFAULT_CATEGORY_KIND: CategoryKind = "depense";
 
 const KNOWN_CH_ICONS: ReadonlySet<string> = new Set<string>([
@@ -137,16 +137,16 @@ const KNOWN_CH_ICONS: ReadonlySet<string> = new Set<string>([
   ...Object.values(BACK_ICON_TO_CH),
 ]);
 
-export function isChIconName(value: string): value is ChIconName {
+export function isCanopIconName(value: string): value is CanopIconName {
   return KNOWN_CH_ICONS.has(value);
 }
 
-export function toCategoryIcon(value: string): ChIconName {
+export function toCategoryIcon(value: string): CanopIconName {
   const mapped = BACK_ICON_TO_CH[value];
   if (mapped) {
     return mapped;
   }
-  return isChIconName(value) ? value : DEFAULT_CATEGORY_ICON;
+  return isCanopIconName(value) ? value : DEFAULT_CATEGORY_ICON;
 }
 
 export type CategoryNameError = "required" | "too-long";

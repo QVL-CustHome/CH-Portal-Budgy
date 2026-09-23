@@ -30,8 +30,8 @@ export default function TransactionCard({
 }: TransactionCardProps) {
   return (
     <Box sx={transactionCardSurfaceSx}>
-      {leading ? <Box flex="none">{leading}</Box> : null}
-      <Box flex="1 1 auto" minWidth={0}>
+      {leading ? <Box sx={{ flex: "none" }}>{leading}</Box> : null}
+      <Box sx={{ flex: "1 1 auto", minWidth: 0 }}>
         <Typography
           component="p"
           color="text.primary"

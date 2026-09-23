@@ -4,7 +4,7 @@ import {
   Stack,
   StatusChip,
   useTranslation,
-  type ChIconName,
+  type CanopIconName,
 } from "canopui";
 import type { CategoryKind } from "../api/budgy";
 import CategoryBadge from "./CategoryBadge";
@@ -14,7 +14,7 @@ export interface CategoryPreviewProps {
   name: string;
   kind: CategoryKind;
   color: string;
-  icon: ChIconName;
+  icon: CanopIconName;
 }
 
 export default function CategoryPreview({
@@ -29,12 +29,12 @@ export default function CategoryPreview({
     <Stack gap="sm">
       <FieldLabel>{t("budgy.categories.form.previewLabel")}</FieldLabel>
       <Box
-        display="flex"
-        alignItems="center"
-        gap={2}
-        padding={2}
         sx={{
-          borderRadius: "var(--ch-radius-md)",
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          padding: 2,
+          borderRadius: "var(--canop-radius-md)",
           border: "0.0625rem solid",
           borderColor: "divider",
           backgroundColor: "background.default",

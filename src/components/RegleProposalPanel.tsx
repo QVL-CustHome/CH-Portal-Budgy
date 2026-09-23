@@ -56,12 +56,12 @@ export default function RegleProposalPanel({
           <Stack gap="sm">
             <FieldLabel>{t("budgy.rules.proposal.targetLabel")}</FieldLabel>
             <Box
-              display="flex"
-              alignItems="center"
-              gap={2}
-              padding={2}
               sx={{
-                borderRadius: "var(--ch-radius-md)",
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+                padding: 2,
+                borderRadius: "var(--canop-radius-md)",
                 border: "0.0625rem solid",
                 borderColor: "divider",
                 backgroundColor: "background.default",

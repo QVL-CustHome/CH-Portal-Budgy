@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { MultiSelect, useTranslation, type ChMultiSelectOption } from "canopui";
+import { MultiSelect, useTranslation, type CanopMultiSelectOption } from "canopui";
 import { formatMonthLabel } from "../lib/budget";
 
 export interface MonthSelectorProps {
@@ -15,7 +15,7 @@ export default function MonthSelector({
 }: MonthSelectorProps) {
   const { t, locale } = useTranslation();
 
-  const options = useMemo<ChMultiSelectOption[]>(
+  const options = useMemo<CanopMultiSelectOption[]>(
     () =>
       months.map((month) => ({
         value: month,

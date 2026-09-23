@@ -36,7 +36,7 @@ export default function MesComptes() {
         <ConsentRenewalBanner />
         {loading ? (
           <Stack alignItems="center" padding="lg">
-            <Spinner label={t("budgy.accounts.loading")} />
+            <Spinner ariaLabel={t("budgy.accounts.loading")} />
           </Stack>
         ) : error ? (
           <Stack gap="md" alignItems="start">

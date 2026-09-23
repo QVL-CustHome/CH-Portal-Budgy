@@ -8,8 +8,12 @@ export default function Forbidden() {
 
   return (
     <Box
-      padding={3}
-      sx={{ maxWidth: "30rem", marginX: "auto", marginTop: "15vh" }}
+      sx={{
+        padding: 3,
+        maxWidth: "30rem",
+        marginX: "auto",
+        marginTop: "15vh",
+      }}
     >
       <Stack gap="lg">
         <Heading level={1} size={3}>

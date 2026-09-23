@@ -6,12 +6,12 @@
 
 body {
   margin: 0;
-  background: var(--ch-palette-background-default);
-  color: var(--ch-palette-text-primary);
+  background: var(--canop-palette-background-default);
+  color: var(--canop-palette-text-primary);
 }
 
 .budgy-enter {
-  animation: budgy-enter var(--ch-motion-duration-slow) var(--ch-motion-ease-organic)
+  animation: budgy-enter var(--canop-motion-duration-slow) var(--canop-motion-ease-organic)
     both;
 }
 

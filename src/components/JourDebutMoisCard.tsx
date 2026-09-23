@@ -6,7 +6,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-  type ChSelectOption,
+  type CanopSelectOption,
 } from "canopui";
 import { useJourDebutMois } from "../hooks/useJourDebutMois";
 
@@ -23,7 +23,7 @@ export default function JourDebutMoisCard() {
   const { t } = useTranslation();
   const { jour, loading, error, enregistre, definir } = useJourDebutMois();
 
-  const options: ChSelectOption[] = JOURS.map((j) => ({
+  const options: CanopSelectOption[] = JOURS.map((j) => ({
     value: String(j),
     label: t("budgy.monthStart.day", { day: String(j) }),
   }));
@@ -39,7 +39,7 @@ export default function JourDebutMoisCard() {
         </Typography>
 
         {loading ? (
-          <Spinner label={t("budgy.monthStart.loading")} />
+          <Spinner ariaLabel={t("budgy.monthStart.loading")} />
         ) : (
           <Stack gap="sm">
             <Select

@@ -35,7 +35,7 @@ export default function SoldesConsolidesBlock() {
     <Card title={t("budgy.dashboard.balances.title")} elevation="sm" fill>
       {loading ? (
         <Stack alignItems="center" padding="lg">
-          <Spinner label={t("budgy.dashboard.balances.loading")} />
+          <Spinner ariaLabel={t("budgy.dashboard.balances.loading")} />
         </Stack>
       ) : error ? (
         <Stack gap="md" alignItems="start">

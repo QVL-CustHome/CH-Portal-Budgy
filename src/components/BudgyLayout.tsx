@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
-import { PageScaffold, useTranslation, type ChNavbarItem } from "canopui";
+import { PageScaffold, useTranslation, type CanopNavbarItem } from "canopui";
 import { useCurrentUser } from "../context/current-user";
 import { logout } from "../api/auth";
 import { recategoriserCredits } from "../api/budgy";
@@ -23,7 +23,7 @@ export default function BudgyLayout() {
     void recategoriserCredits().catch(() => {});
   }, []);
 
-  const items: ChNavbarItem[] = [
+  const items: CanopNavbarItem[] = [
     { label: t("budgy.nav.dashboard"), href: "/", icon: "barChart" },
     { label: t("budgy.nav.accounts"), href: "/comptes", icon: "wallet" },
     { label: t("budgy.nav.categories"), href: "/categories", icon: "tag" },

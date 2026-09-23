@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { ChI18nProvider, ChThemeProvider } from "canopui";
+import { CanopI18nProvider, CanopThemeProvider } from "canopui";
 import SoldesConsolidesBlock from "./SoldesConsolidesBlock";
 import { defaultLocale, messages } from "../i18n/messages";
 import { getSoldesConsolides } from "../api/budgy";
@@ -28,13 +28,13 @@ const UNAVAILABLE_MESSAGE =
 
 function renderBlock() {
   return render(
-    <ChI18nProvider locale={defaultLocale} messages={messages}>
-      <ChThemeProvider defaultMode="light">
+    <CanopI18nProvider locale={defaultLocale} messages={messages}>
+      <CanopThemeProvider defaultMode="light">
         <MemoryRouter>
           <SoldesConsolidesBlock />
         </MemoryRouter>
-      </ChThemeProvider>
-    </ChI18nProvider>
+      </CanopThemeProvider>
+    </CanopI18nProvider>
   );
 }
 

@@ -29,7 +29,7 @@ vi.mock("canopui", async (importOriginal) => {
   }) => `${authPortalUrl}/cgu${legalNoticeAnchor ? `#${legalNoticeAnchor}` : ""}`,
   buildLoginUrl: ({ authPortalUrl }: { authPortalUrl: string }) => `${authPortalUrl}/login`,
   createApiClient: () => ({ request: async () => ({}) }),
-  ApiError: class ApiError extends Error {
+  CanopApiError: class CanopApiError extends Error {
     status = 0;
   },
   RouteGuard: ({

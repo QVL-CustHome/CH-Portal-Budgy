@@ -1,4 +1,4 @@
-import type { ChLocale } from "canopui";
+import type { CanopLocale } from "canopui";
 
 interface FormatMoneyOptions {
   signDisplay?: boolean;
@@ -7,7 +7,7 @@ interface FormatMoneyOptions {
 export function formatMoneyCents(
   amountCents: number,
   currency: string,
-  locale: ChLocale,
+  locale: CanopLocale,
   options: FormatMoneyOptions = {}
 ): string {
   // Une devise vide/invalide (ex. compte sans devise en Restricted Production)

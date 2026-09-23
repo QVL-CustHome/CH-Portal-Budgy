@@ -69,7 +69,7 @@ export default function EnveloppesSection() {
 
       {loading ? (
         <Stack alignItems="center" padding="lg">
-          <Spinner label={t("budgy.enveloppes.loading")} />
+          <Spinner ariaLabel={t("budgy.enveloppes.loading")} />
         </Stack>
       ) : error ? (
         <Stack gap="md" alignItems="start">

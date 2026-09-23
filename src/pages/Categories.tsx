@@ -52,7 +52,7 @@ export default function Categories() {
 
         {loading ? (
           <Stack alignItems="center" padding="lg">
-            <Spinner label={t("budgy.categories.loading")} />
+            <Spinner ariaLabel={t("budgy.categories.loading")} />
           </Stack>
         ) : error ? (
           <Stack gap="md" alignItems="start">

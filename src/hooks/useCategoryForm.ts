@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useTranslation, type ChIconName } from "canopui";
+import { useTranslation, type CanopIconName } from "canopui";
 import type { Category, CategoryInput, CategoryKind } from "../api/budgy";
 import {
   DEFAULT_CATEGORY_COLOR,
@@ -18,13 +18,13 @@ interface UseCategoryFormResult {
   name: string;
   kind: CategoryKind;
   color: string;
-  icon: ChIconName;
+  icon: CanopIconName;
   nameError: string | null;
   canSubmit: boolean;
   setName: (value: string) => void;
   setKind: (value: CategoryKind) => void;
   setColor: (value: string) => void;
-  setIcon: (value: ChIconName) => void;
+  setIcon: (value: CanopIconName) => void;
   handleSubmit: () => void;
 }
 
@@ -38,7 +38,7 @@ export function useCategoryForm({
     initial?.kind ?? DEFAULT_CATEGORY_KIND
   );
   const [color, setColor] = useState(initial?.color ?? DEFAULT_CATEGORY_COLOR);
-  const [icon, setIcon] = useState<ChIconName>(
+  const [icon, setIcon] = useState<CanopIconName>(
     initial ? toCategoryIcon(initial.icon) : DEFAULT_CATEGORY_ICON
   );
   const [touched, setTouched] = useState(false);

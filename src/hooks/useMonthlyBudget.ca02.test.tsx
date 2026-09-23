@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { act, renderHook, waitFor } from "@testing-library/react";
-import { ChI18nProvider, ChThemeProvider } from "canopui";
+import { CanopI18nProvider, CanopThemeProvider } from "canopui";
 import { defaultLocale, messages } from "../i18n/messages";
 import {
   definirBudget,
@@ -37,9 +37,9 @@ const categorie: Category = {
 };
 
 const wrapper = ({ children }: { children: ReactNode }) => (
-  <ChI18nProvider locale={defaultLocale} messages={messages}>
-    <ChThemeProvider defaultMode="light">{children}</ChThemeProvider>
-  </ChI18nProvider>
+  <CanopI18nProvider locale={defaultLocale} messages={messages}>
+    <CanopThemeProvider defaultMode="light">{children}</CanopThemeProvider>
+  </CanopI18nProvider>
 );
 
 async function renderPret() {

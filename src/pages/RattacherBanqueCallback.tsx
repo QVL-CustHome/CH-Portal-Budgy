@@ -25,7 +25,7 @@ export default function RattacherBanqueCallback() {
       {status === "pending" ? (
         <Stack alignItems="center" padding="lg">
           <Spinner
-            label={
+            ariaLabel={
               isRenewal
                 ? t("budgy.callback.renewPending")
                 : t("budgy.callback.pending")

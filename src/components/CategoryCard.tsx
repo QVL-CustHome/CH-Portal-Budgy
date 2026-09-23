@@ -64,13 +64,13 @@ export default function CategoryCard({
         {editable ? (
           <Stack direction="row" gap="xs" alignItems="center">
             <EditButton
-              aria-label={t("budgy.categories.editAria", {
+              ariaLabel={t("budgy.categories.editAria", {
                 name: category.name,
               })}
               onClick={() => onEdit(category)}
             />
             <DeleteButton
-              aria-label={t("budgy.categories.deleteAria", {
+              ariaLabel={t("budgy.categories.deleteAria", {
                 name: category.name,
               })}
               confirmTitle={t("budgy.categories.delete.title")}

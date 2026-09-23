@@ -5,7 +5,7 @@ import {
   ProgressBar,
   Stack,
   useTranslation,
-  type ChProgressSegment,
+  type CanopProgressSegment,
 } from "canopui";
 import type { RemainingBudgetCategory } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
@@ -31,7 +31,7 @@ export default function ResteADepenserItem({
   );
   const remaining = formatMoneyCents(category.reste_cents, CURRENCY, locale);
 
-  const progressSegments: ChProgressSegment[] = [
+  const progressSegments: CanopProgressSegment[] = [
     {
       value: category.depense_cents,
       color: category.depasse ? "error" : "primary",
@@ -44,13 +44,13 @@ export default function ResteADepenserItem({
 
   return (
     <Box
-      padding={2}
       sx={{
-        borderRadius: "var(--ch-radius-md)",
+        padding: 2,
+        borderRadius: "var(--canop-radius-md)",
         border: "0.0625rem solid",
         borderColor: category.depasse ? "error.main" : "divider",
         backgroundColor: category.depasse
-          ? "color-mix(in srgb, var(--ch-palette-error-main) 8%, var(--ch-palette-background-paper))"
+          ? "color-mix(in srgb, var(--canop-palette-error-main) 8%, var(--canop-palette-background-paper))"
           : "background.paper",
       }}
     >

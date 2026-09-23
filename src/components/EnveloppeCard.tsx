@@ -8,7 +8,7 @@ import {
   ProgressBar,
   Stack,
   useTranslation,
-  type ChIconName,
+  type CanopIconName,
 } from "canopui";
 import type { Enveloppe } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
@@ -53,13 +53,20 @@ export function EnveloppeContenu({
         justifyContent="space-between"
         gap="sm"
       >
-        <Box minWidth={0} display="flex" alignItems="center" gap="0.75rem">
+        <Box
+          sx={{
+            minWidth: 0,
+            display: "flex",
+            alignItems: "center",
+            gap: "0.75rem",
+          }}
+        >
           <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            borderRadius="var(--ch-radius-md)"
             sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "var(--canop-radius-md)",
               width: "2.5rem",
               height: "2.5rem",
               flexShrink: 0,
@@ -68,12 +75,12 @@ export function EnveloppeContenu({
             }}
           >
             <Icon
-              name={enveloppe.icon as ChIconName}
+              name={enveloppe.icon as CanopIconName}
               size="sm"
               color="inherit"
             />
           </Box>
-          <Box minWidth={0}>
+          <Box sx={{ minWidth: 0 }}>
             <Typography color="text.primary" sx={{ fontWeight: 600 }} noWrap>
               {enveloppe.nom}
             </Typography>
@@ -86,13 +93,13 @@ export function EnveloppeContenu({
         </Box>
 
         {onEdit && onDelete ? (
-          <Box display="flex" gap="0.25rem" flexShrink={0}>
+          <Box sx={{ display: "flex", gap: "0.25rem", flexShrink: 0 }}>
             <EditButton
-              aria-label={t("budgy.enveloppes.edit")}
+              ariaLabel={t("budgy.enveloppes.edit")}
               onClick={() => onEdit(enveloppe)}
             />
             <DeleteButton
-              aria-label={t("budgy.enveloppes.delete")}
+              ariaLabel={t("budgy.enveloppes.delete")}
               confirmTitle={t("budgy.enveloppes.delete.title")}
               confirmMessage={t("budgy.enveloppes.delete.message", {
                 name: enveloppe.nom,

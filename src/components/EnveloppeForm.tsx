@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Form, InputText, useTranslation, type ChIconName } from "canopui";
+import { Form, InputText, useTranslation, type CanopIconName } from "canopui";
 import type { Enveloppe, EnveloppeInput } from "../api/budgy";
 import CategoryColorPicker from "./CategoryColorPicker";
 import CategoryIconPicker from "./CategoryIconPicker";
 
 const COULEUR_DEFAUT = "#5E35B1";
-const ICONE_DEFAUT: ChIconName = "wallet";
+const ICONE_DEFAUT: CanopIconName = "wallet";
 const NOM_MAX = 30;
 
 export interface EnveloppeFormProps {
@@ -36,8 +36,8 @@ export default function EnveloppeForm({
     initial ? String(initial.montant_cents / 100) : ""
   );
   const [color, setColor] = useState(initial?.color ?? COULEUR_DEFAUT);
-  const [icon, setIcon] = useState<ChIconName>(
-    (initial?.icon as ChIconName) ?? ICONE_DEFAUT
+  const [icon, setIcon] = useState<CanopIconName>(
+    (initial?.icon as CanopIconName) ?? ICONE_DEFAUT
   );
 
   const centimes = versCentimes(montant);

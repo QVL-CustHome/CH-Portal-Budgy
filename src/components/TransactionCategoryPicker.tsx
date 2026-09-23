@@ -43,20 +43,20 @@ export default function TransactionCategoryPicker({
           maxWidth: "100%",
           paddingX: "0.5rem",
           paddingY: "0.25rem",
-          borderRadius: "var(--ch-radius-sm)",
+          borderRadius: "var(--canop-radius-sm)",
           border: "0.0625rem solid transparent",
           color: category
-            ? "var(--ch-palette-text-primary)"
-            : "var(--ch-palette-text-secondary)",
+            ? "var(--canop-palette-text-primary)"
+            : "var(--canop-palette-text-secondary)",
           transition:
-            "transform var(--ch-motion-duration-fast) var(--ch-motion-ease-organic), border-color var(--ch-motion-duration-fast) var(--ch-motion-ease-organic), background-color var(--ch-motion-duration-fast) var(--ch-motion-ease-organic)",
+            "transform var(--canop-motion-duration-fast) var(--canop-motion-ease-organic), border-color var(--canop-motion-duration-fast) var(--canop-motion-ease-organic), background-color var(--canop-motion-duration-fast) var(--canop-motion-ease-organic)",
           "&:hover": {
-            backgroundColor: "var(--ch-palette-background-default)",
-            borderColor: "var(--ch-palette-divider)",
+            backgroundColor: "var(--canop-palette-background-default)",
+            borderColor: "var(--canop-palette-divider)",
           },
           "&:active": { transform: "scale(0.98)" },
           "&:focus-visible": {
-            outline: "0.125rem solid var(--ch-palette-primary-main)",
+            outline: "0.125rem solid var(--canop-palette-primary-main)",
             outlineOffset: "0.125rem",
           },
           "&.Mui-disabled": { cursor: "progress", opacity: 0.6 },
@@ -70,16 +70,16 @@ export default function TransactionCategoryPicker({
           />
         ) : (
           <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flex="none"
-            color="text.secondary"
             sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flex: "none",
+              color: "text.secondary",
               width: "1.75rem",
               height: "1.75rem",
-              borderRadius: "var(--ch-radius-sm)",
-              border: "0.0625rem dashed var(--ch-palette-divider)",
+              borderRadius: "var(--canop-radius-sm)",
+              border: "0.0625rem dashed var(--canop-palette-divider)",
             }}
           >
             <Icon name="plus" size="sm" color="inherit" />
@@ -93,7 +93,7 @@ export default function TransactionCategoryPicker({
         open={open}
         onClose={closeMenu}
         anchorEl={anchorRef.current}
-        label={t("budgy.transactions.categoryMenuAria")}
+        ariaLabel={t("budgy.transactions.categoryMenuAria")}
       >
         {categories.map((option) => (
           <MenuItem

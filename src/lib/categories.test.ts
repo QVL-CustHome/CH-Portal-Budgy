@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { toCategoryIcon } from "./categories";
 
-describe("toCategoryIcon - mapping des noms d'icones back vers ChIconName", () => {
+describe("toCategoryIcon - mapping des noms d'icones back vers CanopIconName", () => {
   it("mappe shopping-cart vers shoppingCart", () => {
     expect(toCategoryIcon("shopping-cart")).toBe("shoppingCart");
   });
@@ -26,7 +26,7 @@ describe("toCategoryIcon - mapping des noms d'icones back vers ChIconName", () =
     expect(toCategoryIcon("home")).toBe("home");
   });
 
-  it("conserve une valeur deja valide ChIconName", () => {
+  it("conserve une valeur deja valide CanopIconName", () => {
     expect(toCategoryIcon("wallet")).toBe("wallet");
   });
 

@@ -2,7 +2,7 @@ import {
   SegmentedControl,
   Stack,
   useTranslation,
-  type ChSegmentedControlOption,
+  type CanopSegmentedControlOption,
 } from "canopui";
 import type { CategoryKind } from "../api/budgy";
 import FieldLabel from "./FieldLabel";
@@ -20,7 +20,7 @@ export default function CategoryKindSelector({
 }: CategoryKindSelectorProps) {
   const { t } = useTranslation();
 
-  const options: ChSegmentedControlOption<CategoryKind>[] = OPTIONS.map(
+  const options: CanopSegmentedControlOption<CategoryKind>[] = OPTIONS.map(
     (kind) => ({
       value: kind,
       label: t(`budgy.categories.kind.${kind}`),

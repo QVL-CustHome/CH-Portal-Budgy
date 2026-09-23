@@ -1,19 +1,19 @@
 import type { ExpenseCategoryLine } from "../api/budgy";
 
 export const EXPENSE_SEGMENT_COLORS: readonly string[] = [
-  "var(--ch-palette-primary-main)",
-  "var(--ch-palette-accent-main)",
-  "var(--ch-palette-info-main)",
-  "var(--ch-palette-success-main)",
-  "var(--ch-palette-warning-main)",
-  "var(--ch-palette-primary-light)",
-  "var(--ch-palette-info-dark)",
-  "var(--ch-palette-accent-dark)",
-  "var(--ch-palette-secondary-dark)",
-  "var(--ch-palette-error-main)",
+  "var(--canop-palette-primary-main)",
+  "var(--canop-palette-accent-main)",
+  "var(--canop-palette-info-main)",
+  "var(--canop-palette-success-main)",
+  "var(--canop-palette-warning-main)",
+  "var(--canop-palette-primary-light)",
+  "var(--canop-palette-info-dark)",
+  "var(--canop-palette-accent-dark)",
+  "var(--canop-palette-secondary-dark)",
+  "var(--canop-palette-error-main)",
 ];
 
-export const UNCATEGORIZED_SEGMENT_COLOR = "var(--ch-palette-text-disabled)";
+export const UNCATEGORIZED_SEGMENT_COLOR = "var(--canop-palette-text-disabled)";
 
 const UNCATEGORIZED_KEY = "__uncategorized__";
 

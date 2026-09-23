@@ -15,8 +15,8 @@ export default function PrevisionnelHero({ summary }: PrevisionnelHeroProps) {
   const { t, locale } = useTranslation();
   const isPositive = summary.soldePrevisionnelCents >= 0;
   const toneVar = isPositive
-    ? "var(--ch-palette-success-main)"
-    : "var(--ch-palette-error-main)";
+    ? "var(--canop-palette-success-main)"
+    : "var(--canop-palette-error-main)";
   const formattedSolde = formatMoneyCents(
     summary.soldePrevisionnelCents,
     CURRENCY,
@@ -27,15 +27,15 @@ export default function PrevisionnelHero({ summary }: PrevisionnelHeroProps) {
   return (
     <Stack gap="md">
       <Box
-        display="flex"
-        flexDirection="column"
-        gap="0.25rem"
-        paddingX={2.5}
-        paddingY={2}
         sx={{
-          borderRadius: "var(--ch-radius-md)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.25rem",
+          paddingX: 2.5,
+          paddingY: 2,
+          borderRadius: "var(--canop-radius-md)",
           border: `0.0625rem solid color-mix(in srgb, ${toneVar} 24%, transparent)`,
-          backgroundColor: `color-mix(in srgb, ${toneVar} 8%, var(--ch-palette-background-default))`,
+          backgroundColor: `color-mix(in srgb, ${toneVar} 8%, var(--canop-palette-background-default))`,
         }}
       >
         <Typography

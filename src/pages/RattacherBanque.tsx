@@ -30,7 +30,7 @@ export default function RattacherBanque() {
 
         {loadingBanks ? (
           <Stack alignItems="center" padding="lg">
-            <Spinner label={t("budgy.bank.loadingBanks")} />
+            <Spinner ariaLabel={t("budgy.bank.loadingBanks")} />
           </Stack>
         ) : banksError ? (
           <Stack gap="md" alignItems="start">
