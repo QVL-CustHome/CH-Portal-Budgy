@@ -46,7 +46,9 @@ Sélection de l'établissement puis redirection vers le consentement. Les **cais
 
 Le portail build sur le paquet npm publié **`canopui`** (registre privé Verdaccio), et **non** sur une source locale.
 
-`package.json` déclare `3.1.1`, mais le job `build` de la CI exécute `npm install canopui@latest` avant de builder : **l'artefact déployé embarque toujours la dernière version publiée**. Une correction du design system se propage donc au prochain build, sans bump manuel ici.
+`package.json` déclare **`latest`**, et le job `build` de la CI exécute `npm install canopui@latest` avant de builder : **l'artefact déployé embarque toujours la dernière version publiée**. Une correction du design system se propage donc au prochain build, sans bump manuel ici.
+
+Le portail est en plus **rebuild automatiquement au démarrage de la machine** si une CanopUI plus récente est parue (unité systemd `canopui-autorebuild`, qui redéclenche cette pipeline). Suivre `latest` est un choix délibéré : raisons, garde-fous et marche à suivre en cas de problème dans **[`docs/CANOPUI-LATEST.md`](./docs/CANOPUI-LATEST.md)**, à lire avant de proposer de ré-épingler une version.
 
 Règle d'équipe : tout besoin de composant se traite **dans CanopUI**, pas en local. Le `Select` mono-sélection (avec icône par option) et l'export d'icônes supplémentaires ont été ajoutés au design system pour ce portail plutôt que dupliqués ici.
 
