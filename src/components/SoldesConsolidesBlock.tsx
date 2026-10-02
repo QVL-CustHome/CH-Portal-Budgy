@@ -10,7 +10,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-} from "canopui";
+} from "@canop/ui";
 import { useSoldesConsolides } from "../hooks/useSoldesConsolides";
 import { useReloadComptesOnRelay } from "../hooks/useReloadOnRelay";
 import { formatMoneyCents } from "../lib/money";

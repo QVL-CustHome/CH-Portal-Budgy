@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { Card, CardGrid, Spinner, Stack, useTranslation } from "canopui";
+import { Card, CardGrid, Spinner, Stack, useTranslation } from "@canop/ui";
 import { EnveloppeContenu } from "./EnveloppeCard";
 import { useEnveloppes } from "../hooks/useEnveloppes";
 

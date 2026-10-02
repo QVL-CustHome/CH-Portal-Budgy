@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { act, renderHook, waitFor } from "@testing-library/react";
-import { CanopI18nProvider, CanopThemeProvider } from "canopui";
+import { CanopI18nProvider, CanopThemeProvider } from "@canop/ui";
 import { defaultLocale, messages } from "../i18n/messages";
 import {
   definirBudget,

@@ -5,7 +5,7 @@ import {
   StatusChip,
   useTranslation,
   type CanopIconName,
-} from "canopui";
+} from "@canop/ui";
 import type { CategoryKind } from "../api/budgy";
 import CategoryBadge from "./CategoryBadge";
 import FieldLabel from "./FieldLabel";

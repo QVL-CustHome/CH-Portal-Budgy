@@ -6,7 +6,7 @@ import {
   Stack,
   useTranslation,
   type CanopProgressSegment,
-} from "canopui";
+} from "@canop/ui";
 import type { RemainingBudgetCategory } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 import { toCategoryIcon } from "../lib/categories";

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { apiErrorMessage, useTranslation } from "canopui";
+import { apiErrorMessage, useTranslation } from "@canop/ui";
 import { ApiError } from "../api/client";
 import {
   completerConsentement,

@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { IconActionButton, Stack } from "canopui";
+import { IconActionButton, Stack } from "@canop/ui";
 
 export interface MonthNavigatorProps {
   label: string;

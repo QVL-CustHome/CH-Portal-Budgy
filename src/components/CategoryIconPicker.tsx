@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
-import { Icon, Stack, useTranslation, type CanopIconName } from "canopui";
+import { Icon, Stack, useTranslation, type CanopIconName } from "@canop/ui";
 import { CATEGORY_ICON_OPTIONS } from "../lib/categories";
 import FieldLabel from "./FieldLabel";
 

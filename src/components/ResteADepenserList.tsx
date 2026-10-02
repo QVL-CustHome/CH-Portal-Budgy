@@ -1,4 +1,4 @@
-import { Stack } from "canopui";
+import { Stack } from "@canop/ui";
 import type { RemainingBudgetCategory } from "../api/budgy";
 import AnimatedListItem from "./AnimatedListItem";
 import ResteADepenserItem from "./ResteADepenserItem";

@@ -1,4 +1,4 @@
-import { SidePanel, useTranslation } from "canopui";
+import { SidePanel, useTranslation } from "@canop/ui";
 import type { EnveloppeInput } from "../api/budgy";
 import type { EnveloppeEditor } from "../hooks/useEnveloppes";
 import EnveloppeForm from "./EnveloppeForm";

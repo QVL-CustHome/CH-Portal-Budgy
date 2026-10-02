@@ -23,7 +23,7 @@ La navigation compte **4 entrées** : dashboard, comptes, catégories, consentem
 Grille de blocs (`DashboardGrid`) alimentés chacun par son propre hook. **Mois courant uniquement** — pas de navigation mensuelle.
 
 - **Soldes consolidés** (`SoldesConsolidesBlock`, `useSoldesConsolides`) — total tous comptes + détail par compte. Affiche le **solde à venir** (opérations en attente incluses) sous le total et par compte, uniquement quand la banque le fournit.
-- **Reste à dépenser** (`ResteADepenserBlock`, `useResteADepenser`) — une ligne par catégorie, filtrables via un `Select` mono-catégorie (composant `canopui`, options portant leur pastille couleur + icône), et un total en bas. Le dépassement se lit au reste négatif, sans badge dédié.
+- **Reste à dépenser** (`ResteADepenserBlock`, `useResteADepenser`) — une ligne par catégorie, filtrables via un `Select` mono-catégorie (composant `@canop/ui`, options portant leur pastille couleur + icône), et un total en bas. Le dépassement se lit au reste négatif, sans badge dédié.
 - **Budget prévisionnel mensuel** (`PrevisionnelBlock`, `usePrevisionnel`) — solde prévisionnel du mois et ses deux composantes (revenus, dépenses récurrentes). Affiche un état « données insuffisantes » tant qu'aucune récurrence ni aucun revenu n'est prédit.
 
 Au montage du layout, le portail appelle `recategoriser()` : réconciliation idempotente côté API (virements internes, règles, crédits). Les données se réparent seules, sans écran d'administration.
@@ -42,11 +42,11 @@ Sélection de l'établissement puis redirection vers le consentement. Les **cais
 - **Rendu pur dans les composants** (`src/components`) et pages (`src/pages`) minces qui câblent hook + composants.
 - **Préparation des données dans `src/lib`** (`budget.ts`, `banks.ts`, `expenses.ts`, `transactions.ts`, `categories.ts`, `money.ts`…) — dérivations, généralisation des banques, mois disponibles, indexation.
 
-## Dépendance UI — `canopui`
+## Dépendance UI — `@canop/ui`
 
-Le portail build sur le paquet npm publié **`canopui`** (registre privé Verdaccio), et **non** sur une source locale.
+Le portail build sur le paquet npm publié **`@canop/ui`** (registre privé Verdaccio), et **non** sur une source locale.
 
-`package.json` déclare **`latest`**, et le job `build` de la CI exécute `npm install canopui@latest` avant de builder : **l'artefact déployé embarque toujours la dernière version publiée**. Une correction du design system se propage donc au prochain build, sans bump manuel ici.
+`package.json` déclare **`latest`**, et le job `build` de la CI exécute `npm install @canop/ui@latest` avant de builder : **l'artefact déployé embarque toujours la dernière version publiée**. Une correction du design system se propage donc au prochain build, sans bump manuel ici.
 
 Le portail est en plus **rebuild automatiquement au démarrage de la machine** si une CanopUI plus récente est parue (unité systemd `canopui-autorebuild`, qui redéclenche cette pipeline). Suivre `latest` est un choix délibéré : raisons, garde-fous et marche à suivre en cas de problème dans **[`docs/CANOPUI-LATEST.md`](./docs/CANOPUI-LATEST.md)**, à lire avant de proposer de ré-épingler une version.
 
@@ -59,5 +59,5 @@ Le job `update-checkout` de la CI fait par ailleurs un `git pull` du clone local
 Suite via `npm test` (= `vitest run`), setup dans `src/test/setup.ts`.
 
 Pièges (CI réparée fin Sprint 2, SCRUM-288) :
-- **Mock `canopui` doit exposer `palette`** — consommé au niveau module par `src/lib/categories.ts` (`import { palette } from "canopui"`) ; un mock incomplet casse l'import dès le chargement.
+- **Mock `@canop/ui` doit exposer `palette`** — consommé au niveau module par `src/lib/categories.ts` (`import { palette } from "@canop/ui"`) ; un mock incomplet casse l'import dès le chargement.
 - **Ajout d'une page/route → mocker la page dans les tests de navigation** (`BudgyLayout.nav.test.tsx`) ; l'oubli de la page `Categories` avait cassé le job.

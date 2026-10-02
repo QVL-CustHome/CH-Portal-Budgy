@@ -8,7 +8,7 @@ import {
   useTranslation,
   type CanopColumn,
   type CanopStatusTone,
-} from "canopui";
+} from "@canop/ui";
 import type {
   Category,
   Enveloppe,

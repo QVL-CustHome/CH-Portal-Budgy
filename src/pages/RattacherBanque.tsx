@@ -5,7 +5,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-} from "canopui";
+} from "@canop/ui";
 import BankSelector from "../components/BankSelector";
 import { useRattachementBanque } from "../hooks/useRattachementBanque";
 

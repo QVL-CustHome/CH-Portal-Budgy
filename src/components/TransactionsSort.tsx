@@ -3,7 +3,7 @@ import {
   Stack,
   useTranslation,
   type CanopSegmentedControlOption,
-} from "canopui";
+} from "@canop/ui";
 import type { TransactionSortField, TransactionSortOrder } from "../api/budgy";
 import {
   TRANSACTION_SORT_FIELDS,

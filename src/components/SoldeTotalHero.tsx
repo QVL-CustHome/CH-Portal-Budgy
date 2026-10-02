@@ -1,4 +1,4 @@
-import { StatCard } from "canopui";
+import { StatCard } from "@canop/ui";
 
 export interface SoldeTotalHeroProps {
   label: string;

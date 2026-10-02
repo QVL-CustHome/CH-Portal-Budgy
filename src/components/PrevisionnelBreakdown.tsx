@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useTranslation } from "canopui";
+import { useTranslation } from "@canop/ui";
 import type { PrevisionnelSummary } from "../hooks/usePrevisionnel";
 import { formatMoneyCents } from "../lib/money";
 

@@ -5,7 +5,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-} from "canopui";
+} from "@canop/ui";
 import { usePrevisionnel } from "../hooks/usePrevisionnel";
 import PrevisionnelHero from "./PrevisionnelHero";
 

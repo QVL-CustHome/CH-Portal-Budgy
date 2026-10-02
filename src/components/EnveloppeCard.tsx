@@ -9,7 +9,7 @@ import {
   Stack,
   useTranslation,
   type CanopIconName,
-} from "canopui";
+} from "@canop/ui";
 import type { Enveloppe } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 

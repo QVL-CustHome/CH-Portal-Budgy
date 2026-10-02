@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { Button, Heading, Stack, useTranslation } from "canopui";
+import { Button, Heading, Stack, useTranslation } from "@canop/ui";
 
 export interface PaginationProps {
   page: number;

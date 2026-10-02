@@ -1,4 +1,4 @@
-import { CardGrid } from "canopui";
+import { CardGrid } from "@canop/ui";
 import type { ReactNode } from "react";
 
 export interface DashboardGridProps {

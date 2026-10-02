@@ -1,4 +1,4 @@
-import { Feedback, useTranslation } from "canopui";
+import { Feedback, useTranslation } from "@canop/ui";
 import { useBudgyNotifications } from "../context/budgy-notifications";
 
 export default function ConsentRenewalBanner() {

@@ -8,7 +8,7 @@ import {
   Stack,
   Toast,
   useTranslation,
-} from "canopui";
+} from "@canop/ui";
 import TransactionsTable from "../components/TransactionsTable";
 import TransactionCategoryFilter from "../components/TransactionCategoryFilter";
 import Pagination from "../components/Pagination";

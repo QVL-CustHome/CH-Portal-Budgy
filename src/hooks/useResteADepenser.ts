@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { apiErrorMessage, useTranslation } from "canopui";
+import { apiErrorMessage, useTranslation } from "@canop/ui";
 import { ApiError } from "../api/client";
 import {
   getRemainingBudgets,

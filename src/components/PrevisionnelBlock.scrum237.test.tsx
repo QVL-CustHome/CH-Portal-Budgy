@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { CanopI18nProvider, CanopThemeProvider } from "canopui";
+import { CanopI18nProvider, CanopThemeProvider } from "@canop/ui";
 import PrevisionnelBlock from "./PrevisionnelBlock";
 import { defaultLocale, messages } from "../i18n/messages";
 import { getForecast, type Forecast } from "../api/budgy";

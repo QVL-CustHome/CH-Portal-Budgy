@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { apiErrorMessage, useTranslation } from "canopui";
+import { apiErrorMessage, useTranslation } from "@canop/ui";
 import { ApiError } from "../api/client";
 import { creerRegleDepuisTransaction, type Category } from "../api/budgy";
 import { resolveCategory } from "../lib/categories";

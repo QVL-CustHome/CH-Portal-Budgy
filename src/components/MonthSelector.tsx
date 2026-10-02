@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { MultiSelect, useTranslation, type CanopMultiSelectOption } from "canopui";
+import { MultiSelect, useTranslation, type CanopMultiSelectOption } from "@canop/ui";
 import { formatMonthLabel } from "../lib/budget";
 
 export interface MonthSelectorProps {

@@ -7,7 +7,7 @@ import {
   MenuItem,
   useTranslation,
   type CanopIconName,
-} from "canopui";
+} from "@canop/ui";
 import { useRef, useState } from "react";
 import type { Enveloppe } from "../api/budgy";
 import CategoryBadge from "./CategoryBadge";

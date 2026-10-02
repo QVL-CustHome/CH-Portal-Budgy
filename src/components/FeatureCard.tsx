@@ -7,7 +7,7 @@ import {
   StatusChip,
   useTranslation,
   type CanopIconName,
-} from "canopui";
+} from "@canop/ui";
 
 export interface FeatureCardProps {
   icon: CanopIconName;

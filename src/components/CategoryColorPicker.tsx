@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
-import { Icon, Stack, useTranslation } from "canopui";
+import { Icon, Stack, useTranslation } from "@canop/ui";
 import { CATEGORY_COLOR_OPTIONS, isLightCategoryColor } from "../lib/categories";
 import FieldLabel from "./FieldLabel";
 

@@ -7,7 +7,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-} from "canopui";
+} from "@canop/ui";
 import EnveloppeCard from "./EnveloppeCard";
 import EnveloppeEditorPanel from "./EnveloppeEditorPanel";
 import { useEnveloppes } from "../hooks/useEnveloppes";

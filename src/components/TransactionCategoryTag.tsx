@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Stack, useTranslation } from "canopui";
+import { Stack, useTranslation } from "@canop/ui";
 import type { Category } from "../api/budgy";
 import { toCategoryIcon } from "../lib/categories";
 import CategoryBadge from "./CategoryBadge";

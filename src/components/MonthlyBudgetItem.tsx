@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Card, Heading, Stack, useTranslation } from "canopui";
+import { Card, Heading, Stack, useTranslation } from "@canop/ui";
 import type { Budget, Category } from "../api/budgy";
 import { formatBudgetAmount } from "../lib/budget";
 import { toCategoryIcon } from "../lib/categories";

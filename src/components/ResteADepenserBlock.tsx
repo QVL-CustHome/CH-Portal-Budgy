@@ -10,7 +10,7 @@ import {
   Stack,
   useTranslation,
   type CanopSelectOption,
-} from "canopui";
+} from "@canop/ui";
 import { useResteADepenser } from "../hooks/useResteADepenser";
 import ResteADepenserList from "./ResteADepenserList";
 import CategoryBadge from "./CategoryBadge";

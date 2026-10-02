@@ -1,4 +1,4 @@
-import { palette, type CanopIconName } from "canopui";
+import { palette, type CanopIconName } from "@canop/ui";
 import type { Category, CategoryKind } from "../api/budgy";
 
 export const CATEGORY_NAME_MIN = 1;

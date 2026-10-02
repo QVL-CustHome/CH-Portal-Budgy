@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 
-vi.mock("canopui", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("canopui")>();
+vi.mock("@canop/ui", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@canop/ui")>();
   return {
     ...actual,
     useTranslation: () => ({ t: (key: string) => key, locale: "fr" }),

@@ -1,4 +1,4 @@
-import type { CanopLocale } from "canopui";
+import type { CanopLocale } from "@canop/ui";
 
 const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
 const AMOUNT_PATTERN = /^\d+([.,]\d{1,2})?$/;

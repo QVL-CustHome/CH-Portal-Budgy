@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
-import { PageScaffold, useTranslation, type CanopNavbarItem } from "canopui";
+import { PageScaffold, useTranslation, type CanopNavbarItem } from "@canop/ui";
 import { useCurrentUser } from "../context/current-user";
 import { logout } from "../api/auth";
 import { recategoriserCredits } from "../api/budgy";

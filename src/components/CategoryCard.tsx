@@ -6,7 +6,7 @@ import {
   Stack,
   StatusChip,
   useTranslation,
-} from "canopui";
+} from "@canop/ui";
 import type { Category } from "../api/budgy";
 import { toCategoryIcon } from "../lib/categories";
 import CategoryBadge from "./CategoryBadge";

@@ -7,7 +7,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-} from "canopui";
+} from "@canop/ui";
 import CategoriesList from "../components/CategoriesList";
 import CategoryEditorPanel from "../components/CategoryEditorPanel";
 import EnveloppesSection from "../components/EnveloppesSection";

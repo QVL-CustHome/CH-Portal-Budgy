@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, InputText, useTranslation, type CanopIconName } from "canopui";
+import { Form, InputText, useTranslation, type CanopIconName } from "@canop/ui";
 import type { Enveloppe, EnveloppeInput } from "../api/budgy";
 import CategoryColorPicker from "./CategoryColorPicker";
 import CategoryIconPicker from "./CategoryIconPicker";

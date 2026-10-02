@@ -7,7 +7,7 @@ import {
   Stack,
   useTranslation,
   type CanopSelectOption,
-} from "canopui";
+} from "@canop/ui";
 import { useJourDebutMois } from "../hooks/useJourDebutMois";
 
 const JOURS = Array.from({ length: 31 }, (_, i) => i + 1);

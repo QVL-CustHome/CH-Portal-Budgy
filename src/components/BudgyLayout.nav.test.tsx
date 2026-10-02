@@ -13,8 +13,8 @@ const budgyUser = {
   created_at: "2026-01-01T00:00:00Z",
 };
 
-vi.mock("canopui", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("canopui")>();
+vi.mock("@canop/ui", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@canop/ui")>();
   return {
     palette: actual.palette,
     useTranslation: () => ({ t: (key: string) => key }),

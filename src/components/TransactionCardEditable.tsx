@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { StatusChip, useTranslation, type CanopStatusTone } from "canopui";
+import { StatusChip, useTranslation, type CanopStatusTone } from "@canop/ui";
 import type {
   Category,
   Enveloppe,

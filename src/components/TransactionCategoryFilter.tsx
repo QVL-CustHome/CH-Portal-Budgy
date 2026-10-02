@@ -3,7 +3,7 @@ import {
   Stack,
   useTranslation,
   type CanopSegmentedControlOption,
-} from "canopui";
+} from "@canop/ui";
 import type { TransactionCategoryFilter as Filter } from "../api/budgy";
 import FieldLabel from "./FieldLabel";
 

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { MultiSelect, useTranslation, type CanopMultiSelectOption } from "canopui";
+import { MultiSelect, useTranslation, type CanopMultiSelectOption } from "@canop/ui";
 import type { Category } from "../api/budgy";
 
 export interface BudgetCategorySelectProps {

@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
 import Typography from "@mui/material/Typography";
-import { Icon, Menu, MenuItem, useTranslation } from "canopui";
+import { Icon, Menu, MenuItem, useTranslation } from "@canop/ui";
 import type { Category } from "../api/budgy";
 import { toCategoryIcon } from "../lib/categories";
 import { useTransactionCategoryMenu } from "../hooks/useTransactionCategoryMenu";

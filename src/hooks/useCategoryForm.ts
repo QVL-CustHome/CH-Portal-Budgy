@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useTranslation, type CanopIconName } from "canopui";
+import { useTranslation, type CanopIconName } from "@canop/ui";
 import type { Category, CategoryInput, CategoryKind } from "../api/budgy";
 import {
   DEFAULT_CATEGORY_COLOR,

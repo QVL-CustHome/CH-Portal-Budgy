@@ -6,7 +6,7 @@ import {
   Stack,
   useTranslation,
   type CanopColumn,
-} from "canopui";
+} from "@canop/ui";
 import type { Category, Transaction } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 import { formatDate } from "../lib/date";

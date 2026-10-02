@@ -13,8 +13,8 @@ interface Column {
   render: (row: Transaction) => ReactNode;
 }
 
-vi.mock("canopui", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("canopui")>();
+vi.mock("@canop/ui", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@canop/ui")>();
   return {
     palette: actual.palette,
     useTranslation: () => ({ t: (key: string) => fr[key] ?? key, locale: "fr" }),

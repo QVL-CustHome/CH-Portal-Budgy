@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { Icon, type CanopIconName, type CanopIconSize } from "canopui";
+import { Icon, type CanopIconName, type CanopIconSize } from "@canop/ui";
 import { isLightCategoryColor } from "../lib/categories";
 
 export interface CategoryBadgeProps {

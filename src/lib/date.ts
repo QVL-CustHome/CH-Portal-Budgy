@@ -1,4 +1,4 @@
-import type { CanopLocale } from "canopui";
+import type { CanopLocale } from "@canop/ui";
 
 export function formatDate(
   value: string | null | undefined,

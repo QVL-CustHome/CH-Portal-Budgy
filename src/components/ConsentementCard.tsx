@@ -6,7 +6,7 @@ import {
   StatusChip,
   useTranslation,
   type CanopStatusTone,
-} from "canopui";
+} from "@canop/ui";
 import type { Consent, ConsentStatus } from "../api/budgy";
 import { formatDate } from "../lib/date";
 

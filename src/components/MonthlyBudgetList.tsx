@@ -1,4 +1,4 @@
-import { CardGrid } from "canopui";
+import { CardGrid } from "@canop/ui";
 import type { Budget, Category } from "../api/budgy";
 import { resolveCategory } from "../lib/categories";
 import AnimatedListItem from "./AnimatedListItem";

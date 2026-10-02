@@ -5,7 +5,7 @@ import {
   Spinner,
   Stack,
   useTranslation,
-} from "canopui";
+} from "@canop/ui";
 import ConsentementsList from "../components/ConsentementsList";
 import JourDebutMoisCard from "../components/JourDebutMoisCard";
 import ReconsentementAlerte from "../components/ReconsentementAlerte";

@@ -1,4 +1,4 @@
-import { Form, Input, useTranslation } from "canopui";
+import { Form, Input, useTranslation } from "@canop/ui";
 import type { Category } from "../api/budgy";
 import BudgetCategorySelect from "./BudgetCategorySelect";
 

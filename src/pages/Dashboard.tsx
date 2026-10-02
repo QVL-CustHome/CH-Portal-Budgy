@@ -1,4 +1,4 @@
-import { PageContent, useTranslation } from "canopui";
+import { PageContent, useTranslation } from "@canop/ui";
 import DashboardGrid from "../components/DashboardGrid";
 import SoldesConsolidesBlock from "../components/SoldesConsolidesBlock";
 import ResteADepenserBlock from "../components/ResteADepenserBlock";

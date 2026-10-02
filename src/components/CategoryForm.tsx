@@ -1,4 +1,4 @@
-import { Form, InputText, useTranslation } from "canopui";
+import { Form, InputText, useTranslation } from "@canop/ui";
 import type { Category, CategoryInput } from "../api/budgy";
 import { CATEGORY_NAME_MAX } from "../lib/categories";
 import { useCategoryForm } from "../hooks/useCategoryForm";

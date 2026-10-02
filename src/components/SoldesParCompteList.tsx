@@ -1,4 +1,4 @@
-import { DescriptionList, useTranslation, type CanopDescriptionItem } from "canopui";
+import { DescriptionList, useTranslation, type CanopDescriptionItem } from "@canop/ui";
 import type { ConsolidatedAccount } from "../api/budgy";
 import { formatMoneyCents } from "../lib/money";
 

@@ -4,7 +4,7 @@ import {
   Stack,
   useTranslation,
   type CanopMultiSelectOption,
-} from "canopui";
+} from "@canop/ui";
 import type { Account, Category, TransactionType } from "../api/budgy";
 import {
   TRANSACTION_PERIODS,

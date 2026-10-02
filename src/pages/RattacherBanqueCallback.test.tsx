@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { CanopI18nProvider, CanopThemeProvider } from "canopui";
+import { CanopI18nProvider, CanopThemeProvider } from "@canop/ui";
 import RattacherBanqueCallback from "./RattacherBanqueCallback";
 import { defaultLocale, messages } from "../i18n/messages";
 import { completerConsentement } from "../api/budgy";

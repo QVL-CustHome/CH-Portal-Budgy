@@ -1,4 +1,4 @@
-import { SidePanel, useTranslation } from "canopui";
+import { SidePanel, useTranslation } from "@canop/ui";
 import type { CategoryInput } from "../api/budgy";
 import type { CategoryEditor } from "../hooks/useCategoriesManager";
 import CategoryForm from "./CategoryForm";
